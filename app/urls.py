@@ -182,7 +182,6 @@ urlpatterns = [
                     GroupEndpoint.as_view(),
                     name="app.api.v1.group.endpoint",
                 ),
-
                 path(
                     "host",
                     HostsEndpoint.as_view(),
