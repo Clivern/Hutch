@@ -12,9 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-resource "digitalocean_vpc" "weasel_infra" {
+resource "digitalocean_vpc" "badger_infra" {
 
-    name = "weasel-infra-vpc"
+    name = "badger-infra-vpc"
 
     region = var.region
 }

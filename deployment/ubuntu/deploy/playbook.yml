@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ---
-- hosts: weasel_server
+- hosts: badger_server
 
   vars_files:
     - ./vars/default.yml
@@ -31,7 +31,7 @@
 
     - name: "app_db_name"
       prompt: "Application MySQL Database Name"
-      default: "weasel"
+      default: "badger"
       private: no
 
     - name: "app_db_username"

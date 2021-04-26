@@ -54,7 +54,7 @@ class Settings(View, Controller):
             request,
             self.template_name,
             {
-                "title": get_config("app_name", "Weasel"),
+                "title": get_config("app_name", "Badger"),
                 "description": get_config("app_description", ""),
                 "base_url": get_config("app_url", ""),
                 "data": data,

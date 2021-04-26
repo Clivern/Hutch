@@ -1,7 +1,7 @@
-var weasel_app = weasel_app || {};
+var badger_app = badger_app || {};
 
 // Login Page
-weasel_app.login_screen = (Vue, axios, Cookies, $) => {
+badger_app.login_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -48,7 +48,7 @@ weasel_app.login_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Reset Password Page
-weasel_app.reset_password_screen = (Vue, axios, Cookies, $) => {
+badger_app.reset_password_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -95,7 +95,7 @@ weasel_app.reset_password_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Install Page
-weasel_app.install_screen = (Vue, axios, Cookies, $) => {
+badger_app.install_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -141,7 +141,7 @@ weasel_app.install_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Forgot Password Page
-weasel_app.forgot_password_screen = (Vue, axios, Cookies, $) => {
+badger_app.forgot_password_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -188,7 +188,7 @@ weasel_app.forgot_password_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Settings Page
-weasel_app.settings_screen = (Vue, axios, Cookies, $) => {
+badger_app.settings_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -231,7 +231,7 @@ weasel_app.settings_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Profile Page
-weasel_app.profile_screen = (Vue, axios, Cookies, $) => {
+badger_app.profile_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -304,7 +304,7 @@ weasel_app.profile_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Create Host Group Page
-weasel_app.create_group_screen = (Vue, axios, Cookies, $) => {
+badger_app.create_group_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -351,7 +351,7 @@ weasel_app.create_group_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Update Host Group Page
-weasel_app.update_group_screen = (Vue, axios, Cookies, $) => {
+badger_app.update_group_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -395,7 +395,7 @@ weasel_app.update_group_screen = (Vue, axios, Cookies, $) => {
 
 
 // Group List Page
-weasel_app.group_list_screen = (Vue, axios, Cookies, $) => {
+badger_app.group_list_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -513,7 +513,7 @@ weasel_app.group_list_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Create Key Page
-weasel_app.create_key_screen = (Vue, axios, Cookies, $) => {
+badger_app.create_key_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -577,7 +577,7 @@ weasel_app.create_key_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Key List Page
-weasel_app.key_list_screen = (Vue, axios, Cookies, $) => {
+badger_app.key_list_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -689,7 +689,7 @@ $(document).ready(() => {
     };
 
     if (document.getElementById("app_login")) {
-        weasel_app.login_screen(
+        badger_app.login_screen(
             Vue,
             axios,
             Cookies,
@@ -698,7 +698,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_reset_password")) {
-        weasel_app.reset_password_screen(
+        badger_app.reset_password_screen(
             Vue,
             axios,
             Cookies,
@@ -707,7 +707,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_install")) {
-        weasel_app.install_screen(
+        badger_app.install_screen(
             Vue,
             axios,
             Cookies,
@@ -716,7 +716,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_forgot_password")) {
-        weasel_app.forgot_password_screen(
+        badger_app.forgot_password_screen(
             Vue,
             axios,
             Cookies,
@@ -725,7 +725,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_settings")) {
-        weasel_app.settings_screen(
+        badger_app.settings_screen(
             Vue,
             axios,
             Cookies,
@@ -734,7 +734,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_profile")) {
-        weasel_app.profile_screen(
+        badger_app.profile_screen(
             Vue,
             axios,
             Cookies,
@@ -743,7 +743,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_group_create")) {
-        weasel_app.create_group_screen(
+        badger_app.create_group_screen(
             Vue,
             axios,
             Cookies,
@@ -752,7 +752,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_group_update")) {
-        weasel_app.update_group_screen(
+        badger_app.update_group_screen(
             Vue,
             axios,
             Cookies,
@@ -761,7 +761,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_group_list")) {
-        weasel_app.group_list_screen(
+        badger_app.group_list_screen(
             Vue,
             axios,
             Cookies,
@@ -770,7 +770,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_key_create")) {
-        weasel_app.create_key_screen(
+        badger_app.create_key_screen(
             Vue,
             axios,
             Cookies,
@@ -779,7 +779,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_key_list")) {
-        weasel_app.key_list_screen(
+        badger_app.key_list_screen(
             Vue,
             axios,
             Cookies,

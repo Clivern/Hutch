@@ -31,7 +31,7 @@ variable "region" {
 
 variable "name" {
     type = string
-    default = "weasel.sh"
+    default = "badger.sh"
     description = "Server Name"
 }
 

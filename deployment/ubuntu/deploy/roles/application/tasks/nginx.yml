@@ -21,8 +21,8 @@
 
 - name: Create the nginx configuration file
   template:
-    src: weasel.sh.j2
-    dest: /etc/nginx/sites-available/weasel.sh
+    src: badger.sh.j2
+    dest: /etc/nginx/sites-available/badger.sh
     backup: yes
     mode: '0644'
   notify: reload nginx
@@ -37,8 +37,8 @@
 
 - name: Ensure that the application site is enabled
   file:
-    src: /etc/nginx/sites-available/weasel.sh
-    dest: /etc/nginx/sites-enabled/weasel.sh
+    src: /etc/nginx/sites-available/badger.sh
+    dest: /etc/nginx/sites-enabled/badger.sh
     state: link
   notify: reload nginx
   tags: [ nginx ]

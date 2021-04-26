@@ -15,4 +15,4 @@
 ---
 - name: Ping remote host
   ansible.builtin.ping:
-  tags: [weasel.plan.plugin.template]
+  tags: [badger.plan.plugin.template]

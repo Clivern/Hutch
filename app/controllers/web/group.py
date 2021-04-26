@@ -40,7 +40,7 @@ class ViewGroups(View, Controller):
             request,
             self.template_name,
             {
-                "title": get_config("app_name", "Weasel"),
+                "title": get_config("app_name", "Badger"),
                 "description": get_config("app_description", ""),
                 "base_url": get_config("app_url", ""),
             },
@@ -64,7 +64,7 @@ class AddGroup(View, Controller):
             request,
             self.template_name,
             {
-                "title": get_config("app_name", "Weasel"),
+                "title": get_config("app_name", "Badger"),
                 "description": get_config("app_description", ""),
                 "base_url": get_config("app_url", ""),
             },
@@ -93,7 +93,7 @@ class EditGroup(View, Controller):
             request,
             self.template_name,
             {
-                "title": get_config("app_name", "Weasel"),
+                "title": get_config("app_name", "Badger"),
                 "description": get_config("app_description", ""),
                 "base_url": get_config("app_url", ""),
                 "group": group,

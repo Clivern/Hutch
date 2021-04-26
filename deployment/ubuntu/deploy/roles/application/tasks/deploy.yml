@@ -115,17 +115,17 @@
     executable: /bin/bash
   tags: [ deploy ]
 
-- name: Create weasel service file
+- name: Create badger service file
   template:
-    src: weasel.service.j2
-    dest: /etc/systemd/system/weasel.service
+    src: badger.service.j2
+    dest: /etc/systemd/system/badger.service
     mode: "0750"
-  notify: reload weasel service
+  notify: reload badger service
   tags: [ deploy ]
 
-- name: Enable and start weasel service
+- name: Enable and start badger service
   systemd:
-    name: weasel
+    name: badger
     state: started
     enabled: yes
   tags: [ deploy ]
@@ -134,13 +134,13 @@
   pause:
     seconds: 2
 
-- name: restart weasel service
+- name: restart badger service
   systemd:
     state: restarted
-    name: weasel
+    name: badger
   tags: [ deploy ]
 
-- name: Create weasel workers service file
+- name: Create badger workers service file
   template:
     src: worker.service.j2
     dest: /etc/systemd/system/worker@.service
@@ -148,7 +148,7 @@
   notify: reload workers service
   tags: [ deploy ]
 
-- name: Enable and start weasel workers service
+- name: Enable and start badger workers service
   systemd:
     name: worker@{{ item }}
     state: started
@@ -160,7 +160,7 @@
   pause:
     seconds: 2
 
-- name: restart weasel workers service
+- name: restart badger workers service
   systemd:
     state: restarted
     name: worker@{{ item }}
