@@ -24,11 +24,11 @@
     name: nginx
     state: reloaded
 
-- name: reload rabbit service
+- name: reload hutch service
   systemd:
     state: restarted
     daemon_reload: yes
-    name: rabbit
+    name: hutch
 
 - name: reload workers service
   systemd:

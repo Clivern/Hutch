@@ -15,6 +15,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from .organization import Organization
+
 
 class Profile(models.Model):
     """Profile Model"""
@@ -29,6 +31,14 @@ class Profile(models.Model):
         on_delete=models.CASCADE,
         db_index=True,
         verbose_name="Related user",
+        null=False,
+    )
+
+    organization = models.ForeignKey(
+        Organization,
+        on_delete=models.CASCADE,
+        db_index=True,
+        verbose_name="Parent Organization",
         null=False,
     )
 

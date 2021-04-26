@@ -38,7 +38,7 @@ class ViewHost(View, Controller):
             request,
             self.template_name,
             {
-                "title": get_config("app_name", "Rabbit"),
+                "title": get_config("app_name", "Hutch"),
                 "description": get_config("app_description", ""),
                 "base_url": get_config("app_url", ""),
                 "host": host,
@@ -56,7 +56,7 @@ class ViewHosts(View, Controller):
             request,
             self.template_name,
             {
-                "title": get_config("app_name", "Rabbit"),
+                "title": get_config("app_name", "Hutch"),
                 "description": get_config("app_description", ""),
                 "base_url": get_config("app_url", ""),
             },
@@ -73,7 +73,7 @@ class AddHost(View, Controller):
             request,
             self.template_name,
             {
-                "title": get_config("app_name", "Rabbit"),
+                "title": get_config("app_name", "Hutch"),
                 "description": get_config("app_description", ""),
                 "base_url": get_config("app_url", ""),
             },
@@ -97,7 +97,7 @@ class EditHost(View, Controller):
             request,
             self.template_name,
             {
-                "title": get_config("app_name", "Rabbit"),
+                "title": get_config("app_name", "Hutch"),
                 "description": get_config("app_description", ""),
                 "base_url": get_config("app_url", ""),
                 "host": host,

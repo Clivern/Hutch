@@ -101,23 +101,6 @@ urlpatterns = [
                     AddKey.as_view(),
                     name="app.web.admin.key.add",
                 ),
-                # Host Web Pages
-                path("host", ViewHosts.as_view(), name="app.web.admin.host.list"),
-                path(
-                    "host/<host_id>",
-                    ViewHost.as_view(),
-                    name="app.web.admin.host.view",
-                ),
-                path(
-                    "host/add",
-                    AddHost.as_view(),
-                    name="app.web.admin.host.add",
-                ),
-                path(
-                    "host/edit/<host_id>",
-                    EditHost.as_view(),
-                    name="app.web.admin.host.edit",
-                ),
                 # User Web Pages
                 path("user", ViewUsers.as_view(), name="app.web.admin.user.list"),
                 path(
@@ -181,16 +164,6 @@ urlpatterns = [
                     "group/<group_id>",
                     GroupEndpoint.as_view(),
                     name="app.api.v1.group.endpoint",
-                ),
-                path(
-                    "host",
-                    HostsEndpoint.as_view(),
-                    name="app.api.v1.hosts.endpoint",
-                ),
-                path(
-                    "host/<host_id>",
-                    HostEndpoint.as_view(),
-                    name="app.api.v1.host.endpoint",
                 ),
                 path(
                     "key",

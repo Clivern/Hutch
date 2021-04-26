@@ -18,4 +18,4 @@
     src: "motd.j2"
     dest: "/etc/motd"
     mode: 0700
-  tags: [rabbit.plan.community.base]
+  tags: [hutch.plan.community.base]

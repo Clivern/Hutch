@@ -1,7 +1,7 @@
-var rabbit_app = rabbit_app || {};
+var hutch_app = hutch_app || {};
 
 // Login Page
-rabbit_app.login_screen = (Vue, axios, Cookies, $) => {
+hutch_app.login_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -48,7 +48,7 @@ rabbit_app.login_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Reset Password Page
-rabbit_app.reset_password_screen = (Vue, axios, Cookies, $) => {
+hutch_app.reset_password_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -95,7 +95,7 @@ rabbit_app.reset_password_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Install Page
-rabbit_app.install_screen = (Vue, axios, Cookies, $) => {
+hutch_app.install_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -141,7 +141,7 @@ rabbit_app.install_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Forgot Password Page
-rabbit_app.forgot_password_screen = (Vue, axios, Cookies, $) => {
+hutch_app.forgot_password_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -188,7 +188,7 @@ rabbit_app.forgot_password_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Settings Page
-rabbit_app.settings_screen = (Vue, axios, Cookies, $) => {
+hutch_app.settings_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -231,7 +231,7 @@ rabbit_app.settings_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Profile Page
-rabbit_app.profile_screen = (Vue, axios, Cookies, $) => {
+hutch_app.profile_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -304,7 +304,7 @@ rabbit_app.profile_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Create Host Group Page
-rabbit_app.create_group_screen = (Vue, axios, Cookies, $) => {
+hutch_app.create_group_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -351,7 +351,7 @@ rabbit_app.create_group_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Update Host Group Page
-rabbit_app.update_group_screen = (Vue, axios, Cookies, $) => {
+hutch_app.update_group_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -395,7 +395,7 @@ rabbit_app.update_group_screen = (Vue, axios, Cookies, $) => {
 
 
 // Group List Page
-rabbit_app.group_list_screen = (Vue, axios, Cookies, $) => {
+hutch_app.group_list_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -513,7 +513,7 @@ rabbit_app.group_list_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Create Key Page
-rabbit_app.create_key_screen = (Vue, axios, Cookies, $) => {
+hutch_app.create_key_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -577,7 +577,7 @@ rabbit_app.create_key_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Key List Page
-rabbit_app.key_list_screen = (Vue, axios, Cookies, $) => {
+hutch_app.key_list_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -689,7 +689,7 @@ $(document).ready(() => {
     };
 
     if (document.getElementById("app_login")) {
-        rabbit_app.login_screen(
+        hutch_app.login_screen(
             Vue,
             axios,
             Cookies,
@@ -698,7 +698,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_reset_password")) {
-        rabbit_app.reset_password_screen(
+        hutch_app.reset_password_screen(
             Vue,
             axios,
             Cookies,
@@ -707,7 +707,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_install")) {
-        rabbit_app.install_screen(
+        hutch_app.install_screen(
             Vue,
             axios,
             Cookies,
@@ -716,7 +716,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_forgot_password")) {
-        rabbit_app.forgot_password_screen(
+        hutch_app.forgot_password_screen(
             Vue,
             axios,
             Cookies,
@@ -725,7 +725,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_settings")) {
-        rabbit_app.settings_screen(
+        hutch_app.settings_screen(
             Vue,
             axios,
             Cookies,
@@ -734,7 +734,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_profile")) {
-        rabbit_app.profile_screen(
+        hutch_app.profile_screen(
             Vue,
             axios,
             Cookies,
@@ -743,7 +743,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_group_create")) {
-        rabbit_app.create_group_screen(
+        hutch_app.create_group_screen(
             Vue,
             axios,
             Cookies,
@@ -752,7 +752,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_group_update")) {
-        rabbit_app.update_group_screen(
+        hutch_app.update_group_screen(
             Vue,
             axios,
             Cookies,
@@ -761,7 +761,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_group_list")) {
-        rabbit_app.group_list_screen(
+        hutch_app.group_list_screen(
             Vue,
             axios,
             Cookies,
@@ -770,7 +770,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_key_create")) {
-        rabbit_app.create_key_screen(
+        hutch_app.create_key_screen(
             Vue,
             axios,
             Cookies,
@@ -779,7 +779,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_key_list")) {
-        rabbit_app.key_list_screen(
+        hutch_app.key_list_screen(
             Vue,
             axios,
             Cookies,

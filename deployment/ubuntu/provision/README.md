@@ -5,7 +5,7 @@
 ```bash
 region = "nyc3"
 ssh_key = "clivern"
-name = "rabbit.sh"
+name = "hutch.sh"
 droplet_size = "s-1vcpu-2gb"
 image = "ubuntu-20-04-x64"
 ```

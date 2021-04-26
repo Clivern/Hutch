@@ -30,7 +30,7 @@ def handler404(request, exception=None, template_name="templates/404.html"):
         logger.debug("Route Not Found: {exception}".format(exception=exception))
 
     context = {
-        "title": _("404 | {}").format(get_config("app_name", "Rabbit")),
+        "title": _("404 | {}").format(get_config("app_name", "Hutch")),
         "description": get_config("app_description", ""),
         "base_url": get_config("app_url", ""),
     }
@@ -47,7 +47,7 @@ def handler500(request, exception=None, template_name="templates/500.html"):
         logger.error("Internal Server Error: {exception}".format(exception=exception))
 
     context = {
-        "title": _("500 | {}").format(get_config("app_name", "Rabbit")),
+        "title": _("500 | {}").format(get_config("app_name", "Hutch")),
         "description": get_config("app_description", ""),
         "base_url": get_config("app_url", ""),
     }

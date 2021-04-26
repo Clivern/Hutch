@@ -15,12 +15,22 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from .organization import Organization
+
 
 class Key(models.Model):
     """Key Model"""
 
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, db_index=True, verbose_name="Related user"
+    )
+
+    organization = models.ForeignKey(
+        Organization,
+        on_delete=models.CASCADE,
+        db_index=True,
+        verbose_name="Parent Organization",
+        null=False,
     )
 
     name = models.CharField(max_length=150, verbose_name="Name")

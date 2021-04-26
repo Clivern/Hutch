@@ -31,7 +31,7 @@ variable "region" {
 
 variable "name" {
     type = string
-    default = "rabbit.sh"
+    default = "hutch.sh"
     description = "Server Name"
 }
 

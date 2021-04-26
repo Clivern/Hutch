@@ -15,12 +15,26 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from .organization import Organization
+
 
 class Activity(models.Model):
     """Activity Model"""
 
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE, db_index=True, verbose_name="Related User"
+        User,
+        on_delete=models.CASCADE,
+        db_index=True,
+        verbose_name="Related User",
+        null=True,
+    )
+
+    organization = models.ForeignKey(
+        Organization,
+        on_delete=models.CASCADE,
+        db_index=True,
+        verbose_name="Parent Organization",
+        null=False,
     )
 
     activity = models.TextField(verbose_name="Activity")

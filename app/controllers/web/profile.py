@@ -42,7 +42,7 @@ class Profile(View, Controller):
             request,
             self.template_name,
             {
-                "title": get_config("app_name", "Rabbit"),
+                "title": get_config("app_name", "Hutch"),
                 "description": get_config("app_description", ""),
                 "base_url": get_config("app_url", ""),
                 "profile": profile,

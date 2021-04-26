@@ -115,17 +115,17 @@
     executable: /bin/bash
   tags: [ deploy ]
 
-- name: Create rabbit service file
+- name: Create hutch service file
   template:
-    src: rabbit.service.j2
-    dest: /etc/systemd/system/rabbit.service
+    src: hutch.service.j2
+    dest: /etc/systemd/system/hutch.service
     mode: "0750"
-  notify: reload rabbit service
+  notify: reload hutch service
   tags: [ deploy ]
 
-- name: Enable and start rabbit service
+- name: Enable and start hutch service
   systemd:
-    name: rabbit
+    name: hutch
     state: started
     enabled: yes
   tags: [ deploy ]
@@ -134,13 +134,13 @@
   pause:
     seconds: 2
 
-- name: restart rabbit service
+- name: restart hutch service
   systemd:
     state: restarted
-    name: rabbit
+    name: hutch
   tags: [ deploy ]
 
-- name: Create rabbit workers service file
+- name: Create hutch workers service file
   template:
     src: worker.service.j2
     dest: /etc/systemd/system/worker@.service
@@ -148,7 +148,7 @@
   notify: reload workers service
   tags: [ deploy ]
 
-- name: Enable and start rabbit workers service
+- name: Enable and start hutch workers service
   systemd:
     name: worker@{{ item }}
     state: started
@@ -160,7 +160,7 @@
   pause:
     seconds: 2
 
-- name: restart rabbit workers service
+- name: restart hutch workers service
   systemd:
     state: restarted
     name: worker@{{ item }}

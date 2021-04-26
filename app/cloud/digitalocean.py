@@ -91,7 +91,7 @@ class Digitalocean:
             "user_data": None,
             "volumes": None,
             "with_droplet_agent": True,
-            "tags": ["rabbit"],
+            "tags": ["hutch"],
         }
 
         response = requests.post(

@@ -1,9 +1,9 @@
-- name: rabbit plan
+- name: hutch plan
   hosts: remote
   become: yes
   vars:
-    rabbit_version: "0.1.0"
-    rabbit_plan_uuid: "{{ plan_uuid }}"
+    hutch_version: "0.1.0"
+    hutch_plan_uuid: "{{ plan_uuid }}"
     {% for var in vars %}
     {{ var.name }}: "{{ var.value }}"
     {% endfor %}

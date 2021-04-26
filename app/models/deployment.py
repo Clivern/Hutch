@@ -14,12 +14,13 @@
 
 from django.db import models
 from django.contrib.auth.models import User
+
 from .group import Group
 from .key import Key
 
 
-class Cluster(models.Model):
-    """Cluster Model"""
+class Deployment(models.Model):
+    """Deployment Model"""
 
     PENDING = "pending"
     RUNNING = "running"
@@ -49,11 +50,13 @@ class Cluster(models.Model):
         max_length=20, choices=STATUS_CHOICES, default="pending", verbose_name="Status"
     )
 
-    name = models.CharField(max_length=100, verbose_name="Name")
+    name = models.CharField(max_length=150, verbose_name="Name")
+    slug = models.CharField(max_length=150, verbose_name="Slug")
     uuid = models.CharField(max_length=60, db_index=True, verbose_name="uuid")
-    description = models.CharField(max_length=200, verbose_name="Description")
     cloud_provider = models.CharField(max_length=50, verbose_name="Cloud Provider")
-    specification = models.TextField(verbose_name="Specifications")
+    specs = models.TextField(verbose_name="Specifications")
+    result = models.TextField(verbose_name="Result")
+    username = models.CharField(max_length=100, verbose_name="Username")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Created at")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Updated at")
 
@@ -61,4 +64,4 @@ class Cluster(models.Model):
         return self.uuid
 
     class Meta:
-        db_table = "app_cluster"
+        db_table = "app_deployment"

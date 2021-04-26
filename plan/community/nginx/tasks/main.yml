@@ -20,19 +20,19 @@
       - apache2-utils
       - python3-pip
     state: present
-  tags: [rabbit.plan.community.nginx]
+  tags: [hutch.plan.community.nginx]
 
 - name: Install passlib python package
   ansible.builtin.pip:
     name: passlib
-  tags: [rabbit.plan.community.nginx]
+  tags: [hutch.plan.community.nginx]
 
 - name: Ensure nginx service is started
   ansible.builtin.service:
     name: nginx
     state: started
     enabled: true
-  tags: [rabbit.plan.community.nginx]
+  tags: [hutch.plan.community.nginx]
 
 - name: Setup logrotate scripts
   ansible.builtin.template:
@@ -41,4 +41,4 @@
     mode: "0644"
   with_items: "{{ nginx_logrotate_scripts }}"
   when: nginx_logrotate_scripts is defined
-  tags: [rabbit.plan.community.nginx]
+  tags: [hutch.plan.community.nginx]

@@ -17,6 +17,8 @@ from django.contrib.auth.models import User
 
 
 class Organization(models.Model):
+    """Organization Model"""
+
     ACTIVE = "ACTIVE"
     DISABLED = "DISABLED"
 

@@ -18,6 +18,8 @@ from .organization import Organization
 
 
 class OrganizationMeta(models.Model):
+    """Organization Meta Model"""
+
     organization = models.ForeignKey(
         Organization,
         on_delete=models.CASCADE,

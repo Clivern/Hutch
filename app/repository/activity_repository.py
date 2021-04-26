@@ -15,6 +15,7 @@
 from django.contrib.auth.models import User
 
 from app.models import Activity
+from app.models import Organization
 
 
 class ActivityRepository:
@@ -32,7 +33,11 @@ class ActivityRepository:
         if "user_id" in activity:
             new_activity.user = User.objects.get(pk=activity["user_id"])
 
+        if "organization_id" in activity:
+            new_activity.organization = Organization.objects.get(pk=activity["organization_id"])
+
         new_activity.save()
+
         return False if new_activity.pk is None else new_activity
 
     def update_one_by_id(self, id, activity_data):
@@ -48,7 +53,11 @@ class ActivityRepository:
             if "user_id" in activity_data:
                 activity.user = User.objects.get(pk=activity_data["user_id"])
 
+            if "organization_id" in activity_data:
+                activity.organization = Organization.objects.get(pk=activity_data["organization_id"])
+
             activity.save()
+
             return True
         return False
 
@@ -66,6 +75,15 @@ class ActivityRepository:
             return Activity.objects.count()
         else:
             return Activity.objects.filter(user_id=user_id).count()
+
+    def count_by_organization(self, organization_id=None):
+        """
+        Count organization by organization id
+        """
+        if organization_id is None:
+            return Organization.objects.count()
+        else:
+            return Organization.objects.filter(organization_id=organization_id).count()
 
     def get_all(self, offset=None, limit=None):
         """

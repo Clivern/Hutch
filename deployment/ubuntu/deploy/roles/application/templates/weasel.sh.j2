@@ -1,12 +1,12 @@
 server {
     listen      80;
     listen      [::]:80;
-    server_name www.rabbit.sh;
+    server_name www.hutch.sh;
     set         $base /srv/app/current;
 
     location / {
         include proxy_params;
-        proxy_pass http://unix:/run/rabbit.sock;
+        proxy_pass http://unix:/run/hutch.sock;
         uwsgi_param Host              $host;
         uwsgi_param X-Real-IP         $remote_addr;
         uwsgi_param X-Forwarded-For   $proxy_add_x_forwarded_for;
@@ -46,6 +46,6 @@ server {
 server {
     listen      80;
     listen      [::]:80;
-    server_name .rabbit.sh;
-    return      301 http://www.rabbit.sh$request_uri;
+    server_name .hutch.sh;
+    return      301 http://www.hutch.sh$request_uri;
 }

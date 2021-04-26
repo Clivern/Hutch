@@ -9,4 +9,4 @@
 
 ### Reporting a Vulnerability
 
-If you discover a security vulnerability within Rabbit, please send an email to [hello@clivern.com](mailto:hello@clivern.com)
+If you discover a security vulnerability within Hutch, please send an email to [hello@clivern.com](mailto:hello@clivern.com)

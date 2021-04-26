@@ -13,14 +13,18 @@
 # limitations under the License.
 
 from django.db import models
-from .host import Host
+
+from .deployment import Deployment
 
 
-class HostMeta(models.Model):
-    """HostMeta Model"""
+class DeploymentMeta(models.Model):
+    """DeploymentMeta Model"""
 
-    host = models.ForeignKey(
-        Host, on_delete=models.CASCADE, db_index=True, verbose_name="Related Host"
+    deployment = models.ForeignKey(
+        Deployment,
+        on_delete=models.CASCADE,
+        db_index=True,
+        verbose_name="Related Deployment",
     )
 
     name = models.CharField(max_length=60, db_index=True, verbose_name="Meta name")
@@ -32,4 +36,4 @@ class HostMeta(models.Model):
         return self.name
 
     class Meta:
-        db_table = "app_host_meta"
+        db_table = "app_deployment_meta"

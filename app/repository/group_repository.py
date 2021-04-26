@@ -17,7 +17,7 @@ import uuid
 from django.contrib.auth.models import User
 
 from app.models import Group
-from app.models import Host
+from app.models import Organization
 
 
 class GroupRepository:
@@ -43,7 +43,11 @@ class GroupRepository:
         if "user_id" in data:
             group.user = User.objects.get(pk=data["user_id"])
 
+        if "organization_id" in data:
+            group.organization = Organization.objects.get(pk=data["organization_id"])
+
         group.save()
+
         return False if group.pk is None else group
 
     def update_one_by_id(self, id, data):
@@ -78,14 +82,14 @@ class GroupRepository:
         else:
             return Group.objects.filter(user_id=user_id).count()
 
-    def count_hosts_by_group(self, group_id=None, user_id=None):
+    def count_by_organization(self, organization_id=None):
         """
-        Count hosts by group id
+        Count groups by organization id
         """
-        if group_id is None:
-            return Host.objects.count()
+        if organization_id is None:
+            return Group.objects.count()
         else:
-            return Host.objects.filter(group_id=group_id, user_id=user_id).count()
+            return Group.objects.filter(organization_id=organization_id).count()
 
     def get_all(self, offset=None, limit=None):
         """

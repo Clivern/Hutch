@@ -22,8 +22,8 @@ from app.models import Host
 from app.models import HostMeta
 
 
-class HostRepository:
-    """Host Repository"""
+class DeploymentRepository:
+    """Deployment Repository"""
 
     def insert_one(self, data):
         """

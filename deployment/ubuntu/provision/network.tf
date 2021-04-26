@@ -12,9 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-resource "digitalocean_vpc" "rabbit_infra" {
+resource "digitalocean_vpc" "hutch_infra" {
 
-    name = "rabbit-infra-vpc"
+    name = "hutch-infra-vpc"
 
     region = var.region
 }

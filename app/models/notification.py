@@ -16,6 +16,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 from .task import Task
+from .organization import Organization
 
 
 class Notification(models.Model):
@@ -33,6 +34,14 @@ class Notification(models.Model):
 
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, db_index=True, verbose_name="Related user"
+    )
+
+    organization = models.ForeignKey(
+        Organization,
+        on_delete=models.CASCADE,
+        db_index=True,
+        verbose_name="Parent Organization",
+        null=False,
     )
 
     task = models.ForeignKey(
