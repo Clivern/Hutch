@@ -22,7 +22,7 @@
 
 #### Getting Started
 
-In order to run `rabbit`, you need `Python`, `Redis` and `MySQL`. Then run the following commands:
+In order to run `Rabbit`, you need `Python`, `Redis` and `MySQL`. Then run the following commands:
 
 ```zsh
 # Create a python venv
