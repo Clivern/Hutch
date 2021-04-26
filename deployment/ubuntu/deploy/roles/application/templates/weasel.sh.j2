@@ -1,12 +1,12 @@
 server {
     listen      80;
     listen      [::]:80;
-    server_name www.badger.sh;
+    server_name www.rabbit.sh;
     set         $base /srv/app/current;
 
     location / {
         include proxy_params;
-        proxy_pass http://unix:/run/badger.sock;
+        proxy_pass http://unix:/run/rabbit.sock;
         uwsgi_param Host              $host;
         uwsgi_param X-Real-IP         $remote_addr;
         uwsgi_param X-Forwarded-For   $proxy_add_x_forwarded_for;
@@ -46,6 +46,6 @@ server {
 server {
     listen      80;
     listen      [::]:80;
-    server_name .badger.sh;
-    return      301 http://www.badger.sh$request_uri;
+    server_name .rabbit.sh;
+    return      301 http://www.rabbit.sh$request_uri;
 }

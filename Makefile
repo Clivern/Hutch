@@ -11,7 +11,7 @@ ANSIBLE_LINT     ?= ansible-lint
 
 help: Makefile
 	@echo
-	@echo " Choose a command run in Badger:"
+	@echo " Choose a command run in Rabbit:"
 	@echo
 	@sed -n 's/^##//p' $< | column -t -s ':' |  sed -e 's/^/ /'
 	@echo

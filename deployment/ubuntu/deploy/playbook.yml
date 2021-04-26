@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ---
-- hosts: badger_server
+- hosts: rabbit_server
 
   vars_files:
     - ./vars/default.yml
@@ -31,7 +31,7 @@
 
     - name: "app_db_name"
       prompt: "Application MySQL Database Name"
-      default: "badger"
+      default: "rabbit"
       private: no
 
     - name: "app_db_username"

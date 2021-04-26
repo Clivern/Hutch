@@ -17,14 +17,14 @@
   ansible.builtin.apt:
     name: redis-server
     state: present
-  tags: [badger.plan.community.redis]
+  tags: [rabbit.plan.community.redis]
 
 - name: Ensure redis is started
   ansible.builtin.service:
     name: redis-server
     state: started
     enabled: true
-  tags: [badger.plan.community.redis]
+  tags: [rabbit.plan.community.redis]
 
 - name: Enable password authentication for redis
   ansible.builtin.lineinfile:
@@ -34,7 +34,7 @@
     state: present
     backup: true
   notify: Restart redis
-  tags: [badger.plan.community.redis]
+  tags: [rabbit.plan.community.redis]
 
 - name: Run redis from systemd
   ansible.builtin.lineinfile:
@@ -44,4 +44,4 @@
     state: present
     backup: true
   notify: Restart redis
-  tags: [badger.plan.community.redis]
+  tags: [rabbit.plan.community.redis]

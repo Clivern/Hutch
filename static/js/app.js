@@ -1,7 +1,7 @@
-var badger_app = badger_app || {};
+var rabbit_app = rabbit_app || {};
 
 // Login Page
-badger_app.login_screen = (Vue, axios, Cookies, $) => {
+rabbit_app.login_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -48,7 +48,7 @@ badger_app.login_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Reset Password Page
-badger_app.reset_password_screen = (Vue, axios, Cookies, $) => {
+rabbit_app.reset_password_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -95,7 +95,7 @@ badger_app.reset_password_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Install Page
-badger_app.install_screen = (Vue, axios, Cookies, $) => {
+rabbit_app.install_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -141,7 +141,7 @@ badger_app.install_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Forgot Password Page
-badger_app.forgot_password_screen = (Vue, axios, Cookies, $) => {
+rabbit_app.forgot_password_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -188,7 +188,7 @@ badger_app.forgot_password_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Settings Page
-badger_app.settings_screen = (Vue, axios, Cookies, $) => {
+rabbit_app.settings_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -231,7 +231,7 @@ badger_app.settings_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Profile Page
-badger_app.profile_screen = (Vue, axios, Cookies, $) => {
+rabbit_app.profile_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -304,7 +304,7 @@ badger_app.profile_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Create Host Group Page
-badger_app.create_group_screen = (Vue, axios, Cookies, $) => {
+rabbit_app.create_group_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -351,7 +351,7 @@ badger_app.create_group_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Update Host Group Page
-badger_app.update_group_screen = (Vue, axios, Cookies, $) => {
+rabbit_app.update_group_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -395,7 +395,7 @@ badger_app.update_group_screen = (Vue, axios, Cookies, $) => {
 
 
 // Group List Page
-badger_app.group_list_screen = (Vue, axios, Cookies, $) => {
+rabbit_app.group_list_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -513,7 +513,7 @@ badger_app.group_list_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Create Key Page
-badger_app.create_key_screen = (Vue, axios, Cookies, $) => {
+rabbit_app.create_key_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -577,7 +577,7 @@ badger_app.create_key_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Key List Page
-badger_app.key_list_screen = (Vue, axios, Cookies, $) => {
+rabbit_app.key_list_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -689,7 +689,7 @@ $(document).ready(() => {
     };
 
     if (document.getElementById("app_login")) {
-        badger_app.login_screen(
+        rabbit_app.login_screen(
             Vue,
             axios,
             Cookies,
@@ -698,7 +698,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_reset_password")) {
-        badger_app.reset_password_screen(
+        rabbit_app.reset_password_screen(
             Vue,
             axios,
             Cookies,
@@ -707,7 +707,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_install")) {
-        badger_app.install_screen(
+        rabbit_app.install_screen(
             Vue,
             axios,
             Cookies,
@@ -716,7 +716,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_forgot_password")) {
-        badger_app.forgot_password_screen(
+        rabbit_app.forgot_password_screen(
             Vue,
             axios,
             Cookies,
@@ -725,7 +725,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_settings")) {
-        badger_app.settings_screen(
+        rabbit_app.settings_screen(
             Vue,
             axios,
             Cookies,
@@ -734,7 +734,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_profile")) {
-        badger_app.profile_screen(
+        rabbit_app.profile_screen(
             Vue,
             axios,
             Cookies,
@@ -743,7 +743,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_group_create")) {
-        badger_app.create_group_screen(
+        rabbit_app.create_group_screen(
             Vue,
             axios,
             Cookies,
@@ -752,7 +752,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_group_update")) {
-        badger_app.update_group_screen(
+        rabbit_app.update_group_screen(
             Vue,
             axios,
             Cookies,
@@ -761,7 +761,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_group_list")) {
-        badger_app.group_list_screen(
+        rabbit_app.group_list_screen(
             Vue,
             axios,
             Cookies,
@@ -770,7 +770,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_key_create")) {
-        badger_app.create_key_screen(
+        rabbit_app.create_key_screen(
             Vue,
             axios,
             Cookies,
@@ -779,7 +779,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_key_list")) {
-        badger_app.key_list_screen(
+        rabbit_app.key_list_screen(
             Vue,
             axios,
             Cookies,

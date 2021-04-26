@@ -3,7 +3,7 @@
 1. Setup servers
 
 ```bash
-$ echo "[badger_server]
+$ echo "[rabbit_server]
 x.x.x.x     ansible_connection=ssh        ansible_user=root    ansible_python_interpreter=/usr/bin/python3" > hosts.prod
 ```
 

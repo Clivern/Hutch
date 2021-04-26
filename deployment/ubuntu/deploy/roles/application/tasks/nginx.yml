@@ -21,8 +21,8 @@
 
 - name: Create the nginx configuration file
   template:
-    src: badger.sh.j2
-    dest: /etc/nginx/sites-available/badger.sh
+    src: rabbit.sh.j2
+    dest: /etc/nginx/sites-available/rabbit.sh
     backup: yes
     mode: '0644'
   notify: reload nginx
@@ -37,8 +37,8 @@
 
 - name: Ensure that the application site is enabled
   file:
-    src: /etc/nginx/sites-available/badger.sh
-    dest: /etc/nginx/sites-enabled/badger.sh
+    src: /etc/nginx/sites-available/rabbit.sh
+    dest: /etc/nginx/sites-enabled/rabbit.sh
     state: link
   notify: reload nginx
   tags: [ nginx ]

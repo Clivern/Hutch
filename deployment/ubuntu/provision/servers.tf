@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-resource "digitalocean_droplet" "badger" {
+resource "digitalocean_droplet" "rabbit" {
 
   image = var.image
 
@@ -28,12 +28,12 @@ resource "digitalocean_droplet" "badger" {
 
   ssh_keys = [data.digitalocean_ssh_key.main.id]
 
-  vpc_uuid = digitalocean_vpc.badger_infra.id
+  vpc_uuid = digitalocean_vpc.rabbit_infra.id
 }
 
-resource "digitalocean_floating_ip" "badger" {
+resource "digitalocean_floating_ip" "rabbit" {
 
-  droplet_id = digitalocean_droplet.badger.id
+  droplet_id = digitalocean_droplet.rabbit.id
 
-  region     = digitalocean_droplet.badger.region
+  region     = digitalocean_droplet.rabbit.region
 }

@@ -115,17 +115,17 @@
     executable: /bin/bash
   tags: [ deploy ]
 
-- name: Create badger service file
+- name: Create rabbit service file
   template:
-    src: badger.service.j2
-    dest: /etc/systemd/system/badger.service
+    src: rabbit.service.j2
+    dest: /etc/systemd/system/rabbit.service
     mode: "0750"
-  notify: reload badger service
+  notify: reload rabbit service
   tags: [ deploy ]
 
-- name: Enable and start badger service
+- name: Enable and start rabbit service
   systemd:
-    name: badger
+    name: rabbit
     state: started
     enabled: yes
   tags: [ deploy ]
@@ -134,13 +134,13 @@
   pause:
     seconds: 2
 
-- name: restart badger service
+- name: restart rabbit service
   systemd:
     state: restarted
-    name: badger
+    name: rabbit
   tags: [ deploy ]
 
-- name: Create badger workers service file
+- name: Create rabbit workers service file
   template:
     src: worker.service.j2
     dest: /etc/systemd/system/worker@.service
@@ -148,7 +148,7 @@
   notify: reload workers service
   tags: [ deploy ]
 
-- name: Enable and start badger workers service
+- name: Enable and start rabbit workers service
   systemd:
     name: worker@{{ item }}
     state: started
@@ -160,7 +160,7 @@
   pause:
     seconds: 2
 
-- name: restart badger workers service
+- name: restart rabbit workers service
   systemd:
     state: restarted
     name: worker@{{ item }}

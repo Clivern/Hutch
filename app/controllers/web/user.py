@@ -35,7 +35,7 @@ class ViewUsers(View, Controller):
             request,
             self.template_name,
             {
-                "title": get_config("app_name", "Badger"),
+                "title": get_config("app_name", "Rabbit"),
                 "description": get_config("app_description", ""),
                 "base_url": get_config("app_url", ""),
             },
@@ -56,7 +56,7 @@ class AddUser(View, Controller):
             request,
             self.template_name,
             {
-                "title": get_config("app_name", "Badger"),
+                "title": get_config("app_name", "Rabbit"),
                 "description": get_config("app_description", ""),
                 "base_url": get_config("app_url", ""),
             },
@@ -83,7 +83,7 @@ class EditUser(View, Controller):
             request,
             self.template_name,
             {
-                "title": get_config("app_name", "Badger"),
+                "title": get_config("app_name", "Rabbit"),
                 "description": get_config("app_description", ""),
                 "base_url": get_config("app_url", ""),
                 "user": user,
