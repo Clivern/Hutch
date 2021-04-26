@@ -1,11 +1,6 @@
 <p align="center">
-<<<<<<< Updated upstream
-    <img alt="Weasel Logo" src="/static/logo.png?v=1.0.0" width="250" />
-    <h3 align="center">Weasel</h3>
-=======
-    <img alt="Badger Logo" src="/static/logo.png" width="120" />
+    <img alt="Badger Logo" src="/static/logo.png" width="250" />
     <h3 align="center">Badger</h3>
->>>>>>> Stashed changes
     <p align="center">A Fast, Secure and Reliable Platform as a Service, Set up in Minutes.</p>
     <p align="center">
         <a href="https://github.com/Clevenio/Badger/actions/workflows/api.yml">
