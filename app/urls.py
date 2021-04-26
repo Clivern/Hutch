@@ -173,6 +173,17 @@ urlpatterns = [
                     name="app.api.v1.install.install.endpoint",
                 ),
                 path(
+                    "group",
+                    GroupsEndpoint.as_view(),
+                    name="app.api.v1.groups.endpoint",
+                ),
+                path(
+                    "group/<group_id>",
+                    GroupEndpoint.as_view(),
+                    name="app.api.v1.group.endpoint",
+                ),
+
+                path(
                     "host",
                     HostsEndpoint.as_view(),
                     name="app.api.v1.hosts.endpoint",
