@@ -94,6 +94,6 @@ Shoutout to these open source projects and their maintainers.
 
 ## License
 
-© 2021, Pilgrim. Released under [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+© 2022, Pilgrim. Released under [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
 
 **Pilgrim** is authored and maintained by [@Clivern](https://github.com/clivern).
