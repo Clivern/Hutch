@@ -16,14 +16,6 @@ const routes = [
     },
   },
   {
-    path: "/p/:id",
-    name: "CodePage",
-    component: () => import("../views/CodePage.vue"),
-    meta: {
-      requiresAuth: false,
-    },
-  },
-  {
     path: "/404",
     name: "NotFoundPage",
     component: () => import("../views/NotFoundPage.vue"),
