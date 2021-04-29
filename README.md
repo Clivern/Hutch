@@ -18,6 +18,9 @@
     </p>
 </p>
 
+`Pilgrim` is a lightweight and powerful control panel written in `python` to work with with `linux`. With `pilgrim` you can control multiple servers `firewall`, `users`, user `groups`, `packages`, install `softwares` ... etc.
+
+
 ## Documentation
 
 ### Getting Started
