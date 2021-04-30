@@ -42,7 +42,6 @@ class Ansible():
         Returns:
             Whether files/dirs got created or not
         """
-
         self.cleanup(plan_uuid)
 
         if "host_port" not in configs.keys():
