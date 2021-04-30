@@ -13,9 +13,6 @@
 # limitations under the License.
 
 ---
-- name: Set motd banner
-  ansible.builtin.template:
-    src: "motd.j2"
-    dest: "/etc/motd"
-    mode: 0700
-  tags: [pilgrim.plan.base]
+- name: Ping remote host
+  ansible.builtin.ping:
+  tags: [pilgrim.plan.ping]
