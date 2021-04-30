@@ -12,7 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from .option import Option                                         # noqa: F401
-from .task import Task                                             # noqa: F401
-from .profile import Profile                                       # noqa: F401
-from .server import Server                                         # noqa: F401
+from django.db import models
+
+
+class Server(models.Model):
+
+    uuid = models.CharField(max_length=60, db_index=True, verbose_name="UUID")
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Created at")
+    updated_at = models.DateTimeField(auto_now=True, verbose_name="Updated at")
+
+    def __str__(self):
+        return self.uuid
+
+    class Meta:
+        db_table = "app_server"

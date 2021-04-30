@@ -59,6 +59,11 @@ $ make
 ```
 
 
+## Limitations
+
+`Pilgrim` is able to install softwares that can run on a single server. In order to support something like `minio` cluster, It will require some changes to the async engine.
+
+
 ## Versioning
 
 For transparency into our release cycle and in striving to maintain backward compatibility, Pilgrim is maintained under the [Semantic Versioning guidelines](https://semver.org/) and release process is predictable and business-friendly.

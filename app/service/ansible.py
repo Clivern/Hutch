@@ -28,8 +28,8 @@ class Ansible():
 
     def __init__(self):
         """Init Ansible Object"""
-        self.logger = Logger().get_logger(__name__)
         self.file_system = FileSystem()
+        self.logger = Logger().get_logger(__name__)
 
     def generate(self, plan_uuid, configs={}):
         """
@@ -53,10 +53,26 @@ class Ansible():
         if "vars" not in configs.keys():
             configs["vars"] = []
 
-        target_tmp_dir = self.file_system.app_path("/{}/{}/{}".format(self.CACHE_DIR, plan_uuid, self.TEMP_DIR))
-        target_hosts_file = self.file_system.app_path("/{}/{}/hosts".format(self.CACHE_DIR, plan_uuid))
-        target_playbook_file = self.file_system.app_path("/{}/{}/playbook.yml".format(self.CACHE_DIR, plan_uuid))
-        target_private_key_file = self.file_system.app_path("/{}/{}/private_key".format(self.CACHE_DIR, plan_uuid))
+        target_tmp_dir = self.file_system.app_path("/{}/{}/{}".format(
+            self.CACHE_DIR,
+            plan_uuid,
+            self.TEMP_DIR
+        ))
+
+        target_hosts_file = self.file_system.app_path("/{}/{}/hosts".format(
+            self.CACHE_DIR,
+            plan_uuid
+        ))
+
+        target_playbook_file = self.file_system.app_path("/{}/{}/playbook.yml".format(
+            self.CACHE_DIR,
+            plan_uuid
+        ))
+
+        target_private_key_file = self.file_system.app_path("/{}/{}/private_key".format(
+            self.CACHE_DIR,
+            plan_uuid
+        ))
 
         result = self.file_system.create_dirs(target_tmp_dir, 0o775)
 
@@ -71,9 +87,20 @@ class Ansible():
         private_key_file_content = render_to_string("plan/private_key", configs)
 
         # Create plan files
-        self.file_system.write_file(target_hosts_file, hosts_file_content)
-        self.file_system.write_file(target_playbook_file, playbook_file_content)
-        self.file_system.write_file(target_private_key_file, private_key_file_content)
+        self.file_system.write_file(
+            target_hosts_file,
+            hosts_file_content
+        )
+
+        self.file_system.write_file(
+            target_playbook_file,
+            playbook_file_content
+        )
+
+        self.file_system.write_file(
+            target_private_key_file,
+            private_key_file_content
+        )
 
         # Change ssh key mode to 600
         self.file_system.change_permission(target_private_key_file, 0o600)
@@ -90,9 +117,21 @@ class Ansible():
         Returns:
             Whether the run succeeded or not
         """
-        data_dir = self.file_system.app_path("/{}/{}/{}".format(self.CACHE_DIR, plan_uuid, self.TEMP_DIR))
-        inventory = self.file_system.app_path("/{}/{}/hosts".format(self.CACHE_DIR, plan_uuid))
-        playbook = self.file_system.app_path("/{}/{}/playbook.yml".format(self.CACHE_DIR, plan_uuid))
+        data_dir = self.file_system.app_path("/{}/{}/{}".format(
+            self.CACHE_DIR,
+            plan_uuid,
+            self.TEMP_DIR
+        ))
+
+        inventory = self.file_system.app_path("/{}/{}/hosts".format(
+            self.CACHE_DIR,
+            plan_uuid
+        ))
+
+        playbook = self.file_system.app_path("/{}/{}/playbook.yml".format(
+            self.CACHE_DIR,
+            plan_uuid
+        ))
 
         out = ansible_runner.run(
             private_data_dir=data_dir,
@@ -101,10 +140,16 @@ class Ansible():
             quiet=True
         )
 
-        self.logger.info("Plan with id {} has output: {}".format(plan_uuid, json.dumps(out.stats)))
+        self.logger.info("Plan with id {} has output: {}".format(
+            plan_uuid,
+            json.dumps(out.stats)
+        ))
 
         if out.status.lower() == "failed":
-            self.logger.error("Plan with id {} has failed, output: {}".format(plan_uuid, json.dumps(out.stats)))
+            self.logger.error("Plan with id {} has failed, output: {}".format(
+                plan_uuid,
+                json.dumps(out.stats)
+            ))
             return False
 
         elif out.status.lower() == "successful":
