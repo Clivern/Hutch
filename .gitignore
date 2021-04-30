@@ -112,3 +112,4 @@ ENV/
 
 db.sqlite3
 newrelic.ini
+.vagrant

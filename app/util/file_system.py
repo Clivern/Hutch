@@ -13,6 +13,7 @@
 # limitations under the License.
 
 import os
+import shutil
 
 from app import APP_ROOT
 
@@ -34,6 +35,31 @@ class FileSystem():
         f = open(file_path, "r")
 
         return f.read()
+
+    def create_dirs(self, path, mode=0o777):
+        """
+        Creates a dirs
+
+        Args:
+            path: The path
+            mode: The mode
+
+        Returns:
+            Whether dirs got created or not
+        """
+        os.makedirs(path, mode)
+
+        return os.path.exists(path)
+
+    def change_permission(self, path, mode=0o777):
+        """
+        Changes file permission
+
+        Args:
+            path: The path
+            mode: The mode
+        """
+        os.chmod(path, mode)
 
     def open_file(self, file_path):
         """
@@ -60,6 +86,15 @@ class FileSystem():
         f = open(file_path, "w")
         f.write(content)
         f.close()
+
+    def delete_directory(self, directory):
+        """
+        Deletes a directory and its content
+
+        Args:
+            directory: The directory to delete
+        """
+        shutil.rmtree(directory)
 
     def delete_file(self, file_path):
         """

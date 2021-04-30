@@ -1,12 +1,13 @@
-PYTHON ?= python
-PIP ?= $(PYTHON) -m pip
-COVERAGE ?= coverage
-PYCODESTYLE ?= pycodestyle
-FLAKE8 ?= flake8
-NPM          ?= npm
-NPX          ?= npx
-GUNICORN     ?= gunicorn
-PRECOMMIT    ?= pre-commit
+PYTHON           ?= python
+PIP              ?= $(PYTHON) -m pip
+COVERAGE         ?= coverage
+PYCODESTYLE      ?= pycodestyle
+FLAKE8           ?= flake8
+NPM              ?= npm
+NPX              ?= npx
+GUNICORN         ?= gunicorn
+PRECOMMIT        ?= pre-commit
+ANSIBLE_LINT     ?= ansible-lint
 
 
 help: Makefile
@@ -167,9 +168,15 @@ precommit:
 	$(PRECOMMIT) run --all-files
 
 
+## lint_plans: Lint ansible plans
+.PHONY: lint_plans
+lint_plans:
+	$(ANSIBLE_LINT) -p plan
+
+
 ## ci: Run all CI tests.
 .PHONY: ci
-ci: coverage lint precommit outdated-pkg
+ci: coverage lint lint_plans precommit outdated-pkg
 	@echo "\n>> ============= All quality checks passed ============= <<"
 
 
