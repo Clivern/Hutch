@@ -20,7 +20,7 @@
 `Weasel` offers a reliable solution for deploying and configuring commonly used services, such as databases, message brokers, graphing, tracing, and caching tools, on a variety of cloud providers (AWS, Google Cloud and Digitalocean)
 
 
-### Getting Started
+#### Getting Started
 
 In order to run `weasel`, you need `Python`, `Redis` and `MySQL`. Then run the following commands:
 
@@ -56,29 +56,29 @@ $ make
 ```
 
 
-### Versioning
+#### Versioning
 
 For transparency into our release cycle and in striving to maintain backward compatibility, `Weasel` is maintained under the [Semantic Versioning guidelines](https://semver.org/) and release process is predictable and business-friendly.
 
 See the [Releases section of our GitHub project](https://github.com/clivern/weasel/releases) for changelogs for each release version of `Weasel`. It contains summaries of the most noteworthy changes made in each release. Also see the [Milestones section](https://github.com/clivern/weasel/milestones) for the future roadmap.
 
 
-### Bug tracker
+#### Bug tracker
 
 If you have any suggestions, bug reports, or annoyances please report them to our issue tracker at https://github.com/clivern/weasel/issues
 
 
-### Security Issues
+#### Security Issues
 
 If you discover a security vulnerability within `Weasel`, please send an email to [hello@clivern.com](mailto:hello@clivern.com)
 
 
-### Contributing
+#### Contributing
 
 We are an open source, community-driven project so please feel free to join us. see the [contributing guidelines](CONTRIBUTING.md) for more details.
 
 
-### Credits
+#### Credits
 
 Shoutout to these open source projects and their maintainers.
 
@@ -91,7 +91,7 @@ Shoutout to these open source projects and their maintainers.
 - [and other projects ...](requirements.txt)
 
 
-### License
+#### License
 
 © 2022, `Weasel`. Released under [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
 
