@@ -37,12 +37,6 @@ class Install(View, Controller):
     def post(self, request):
         """
         Install Request
-
-        Args:
-            request: the request
-
-        Returns:
-            The JSON Response
         """
         self.logger.info("Validate incoming request")
 

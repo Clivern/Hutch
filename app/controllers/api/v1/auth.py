@@ -37,12 +37,6 @@ class Login(View, Controller):
     def post(self, request):
         """
         Login Request
-
-        Args:
-            request: the request
-
-        Returns:
-            The JSON Response
         """
         self.logger.info("Validate incoming request")
 
@@ -82,12 +76,6 @@ class ForgotPassword(View, Controller):
     def post(self, request):
         """
         Forgot Password Request
-
-        Args:
-            request: the request
-
-        Returns:
-            The JSON Response
         """
         self.logger.info("Validate incoming request")
 
@@ -114,12 +102,6 @@ class ResetPassword(View, Controller):
     def post(self, request):
         """
         Reset Password Request
-
-        Args:
-            request: the request
-
-        Returns:
-            The JSON Response
         """
         self.logger.info("Validate incoming request")
 

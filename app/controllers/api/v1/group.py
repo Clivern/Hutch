@@ -17,7 +17,6 @@ from http import HTTPStatus
 from django.views import View
 from django.http import JsonResponse
 
-from app.service.ssh import SSH
 from app.shortcuts import Logger
 from app.util.validator import Validator
 from app.module.group import Group as GroupModule

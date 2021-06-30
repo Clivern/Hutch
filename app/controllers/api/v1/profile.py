@@ -38,12 +38,6 @@ class Profile(View, Controller):
     def post(self, request):
         """
         Profile Request
-
-        Args:
-            request: the request
-
-        Returns:
-            The JSON Response
         """
         self.logger.info("Validate incoming request")
 
@@ -98,12 +92,6 @@ class Access(View, Controller):
     def post(self, request):
         """
         API Access Request
-
-        Args:
-            request: the request
-
-        Returns:
-            The JSON Response
         """
         self.logger.info("Validate incoming request")
 
