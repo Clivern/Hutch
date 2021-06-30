@@ -24,6 +24,7 @@ from django.utils.translation import gettext as _
 from app.controllers.controller import Controller
 from app.module.settings import Settings as SettingsModule
 from app.exceptions.invalid_request import InvalidRequest
+from app.helpers.decorators import prevent_if_not_authenticated
 
 
 class Settings(View, Controller):
@@ -34,6 +35,7 @@ class Settings(View, Controller):
         self.settings = SettingsModule()
         self.logger = Logger().get_logger(__name__)
 
+    @prevent_if_not_authenticated
     def post(self, request):
         """
         Settings Request

@@ -25,6 +25,7 @@ from django.utils.translation import gettext as _
 from app.controllers.controller import Controller
 from app.module.profile import Profile as ProfileModule
 from app.exceptions.invalid_request import InvalidRequest
+from app.helpers.decorators import prevent_if_not_authenticated
 
 
 class Profile(View, Controller):
@@ -35,6 +36,7 @@ class Profile(View, Controller):
         self.profile = ProfileModule()
         self.logger = Logger().get_logger(__name__)
 
+    @prevent_if_not_authenticated
     def post(self, request):
         """
         Profile Request
@@ -85,10 +87,10 @@ class Access(View, Controller):
     """Access Endpoint Controller"""
 
     def __init__(self):
-        self.validator = Validator()
         self.profile = ProfileModule()
         self.logger = Logger().get_logger(__name__)
 
+    @prevent_if_not_authenticated
     def post(self, request):
         """
         API Access Request

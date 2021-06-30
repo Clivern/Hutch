@@ -1,7 +1,7 @@
-var chestnut_app = chestnut_app || {};
+var weasel_app = weasel_app || {};
 
 // Login Page
-chestnut_app.login_screen = (Vue, axios, Cookies, $) => {
+weasel_app.login_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -48,7 +48,7 @@ chestnut_app.login_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Reset Password Page
-chestnut_app.reset_password_screen = (Vue, axios, Cookies, $) => {
+weasel_app.reset_password_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -95,7 +95,7 @@ chestnut_app.reset_password_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Install Page
-chestnut_app.install_screen = (Vue, axios, Cookies, $) => {
+weasel_app.install_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -141,7 +141,7 @@ chestnut_app.install_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Forgot Password Page
-chestnut_app.forgot_password_screen = (Vue, axios, Cookies, $) => {
+weasel_app.forgot_password_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -188,7 +188,7 @@ chestnut_app.forgot_password_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Settings Page
-chestnut_app.settings_screen = (Vue, axios, Cookies, $) => {
+weasel_app.settings_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -231,7 +231,7 @@ chestnut_app.settings_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Profile Page
-chestnut_app.profile_screen = (Vue, axios, Cookies, $) => {
+weasel_app.profile_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -310,7 +310,7 @@ $(document).ready(() => {
     };
 
     if (document.getElementById("app_login")) {
-        chestnut_app.login_screen(
+        weasel_app.login_screen(
             Vue,
             axios,
             Cookies,
@@ -319,7 +319,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_reset_password")) {
-        chestnut_app.reset_password_screen(
+        weasel_app.reset_password_screen(
             Vue,
             axios,
             Cookies,
@@ -328,7 +328,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_install")) {
-        chestnut_app.install_screen(
+        weasel_app.install_screen(
             Vue,
             axios,
             Cookies,
@@ -337,7 +337,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_forgot_password")) {
-        chestnut_app.forgot_password_screen(
+        weasel_app.forgot_password_screen(
             Vue,
             axios,
             Cookies,
@@ -346,7 +346,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_settings")) {
-        chestnut_app.settings_screen(
+        weasel_app.settings_screen(
             Vue,
             axios,
             Cookies,
@@ -355,7 +355,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_profile")) {
-        chestnut_app.profile_screen(
+        weasel_app.profile_screen(
             Vue,
             axios,
             Cookies,

@@ -30,7 +30,7 @@ class ResetPassword(View, Controller):
             request,
             self.template_name,
             {
-                "title": get_config("app_name", "Chestnut"),
+                "title": get_config("app_name", "Weasel"),
                 "description": get_config("app_description", ""),
                 "base_url": get_config("app_url", ""),
                 "token": token,

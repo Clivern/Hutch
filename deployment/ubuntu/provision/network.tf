@@ -12,9 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-resource "digitalocean_vpc" "chestnut_infra" {
+resource "digitalocean_vpc" "weasel_infra" {
 
-    name = "chestnut-infra-vpc"
+    name = "weasel-infra-vpc"
 
     region = var.region
 }

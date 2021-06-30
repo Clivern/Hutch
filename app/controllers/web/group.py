@@ -40,7 +40,7 @@ class ViewGroup(View, Controller):
             request,
             self.template_name,
             {
-                "title": get_config("app_name", "Chestnut"),
+                "title": get_config("app_name", "Weasel"),
                 "description": get_config("app_description", ""),
                 "base_url": get_config("app_url", ""),
                 "group": group,
@@ -61,7 +61,7 @@ class ViewGroups(View, Controller):
             request,
             self.template_name,
             {
-                "title": get_config("app_name", "Chestnut"),
+                "title": get_config("app_name", "Weasel"),
                 "description": get_config("app_description", ""),
                 "base_url": get_config("app_url", ""),
             },
@@ -81,7 +81,7 @@ class CreateGroup(View, Controller):
             request,
             self.template_name,
             {
-                "title": get_config("app_name", "Chestnut"),
+                "title": get_config("app_name", "Weasel"),
                 "description": get_config("app_description", ""),
                 "base_url": get_config("app_url", ""),
             },
@@ -107,7 +107,7 @@ class UpdateGroup(View, Controller):
             request,
             self.template_name,
             {
-                "title": get_config("app_name", "Chestnut"),
+                "title": get_config("app_name", "Weasel"),
                 "description": get_config("app_description", ""),
                 "base_url": get_config("app_url", ""),
                 "group": group,

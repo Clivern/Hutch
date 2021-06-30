@@ -1,9 +1,9 @@
-- name: chestnut plan
+- name: weasel plan
   hosts: remote
   become: yes
   vars:
-    chestnut_version: "0.1.0"
-    chestnut_plan_uuid: "{{ plan_uuid }}"
+    weasel_version: "0.1.0"
+    weasel_plan_uuid: "{{ plan_uuid }}"
     {% for var in vars %}
     {{ var.name }}: "{{ var.value }}"
     {% endfor %}

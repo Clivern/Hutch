@@ -22,6 +22,7 @@ from app.shortcuts import Logger
 from app.controllers.controller import Controller
 from app.repository.task_repository import TaskRepository
 from app.exceptions.resource_not_found import ResourceNotFound
+from app.helpers.decorators import prevent_if_not_authenticated
 
 
 class GetTask(View, Controller):
@@ -31,6 +32,7 @@ class GetTask(View, Controller):
         self.task_repository = TaskRepository()
         self.logger = Logger().get_logger(__name__)
 
+    @prevent_if_not_authenticated
     def get(self, request, task_id):
         """
         Fetch Task Data

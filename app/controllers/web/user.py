@@ -43,7 +43,7 @@ class ViewUser(View, Controller):
             request,
             self.template_name,
             {
-                "title": get_config("app_name", "Chestnut"),
+                "title": get_config("app_name", "Weasel"),
                 "description": get_config("app_description", ""),
                 "base_url": get_config("app_url", ""),
                 "user": user,
@@ -65,7 +65,7 @@ class ViewUsers(View, Controller):
             request,
             self.template_name,
             {
-                "title": get_config("app_name", "Chestnut"),
+                "title": get_config("app_name", "Weasel"),
                 "description": get_config("app_description", ""),
                 "base_url": get_config("app_url", ""),
             },
@@ -86,7 +86,7 @@ class CreateUser(View, Controller):
             request,
             self.template_name,
             {
-                "title": get_config("app_name", "Chestnut"),
+                "title": get_config("app_name", "Weasel"),
                 "description": get_config("app_description", ""),
                 "base_url": get_config("app_url", ""),
             },
@@ -113,7 +113,7 @@ class UpdateUser(View, Controller):
             request,
             self.template_name,
             {
-                "title": get_config("app_name", "Chestnut"),
+                "title": get_config("app_name", "Weasel"),
                 "description": get_config("app_description", ""),
                 "base_url": get_config("app_url", ""),
                 "user": user,

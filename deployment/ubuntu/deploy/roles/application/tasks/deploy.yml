@@ -115,17 +115,17 @@
     executable: /bin/bash
   tags: [ deploy ]
 
-- name: Create chestnut service file
+- name: Create weasel service file
   template:
-    src: chestnut.service.j2
-    dest: /etc/systemd/system/chestnut.service
+    src: weasel.service.j2
+    dest: /etc/systemd/system/weasel.service
     mode: "0750"
-  notify: reload chestnut service
+  notify: reload weasel service
   tags: [ deploy ]
 
-- name: Enable and start chestnut service
+- name: Enable and start weasel service
   systemd:
-    name: chestnut
+    name: weasel
     state: started
     enabled: yes
   tags: [ deploy ]
@@ -134,13 +134,13 @@
   pause:
     seconds: 2
 
-- name: restart chestnut service
+- name: restart weasel service
   systemd:
     state: restarted
-    name: chestnut
+    name: weasel
   tags: [ deploy ]
 
-- name: Create chestnut workers service file
+- name: Create weasel workers service file
   template:
     src: worker.service.j2
     dest: /etc/systemd/system/worker@.service
@@ -148,7 +148,7 @@
   notify: reload workers service
   tags: [ deploy ]
 
-- name: Enable and start chestnut workers service
+- name: Enable and start weasel workers service
   systemd:
     name: worker@{{ item }}
     state: started
@@ -160,7 +160,7 @@
   pause:
     seconds: 2
 
-- name: restart chestnut workers service
+- name: restart weasel workers service
   systemd:
     state: restarted
     name: worker@{{ item }}

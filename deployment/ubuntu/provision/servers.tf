@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-resource "digitalocean_droplet" "chestnut" {
+resource "digitalocean_droplet" "weasel" {
 
   image = var.image
 
@@ -28,12 +28,12 @@ resource "digitalocean_droplet" "chestnut" {
 
   ssh_keys = [data.digitalocean_ssh_key.main.id]
 
-  vpc_uuid = digitalocean_vpc.chestnut_infra.id
+  vpc_uuid = digitalocean_vpc.weasel_infra.id
 }
 
-resource "digitalocean_floating_ip" "chestnut" {
+resource "digitalocean_floating_ip" "weasel" {
 
-  droplet_id = digitalocean_droplet.chestnut.id
+  droplet_id = digitalocean_droplet.weasel.id
 
-  region     = digitalocean_droplet.chestnut.region
+  region     = digitalocean_droplet.weasel.region
 }
