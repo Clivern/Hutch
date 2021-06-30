@@ -3,13 +3,13 @@
     <h3 align="center">Weasel</h3>
     <p align="center">A Fast, Secure and Reliable Platform as a Service, Set up in Minutes.</p>
     <p align="center">
-        <a href="https://github.com/Clivern/Weasel/actions/workflows/api.yml">
-            <img src="https://github.com/Clivern/Weasel/actions/workflows/api.yml/badge.svg"/>
+        <a href="https://github.com/Spacewalkio/Weasel/actions/workflows/api.yml">
+            <img src="https://github.com/Spacewalkio/Weasel/actions/workflows/api.yml/badge.svg"/>
         </a>
-        <a href="https://github.com/Clivern/Weasel/releases">
+        <a href="https://github.com/Spacewalkio/Weasel/releases">
             <img src="https://img.shields.io/badge/Version-0.1.0-1abc9c.svg">
         </a>
-        <a href="https://github.com/Clivern/Weasel/blob/master/LICENSE">
+        <a href="https://github.com/Spacewalkio/Weasel/blob/master/LICENSE">
             <img src="https://img.shields.io/badge/LICENSE-Apache_2-e74c3c.svg">
         </a>
     </p>
