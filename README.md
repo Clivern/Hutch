@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="Weasel Logo" src="/static/logo.svg" width="180" />
+    <img alt="Weasel Logo" src="/static/logo.svg" width="120" />
     <h3 align="center">Weasel</h3>
     <p align="center">A Fast, Secure and Reliable Platform as a Service, Set up in Minutes.</p>
     <p align="center">
