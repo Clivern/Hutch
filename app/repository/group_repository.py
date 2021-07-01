@@ -17,6 +17,7 @@ import uuid
 from django.contrib.auth.models import User
 
 from app.models import Group
+from app.models import Host
 
 
 class GroupRepository:
@@ -77,6 +78,15 @@ class GroupRepository:
         else:
             return Group.objects.filter(user_id=user_id).count()
 
+    def count_hosts_by_group(self, group_id=None, user_id=None):
+        """
+        Count hosts by group id
+        """
+        if group_id is None:
+            return Host.objects.count()
+        else:
+            return Host.objects.filter(group_id=group_id, user_id=user_id).count()
+
     def get_all(self, offset=None, limit=None):
         """
         Get all groups
@@ -97,21 +107,21 @@ class GroupRepository:
             offset : limit + offset
         ]
 
-    def get_one_by_id(self, id):
+    def get_one_by_id(self, id, user_id):
         """
         Get a group by id
         """
         try:
-            group = Group.objects.get(id=id)
+            group = Group.objects.get(id=id, user_id=user_id)
             return False if group.pk is None else group
         except Exception:
             return False
 
-    def delete_one_by_id(self, id):
+    def delete_one_by_id(self, id, user_id):
         """
         Delete a group by id
         """
-        group = self.get_one_by_id(id)
+        group = self.get_one_by_id(id, user_id)
 
         if group is not False:
             count, deleted = group.delete()

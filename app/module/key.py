@@ -23,11 +23,11 @@ class Key:
         self.key = KeyRepository()
         self.logger = Logger().get_logger(__name__)
 
-    def get_one_by_id(self, id):
+    def get_one_by_id(self, id, user_id):
         """
         Get a Key by ID
         """
-        return self.key.get_one_by_id(id)
+        return self.key.get_one_by_id(id, user_id)
 
     def create(self, data):
         """
@@ -52,10 +52,28 @@ class Key:
 
         return self.key.update_one_by_id(id, data)
 
-    def delete_by_id(self, id):
+    def delete_by_id(self, id, user_id):
         """
         Delete a Key By ID
         """
         self.logger.info("Delete an ssh key with id {}".format(id))
 
-        return self.key.delete_one_by_id(id)
+        return self.key.delete_one_by_id(id, user_id)
+
+    def get_user_keys(self, user_id, offset, limit):
+        """
+        Get User Keys
+        """
+        return self.key.get(user_id, offset, limit)
+
+    def count_user_keys(self, user_id):
+        """
+        Get User Keys
+        """
+        return self.key.count_by_user(user_id)
+
+    def count_hosts_by_key(self, key_id, user_id):
+        """
+        Count Hosts By Key ID
+        """
+        return self.key.count_hosts_by_key(key_id, user_id)

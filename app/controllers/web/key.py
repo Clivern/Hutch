@@ -91,34 +91,3 @@ class CreateKey(View, Controller):
                 "base_url": get_config("app_url", ""),
             },
         )
-
-
-class UpdateKey(View, Controller):
-    """UpdateKey Page Controller"""
-
-    template_name = "templates/admin/key.update.html"
-
-    def __init__(self):
-        self.key = KeyModule()
-        self.profile = ProfileModule()
-        self.logger = Logger().get_logger(__name__)
-
-    def put(self, request, key_id):
-        """
-        Update Key Page
-        """
-        key = self.key.get_one_by_id(key_id)
-
-        if key is False:
-            raise Http404("Key {} not found.".format(key_id))
-
-        return render(
-            request,
-            self.template_name,
-            {
-                "title": get_config("app_name", "Chestnut"),
-                "description": get_config("app_description", ""),
-                "base_url": get_config("app_url", ""),
-                "key": key,
-            },
-        )

@@ -16,6 +16,7 @@ import uuid
 
 from slugify import slugify
 from app.models import Key
+from app.models import Host
 from django.contrib.auth.models import User
 
 
@@ -91,6 +92,12 @@ class KeyRepository:
             return True
         return False
 
+    def count_hosts_by_key(self, key_id, user_id):
+        """
+        Count Hosts By a Key
+        """
+        return Host.objects.filter(key_id=key_id, user_id=user_id).count()
+
     def count_all(self):
         """
         Count all ssh keys
@@ -126,21 +133,21 @@ class KeyRepository:
             offset : limit + offset
         ]
 
-    def get_one_by_id(self, id):
+    def get_one_by_id(self, id, user_id):
         """
         Get ssh key by id
         """
         try:
-            key = Key.objects.get(id=id)
+            key = Key.objects.get(id=id, user_id=user_id)
             return False if key.pk is None else key
         except Exception:
             return False
 
-    def delete_one_by_id(self, id):
+    def delete_one_by_id(self, id, user_id):
         """
         Delete ssh key by id
         """
-        key = self.get_one_by_id(id)
+        key = self.get_one_by_id(id, user_id)
 
         if key is not False:
             count, deleted = key.delete()

@@ -33,7 +33,6 @@ from app.controllers.web.group import ViewGroups
 
 from app.controllers.web.key import ViewKey
 from app.controllers.web.key import CreateKey
-from app.controllers.web.key import UpdateKey
 from app.controllers.web.key import ViewKeys
 
 from app.controllers.web.user import ViewUser
@@ -60,6 +59,14 @@ from app.controllers.api.v1.host import GetHosts as GetHostsEndpoint
 from app.controllers.api.v1.host import CreateHost as CreateHostEndpoint
 from app.controllers.api.v1.host import UpdateHost as UpdateHostEndpoint
 from app.controllers.api.v1.host import DeleteHost as DeleteHostEndpoint
+
+from app.controllers.api.v1.key import GetKey as GetKeyEndpoint
+from app.controllers.api.v1.key import GetKeys as GetKeysEndpoint
+from app.controllers.api.v1.key import CreateKey as CreateKeyEndpoint
+from app.controllers.api.v1.key import GenerateKey as GenerateKeyEndpoint
+from app.controllers.api.v1.key import DeleteKey as DeleteKeyEndpoint
+
+
 from app.controllers.api.v1.settings import Settings as SettingsEndpoint
 from app.controllers.api.v1.profile import Profile as ProfileEndpoint
 from app.controllers.api.v1.profile import Access as AccessEndpoint
@@ -109,11 +116,6 @@ urlpatterns = [
                     "key/create",
                     CreateKey.as_view(),
                     name="app.web.admin.key.add",
-                ),
-                path(
-                    "key/update/<key_id>",
-                    UpdateKey.as_view(),
-                    name="app.web.admin.key.edit",
                 ),
                 # Host Web Pages
                 path("host", ViewHosts.as_view(), name="app.web.admin.host.list"),
@@ -214,6 +216,36 @@ urlpatterns = [
                     "host/<host_id>",
                     UpdateHostEndpoint.as_view(),
                     name="app.api.v1.host.update.endpoint",
+                ),
+                # GET /api/v1/key
+                path(
+                    "key",
+                    GetKeysEndpoint.as_view(),
+                    name="app.api.v1.key.get_many.endpoint",
+                ),
+                # POST /api/v1/key
+                path(
+                    "key",
+                    CreateKeyEndpoint.as_view(),
+                    name="app.api.v1.key.create.endpoint",
+                ),
+                # GET /api/v1/action/key/generate
+                path(
+                    "action/key/generate",
+                    GenerateKeyEndpoint.as_view(),
+                    name="app.api.v1.key.generate.endpoint",
+                ),
+                # GET /api/v1/key/<key_id>
+                path(
+                    "key/<key_id>",
+                    GetKeyEndpoint.as_view(),
+                    name="app.api.v1.key.get_one.endpoint",
+                ),
+                # DELETE /api/v1/key/<key_id>
+                path(
+                    "key/<key_id>",
+                    DeleteKeyEndpoint.as_view(),
+                    name="app.api.v1.key.delete_one.endpoint",
                 ),
                 # POST /api/v1/action/settings
                 path(

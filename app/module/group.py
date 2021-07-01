@@ -16,12 +16,18 @@ from app.shortcuts import Logger
 from app.repository import GroupRepository
 
 
-class HostGroup:
-    """HostGroup Class"""
+class Group:
+    """Group Class"""
 
     def __init__(self):
         self.group = GroupRepository()
         self.logger = Logger().get_logger(__name__)
+
+    def get_one_by_id(self, id, user_id):
+        """
+        Get a Group by ID
+        """
+        return self.group.get_one_by_id(id, user_id)
 
     def create(self, data):
         """
@@ -46,10 +52,28 @@ class HostGroup:
 
         return self.group.update_one_by_id(id, data)
 
-    def delete(self, id):
+    def delete_by_id(self, group_id, user_id):
         """
         Delete a Host Group By ID
         """
-        self.logger.info("Delete a host group with id {}".format(id))
+        self.logger.info("Delete a host group with id {}".format(group_id))
 
-        return self.group.delete_one_by_id(id)
+        return self.group.delete_one_by_id(group_id, user_id)
+
+    def get_user_groups(self, user_id, offset, limit):
+        """
+        Get User Groups
+        """
+        return self.group.get(user_id, offset, limit)
+
+    def count_user_groups(self, user_id):
+        """
+        Get User Groups
+        """
+        return self.group.count_by_user(user_id)
+
+    def count_hosts_by_group(self, group_id, user_id):
+        """
+        Count hosts by group id
+        """
+        return self.group.count_hosts_by_group(group_id, user_id)
