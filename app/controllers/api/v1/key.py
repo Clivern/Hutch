@@ -19,16 +19,18 @@ from django.http import JsonResponse
 
 from app.shortcuts import Logger
 from app.util.validator import Validator
-from app.repository import KeyRepository
+from app.module.key import Key as KeyModule
+from django.utils.translation import gettext as _
 from app.controllers.controller import Controller
+from app.exceptions.invalid_request import InvalidRequest
 
 
 class GetKey(View, Controller):
     """GetKey Endpoint Controller"""
 
     def __init__(self):
+        self.key = KeyModule()
         self.validator = Validator()
-        self.key_repository = KeyRepository()
         self.logger = Logger().get_logger(__name__)
 
     def get(self, request, key_id):
@@ -44,8 +46,8 @@ class GetKeys(View, Controller):
     """GetKeys Endpoint Controller"""
 
     def __init__(self):
+        self.key = KeyModule()
         self.validator = Validator()
-        self.key_repository = KeyRepository()
         self.logger = Logger().get_logger(__name__)
 
     def get(self, request):
@@ -61,8 +63,8 @@ class CreateKey(View, Controller):
     """CreateKey Endpoint Controller"""
 
     def __init__(self):
+        self.key = KeyModule()
         self.validator = Validator()
-        self.key_repository = KeyRepository()
         self.logger = Logger().get_logger(__name__)
 
     def post(self, request):
@@ -71,6 +73,19 @@ class CreateKey(View, Controller):
         """
         self.logger.info("Validate incoming request")
 
+        result = self.validator.validate(
+            request.body.decode("utf-8"),
+            self.validator.get_schema_path("/schemas/api/v1/create_key.json"),
+        )
+
+        if not result:
+            self.logger.info("Request is invalid")
+            raise InvalidRequest(self.validator.get_error())
+
+        data = json.loads(request.body.decode("utf-8"))
+
+        self.logger.info("Incoming request is valid")
+
         return JsonResponse({}, status=HTTPStatus.OK)
 
 
@@ -78,8 +93,8 @@ class UpdateKey(View, Controller):
     """UpdateKey Endpoint Controller"""
 
     def __init__(self):
+        self.key = KeyModule()
         self.validator = Validator()
-        self.key_repository = KeyRepository()
         self.logger = Logger().get_logger(__name__)
 
     def put(self, request, key_id):
@@ -88,6 +103,19 @@ class UpdateKey(View, Controller):
         """
         self.logger.info("Validate incoming request")
 
+        result = self.validator.validate(
+            request.body.decode("utf-8"),
+            self.validator.get_schema_path("/schemas/api/v1/update_key.json"),
+        )
+
+        if not result:
+            self.logger.info("Request is invalid")
+            raise InvalidRequest(self.validator.get_error())
+
+        data = json.loads(request.body.decode("utf-8"))
+
+        self.logger.info("Incoming request is valid")
+
         return JsonResponse({}, status=HTTPStatus.OK)
 
 
@@ -95,8 +123,8 @@ class DeleteKey(View, Controller):
     """DeleteKey Endpoint Controller"""
 
     def __init__(self):
+        self.key = KeyModule()
         self.validator = Validator()
-        self.key_repository = KeyRepository()
         self.logger = Logger().get_logger(__name__)
 
     def delete(self, request, key_id):
@@ -105,8 +133,12 @@ class DeleteKey(View, Controller):
         """
         self.logger.info("Validate incoming request")
 
+        self.logger.info("Incoming request is valid")
+
         self.logger.info("Delete ssh key with id {}".format(key_id))
 
-        self.key_repository.delete_one_by_id(key_id)
+        self.key.delete_by_id(key_id)
+
+        self.logger.info("SSH key with id {} got deleted".format(key_id))
 
         return JsonResponse({}, status=HTTPStatus.NO_CONTENT)

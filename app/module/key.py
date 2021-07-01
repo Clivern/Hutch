@@ -52,7 +52,7 @@ class Key:
 
         return self.key.update_one_by_id(id, data)
 
-    def delete(self, id):
+    def delete_by_id(self, id):
         """
         Delete a Key By ID
         """

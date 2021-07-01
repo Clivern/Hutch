@@ -51,7 +51,7 @@ def provision_server(task_id):
 
     # If Digitalocean not fully enabled
     if do_status == "disabled" or do_token == "":
-        logger.info(
+        logger.error(
             "Task has this uuid {} failed since digitalocean not fully enabled".format(
                 task.uuid
             )
@@ -221,7 +221,7 @@ def destroy_server(task_id):
 
     # If Digitalocean not fully enabled
     if do_status == "disabled" or do_token == "":
-        logger.info(
+        logger.error(
             "Task has this uuid {} failed since digitalocean not fully enabled".format(
                 task.uuid
             )
@@ -321,6 +321,30 @@ def ping_server(task_id):
     if not task:
         logger.warning("task with id {} not found".format(task_id))
         return None
+
+    # If Digitalocean not fully enabled
+    if do_status == "disabled" or do_token == "":
+        logger.error(
+            "Task has this uuid {} failed since digitalocean not fully enabled".format(
+                task.uuid
+            )
+        )
+
+        duration = (time.time() - start_time) * 1000
+
+        logger.info("Task with uuid {} spent {} millisec".format(task.uuid, duration))
+
+        task_repository.update_one_by_id(
+            task.id,
+            {
+                "result": json.dumps(
+                    {"errorMessage": "Digitalocean not fully enabled"}
+                ),
+                "status": TaskRepository.FAILED,
+            },
+        )
+
+        return
 
     # Get defaults from the server repository
     defaults = {
@@ -422,3 +446,13 @@ def ping_server(task_id):
             "status": TaskRepository.SUCCEEDED if result else TaskRepository.FAILED,
         },
     )
+
+
+@job
+def create_ssh_key(task_id):
+    pass
+
+
+@job
+def delete_ssh_key(task_id):
+    pass

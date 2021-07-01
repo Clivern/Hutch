@@ -78,7 +78,7 @@ class CreateKey(View, Controller):
 
     template_name = "templates/admin/key.create.html"
 
-    def get(self, request):
+    def post(self, request):
         """
         Create Key Page
         """
@@ -103,7 +103,7 @@ class UpdateKey(View, Controller):
         self.profile = ProfileModule()
         self.logger = Logger().get_logger(__name__)
 
-    def get(self, request, key_id):
+    def put(self, request, key_id):
         """
         Update Key Page
         """
