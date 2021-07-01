@@ -1,0 +1,74 @@
+{
+   "$id":"api_v1_profile_endpoint",
+   "$schema":"http://json-schema.org/draft-07/schema#",
+   "title":"profile_endpoint",
+   "type":"object",
+   "properties":{
+      "first_name":{
+         "id":"first_name",
+         "type":"string",
+         "description":"The first name",
+         "minLength":2,
+         "maxLength":60
+      },
+      "last_name":{
+         "id":"last_name",
+         "type":"string",
+         "description":"The last name",
+         "minLength":2,
+         "maxLength":60
+      },
+      "email":{
+         "id":"email",
+         "type":"string",
+         "format":"email",
+         "description":"The email",
+         "minLength":3,
+         "maxLength":60
+      },
+      "theme":{
+         "id":"theme",
+         "type":"string",
+         "description":"The theme",
+         "enum": ["light", "dark"]
+      },
+      "company":{
+         "id":"company",
+         "type":"string",
+         "description":"The company name",
+         "minLength":0,
+         "maxLength":60
+      },
+      "team":{
+         "id":"team",
+         "type":"string",
+         "description":"The team name",
+         "minLength":0,
+         "maxLength":60
+      },
+      "job_title":{
+         "id":"job_title",
+         "type":"string",
+         "description":"The job title",
+         "minLength":2,
+         "maxLength":60
+      },
+      "personal_url":{
+         "id":"personal_url",
+         "type":"string",
+         "description":"The personal URL",
+         "minLength":0,
+         "maxLength":60
+      }
+   },
+   "required":[
+      "first_name",
+      "last_name",
+      "email",
+      "theme",
+      "company",
+      "team",
+      "job_title",
+      "personal_url"
+   ]
+}

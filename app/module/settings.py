@@ -23,7 +23,7 @@ class Settings:
         self.logger = Logger().get_logger(__name__)
         self.option_repository = OptionRepository()
 
-    def update_settings(settings):
+    def update_settings(self, settings):
         """
         Update Settings
         """
@@ -34,3 +34,19 @@ class Settings:
                 self.option_repository.insert_one(
                     {"name": name, "value": settings[name]}
                 )
+
+    def get_settings(self, names):
+        """
+        Get Many Settings
+        """
+        options = self.option_repository.get_many_by_names(names)
+
+        result = {}
+
+        for name in names:
+            result[name] = ""
+
+        for option in options:
+            result[option.name] = option.value
+
+        return result

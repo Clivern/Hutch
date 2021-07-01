@@ -187,6 +187,92 @@ chestnut_app.forgot_password_screen = (Vue, axios, Cookies, $) => {
 
 }
 
+// Settings Page
+chestnut_app.settings_screen = (Vue, axios, Cookies, $) => {
+
+    return new Vue({
+        delimiters: ['${', '}'],
+        el: '#app_settings',
+        data() {
+            return {
+                isInProgress: false,
+            }
+        },
+        methods: {
+            settingsAction(event) {
+                event.preventDefault();
+                this.isInProgress = true;
+
+                let inputs = {};
+                let _self = $(event.target);
+                let _form = _self.closest("form");
+
+                _form.serializeArray().map((item, index) => {
+                    inputs[item.name] = item.value;
+                });
+
+                axios.post(_form.attr('action'), inputs)
+                    .then((response) => {
+                        if (response.status >= 200) {
+                            toastr.clear();
+                            toastr.info(response.data.successMessage);
+                        }
+                    })
+                    .catch((error) => {
+                        this.isInProgress = false;
+                        // Show error
+                        toastr.clear();
+                        toastr.error(error.response.data.errorMessage);
+                    });
+            }
+        }
+    });
+
+}
+
+// Profile Page
+chestnut_app.profile_screen = (Vue, axios, Cookies, $) => {
+
+    return new Vue({
+        delimiters: ['${', '}'],
+        el: '#app_profile',
+        data() {
+            return {
+                isInProgress: false,
+            }
+        },
+        methods: {
+            profileAction(event) {
+                event.preventDefault();
+                this.isInProgress = true;
+
+                let inputs = {};
+                let _self = $(event.target);
+                let _form = _self.closest("form");
+
+                _form.serializeArray().map((item, index) => {
+                    inputs[item.name] = item.value;
+                });
+
+                axios.post(_form.attr('action'), inputs)
+                    .then((response) => {
+                        if (response.status >= 200) {
+                            toastr.clear();
+                            toastr.info(response.data.successMessage);
+                        }
+                    })
+                    .catch((error) => {
+                        this.isInProgress = false;
+                        // Show error
+                        toastr.clear();
+                        toastr.error(error.response.data.errorMessage);
+                    });
+            }
+        }
+    });
+
+}
+
 $(document).ready(() => {
     axios.defaults.headers.common = {
         'X-Requested-With': 'XMLHttpRequest',
@@ -222,6 +308,24 @@ $(document).ready(() => {
 
     if (document.getElementById("app_forgot_password")) {
         chestnut_app.forgot_password_screen(
+            Vue,
+            axios,
+            Cookies,
+            $
+        );
+    }
+
+    if (document.getElementById("app_settings")) {
+        chestnut_app.settings_screen(
+            Vue,
+            axios,
+            Cookies,
+            $
+        );
+    }
+
+    if (document.getElementById("app_profile")) {
+        chestnut_app.profile_screen(
             Vue,
             axios,
             Cookies,

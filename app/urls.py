@@ -42,6 +42,7 @@ from app.controllers.web.user import UpdateUser
 from app.controllers.web.user import ViewUsers
 
 from app.controllers.web.settings import Settings
+from app.controllers.web.profile import Profile
 from app.controllers.web.dashboard import Dashboard
 from app.controllers.web.forgot_password import ForgotPassword
 from app.controllers.web.reset_password import ResetPassword
@@ -60,6 +61,8 @@ from app.controllers.api.v1.host import CreateHost as CreateHostEndpoint
 from app.controllers.api.v1.host import UpdateHost as UpdateHostEndpoint
 from app.controllers.api.v1.host import DeleteHost as DeleteHostEndpoint
 from app.controllers.api.v1.settings import Settings as SettingsEndpoint
+from app.controllers.api.v1.profile import Profile as ProfileEndpoint
+from app.controllers.api.v1.profile import Access as AccessEndpoint
 
 
 urlpatterns = [
@@ -148,6 +151,8 @@ urlpatterns = [
                 ),
                 # Settings Page
                 path("settings", Settings.as_view(), name="app.web.admin.settings"),
+                # Profile Page
+                path("profile", Profile.as_view(), name="app.web.admin.profile"),
             ]
         ),
     ),
@@ -215,6 +220,18 @@ urlpatterns = [
                     "action/settings",
                     SettingsEndpoint.as_view(),
                     name="app.api.v1.settings.update.endpoint",
+                ),
+                # POST /api/v1/action/profile
+                path(
+                    "action/profile",
+                    ProfileEndpoint.as_view(),
+                    name="app.api.v1.profile.update.endpoint",
+                ),
+                # POST /api/v1/action/rotate_api_key
+                path(
+                    "action/rotate_api_key",
+                    AccessEndpoint.as_view(),
+                    name="app.api.v1.access.update.endpoint",
                 ),
             ]
         ),

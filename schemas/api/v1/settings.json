@@ -20,17 +20,32 @@
          "maxLength":60
       },
       "app_email":{
-         "id":"email",
+         "id":"app_email",
          "type":"string",
          "format":"email",
          "description":"The app email",
          "minLength":3,
          "maxLength":60
+      },
+      "digitalocean_status":{
+         "id":"digitalocean_status",
+         "type":"string",
+         "description":"The digitalocean status",
+         "enum": ["enabled", "disabled"]
+      },
+      "digitalocean_api_token":{
+         "id":"digitalocean_api_token",
+         "type":"string",
+         "description":"The digitalocean API token",
+         "minLength":3,
+         "maxLength":100
       }
    },
    "required":[
       "app_name",
       "app_url",
-      "app_email"
+      "app_email",
+      "digitalocean_status",
+      "digitalocean_api_token"
    ]
 }

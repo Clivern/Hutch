@@ -79,9 +79,6 @@ class ProfileRepository:
             if "timezone" in profile_data:
                 profile.timezone = profile_data["timezone"]
 
-            if "user" in profile_data:
-                profile.user = User.objects.get(pk=profile_data["user"])
-
             profile.save()
             return True
         else:
