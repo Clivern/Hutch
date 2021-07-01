@@ -58,9 +58,6 @@ class GroupRepository:
             if "description" in data:
                 group.description = data["description"]
 
-            if "user_id" in data:
-                group.user = User.objects.get(pk=data["user_id"])
-
             group.save()
             return True
         return False

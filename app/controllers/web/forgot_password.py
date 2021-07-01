@@ -27,6 +27,9 @@ class ForgotPassword(View, Controller):
 
     @redirect_if_not_installed
     def get(self, request):
+        """
+        Forgot Password Page
+        """
         return render(
             request,
             self.template_name,

@@ -24,7 +24,7 @@ from app.repository import HostRepository
 class ViewHost(View, Controller):
     """ViewHost Page Controller"""
 
-    template_name = "templates/admin/host.view_one.html"
+    template_name = "templates/admin/host.index.html"
 
     def get(self, request, host_id):
         # Validate if host exists
@@ -49,7 +49,7 @@ class ViewHost(View, Controller):
 class ViewHosts(View, Controller):
     """ViewHosts Page Controller"""
 
-    template_name = "templates/admin/host.view_many.html"
+    template_name = "templates/admin/host.list.html"
 
     def get(self, request):
         return render(

@@ -24,10 +24,12 @@ from app.repository import GroupRepository
 class ViewGroup(View, Controller):
     """ViewGroup Page Controller"""
 
-    template_name = "templates/admin/group.view_one.html"
+    template_name = "templates/admin/group.index.html"
 
     def get(self, request, group_id):
-        # Validate if group exists
+        """
+        Group Index Page
+        """
         group_repository = GroupRepository()
         group = group_repository.get_one_by_id(group_id)
 
@@ -49,9 +51,12 @@ class ViewGroup(View, Controller):
 class ViewGroups(View, Controller):
     """ViewGroups Page Controller"""
 
-    template_name = "templates/admin/group.view_many.html"
+    template_name = "templates/admin/group.list.html"
 
     def get(self, request):
+        """
+        Group List Page
+        """
         return render(
             request,
             self.template_name,
@@ -69,6 +74,9 @@ class CreateGroup(View, Controller):
     template_name = "templates/admin/group.create.html"
 
     def get(self, request):
+        """
+        Create Group Page
+        """
         return render(
             request,
             self.template_name,
@@ -86,7 +94,9 @@ class UpdateGroup(View, Controller):
     template_name = "templates/admin/group.update.html"
 
     def get(self, request, group_id):
-        # Validate if group exists
+        """
+        Update Group Page
+        """
         group_repository = GroupRepository()
         group = group_repository.get_one_by_id(group_id)
 

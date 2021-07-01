@@ -46,6 +46,8 @@ class Settings(View, Controller):
             ]
         )
 
+        user = self.profile.get_user(request.user.id)
+
         profile = self.profile.get_profile(request.user.id)
 
         return render(
@@ -56,6 +58,7 @@ class Settings(View, Controller):
                 "description": get_config("app_description", ""),
                 "base_url": get_config("app_url", ""),
                 "data": data,
+                "user": user,
                 "profile": profile,
             },
         )

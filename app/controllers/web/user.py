@@ -24,12 +24,17 @@ from app.repository import UserRepository
 class ViewUser(View, Controller):
     """ViewUser Page Controller"""
 
-    template_name = "templates/admin/user.view_one.html"
+    template_name = "templates/admin/user.index.html"
+
+    def __init__(self):
+        self.user = UserRepository()
+        self.logger = Logger().get_logger(__name__)
 
     def get(self, request, user_id):
-        # Validate if user exists
-        user_repository = UserRepository()
-        user = user_repository.get_one_by_id(user_id)
+        """
+        User Index Page
+        """
+        user = self.user.get_one_by_id(user_id)
 
         if user is False:
             raise Http404("User {} not found.".format(user_id))
@@ -49,7 +54,11 @@ class ViewUser(View, Controller):
 class ViewUsers(View, Controller):
     """ViewUsers Page Controller"""
 
-    template_name = "templates/admin/user.view_many.html"
+    template_name = "templates/admin/user.list.html"
+
+    def __init__(self):
+        self.user = UserRepository()
+        self.logger = Logger().get_logger(__name__)
 
     def get(self, request):
         return render(
@@ -68,6 +77,10 @@ class CreateUser(View, Controller):
 
     template_name = "templates/admin/user.create.html"
 
+    def __init__(self):
+        self.user = UserRepository()
+        self.logger = Logger().get_logger(__name__)
+
     def get(self, request):
         return render(
             request,
@@ -85,10 +98,13 @@ class UpdateUser(View, Controller):
 
     template_name = "templates/admin/user.update.html"
 
+    def __init__(self):
+        self.user = UserRepository()
+        self.logger = Logger().get_logger(__name__)
+
     def get(self, request, user_id):
         # Validate if user exists
-        user_repository = UserRepository()
-        user = user_repository.get_one_by_id(user_id)
+        user = self.user.get_one_by_id(user_id)
 
         if user is False:
             raise Http404("User {} not found.".format(user_id))

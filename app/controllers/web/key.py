@@ -17,19 +17,26 @@ from django.http import Http404
 from django.shortcuts import render
 
 from app.shortcuts import get_config
+from app.module.key import Key as KeyModule
 from app.controllers.controller import Controller
-from app.repository import KeyRepository
+from app.module.profile import Profile as ProfileModule
 
 
 class ViewKey(View, Controller):
     """ViewKey Page Controller"""
 
-    template_name = "templates/admin/key.view_one.html"
+    template_name = "templates/admin/key.index.html"
+
+    def __init__(self):
+        self.key = KeyModule()
+        self.profile = ProfileModule()
+        self.logger = Logger().get_logger(__name__)
 
     def get(self, request, key_id):
-        # Validate if key exists
-        key_repository = KeyRepository()
-        key = key_repository.get_one_by_id(key_id)
+        """
+        Key Index Page
+        """
+        key = self.key.get_one_by_id(key_id)
 
         if key is False:
             raise Http404("Key {} not found.".format(key_id))
@@ -49,9 +56,12 @@ class ViewKey(View, Controller):
 class ViewKeys(View, Controller):
     """ViewKeys Page Controller"""
 
-    template_name = "templates/admin/key.view_many.html"
+    template_name = "templates/admin/key.list.html"
 
     def get(self, request):
+        """
+        Key List Page
+        """
         return render(
             request,
             self.template_name,
@@ -69,6 +79,9 @@ class CreateKey(View, Controller):
     template_name = "templates/admin/key.create.html"
 
     def get(self, request):
+        """
+        Create Key Page
+        """
         return render(
             request,
             self.template_name,
@@ -85,10 +98,16 @@ class UpdateKey(View, Controller):
 
     template_name = "templates/admin/key.update.html"
 
+    def __init__(self):
+        self.key = KeyModule()
+        self.profile = ProfileModule()
+        self.logger = Logger().get_logger(__name__)
+
     def get(self, request, key_id):
-        # Validate if key exists
-        key_repository = KeyRepository()
-        key = key_repository.get_one_by_id(key_id)
+        """
+        Update Key Page
+        """
+        key = self.key.get_one_by_id(key_id)
 
         if key is False:
             raise Http404("Key {} not found.".format(key_id))
