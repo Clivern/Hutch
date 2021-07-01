@@ -22,3 +22,15 @@ class Settings:
     def __init__(self):
         self.logger = Logger().get_logger(__name__)
         self.option_repository = OptionRepository()
+
+    def update_settings(settings):
+        """
+        Update Settings
+        """
+        for name in settings:
+            result = self.option_repository.update_value_by_name(name, settings[name])
+
+            if not result:
+                self.option_repository.insert_one(
+                    {"name": name, "value": settings[name]}
+                )

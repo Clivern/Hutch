@@ -105,6 +105,8 @@ class DeleteKey(View, Controller):
         """
         self.logger.info("Validate incoming request")
 
-        self.key_repository.delete_one_by_id(int(key_id))
+        self.logger.info("Delete ssh key with id {}".format(key_id))
+
+        self.key_repository.delete_one_by_id(key_id)
 
         return JsonResponse({}, status=HTTPStatus.NO_CONTENT)

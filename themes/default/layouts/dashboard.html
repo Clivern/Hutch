@@ -16,11 +16,13 @@
       {% include 'partials/top-menu.html' %}
 
       <div class="page-wrapper">
-        <div class="container-xl">
-          <!-- Page Content Header --->
-          {% block page_content_header %}
-          {% endblock %}
-          <!-- Page Content Header --->
+        <div class="page-header d-print-none">
+          <div class="container-xl">
+            <!-- Page Content Header --->
+            {% block page_content_header %}
+            {% endblock %}
+            <!-- Page Content Header --->
+          </div>
         </div>
         <div class="page-body">
         	<!-- Page Content Body --->

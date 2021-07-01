@@ -52,10 +52,25 @@ class Settings(View, Controller):
         )
 
         if not result:
-            self.logger.info("Request is invalid")
+            self.logger.info(
+                "Request is invalid: {}".format(self.validator.get_error())
+            )
+
             raise InvalidRequest(self.validator.get_error())
 
         data = json.loads(request.body.decode("utf-8"))
+
+        self.logger.info("Update settings")
+
+        self.settings.update_settings(
+            {
+                "app_name": data["app_name"],
+                "app_url": data["app_url"],
+                "app_email": data["app_email"],
+                "digitalocean_status": data["digitalocean_status"],
+                "digitalocean_api_token": data["digitalocean_api_token"],
+            }
+        )
 
         return JsonResponse(
             {"successMessage": _("Settings updated successfully!")},

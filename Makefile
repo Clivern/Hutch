@@ -22,6 +22,7 @@ help: Makefile
 config:
 	$(PIP) install -r requirements.test.txt
 	$(PIP) install -r requirements.txt
+	$(PIP) install git+https://github.com/psf/black
 
 
 ## lint-pycodestyle: PyCode Style Lint
@@ -126,6 +127,12 @@ lint_plans:
 .PHONY: venv
 venv:
 	$(PYTHON3) -m venv venv
+
+
+## format: Format the source code
+.PHONY: format
+format:
+	black app/
 
 
 ## ci: Run all CI tests.

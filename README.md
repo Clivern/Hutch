@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="Chestnut Logo" src="/assets/img/logo.png" width="180" />
+    <img alt="Chestnut Logo" src="/static/logo.png" width="180" />
     <h3 align="center">Chestnut</h3>
     <p align="center">A Fast, Secure and Reliable Platform as a Service, Set up in Minutes.</p>
     <p align="center">

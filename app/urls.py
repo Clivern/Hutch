@@ -41,6 +41,7 @@ from app.controllers.web.user import CreateUser
 from app.controllers.web.user import UpdateUser
 from app.controllers.web.user import ViewUsers
 
+from app.controllers.web.settings import Settings
 from app.controllers.web.dashboard import Dashboard
 from app.controllers.web.forgot_password import ForgotPassword
 from app.controllers.web.reset_password import ResetPassword
@@ -58,6 +59,7 @@ from app.controllers.api.v1.host import GetHosts as GetHostsEndpoint
 from app.controllers.api.v1.host import CreateHost as CreateHostEndpoint
 from app.controllers.api.v1.host import UpdateHost as UpdateHostEndpoint
 from app.controllers.api.v1.host import DeleteHost as DeleteHostEndpoint
+from app.controllers.api.v1.settings import Settings as SettingsEndpoint
 
 
 urlpatterns = [
@@ -144,6 +146,8 @@ urlpatterns = [
                     UpdateUser.as_view(),
                     name="app.web.admin.user.edit",
                 ),
+                # Settings Page
+                path("settings", Settings.as_view(), name="app.web.admin.settings"),
             ]
         ),
     ),
@@ -206,11 +210,11 @@ urlpatterns = [
                     UpdateHostEndpoint.as_view(),
                     name="app.api.v1.host.update.endpoint",
                 ),
-                # DELETE /api/v1/host/<host_id>
+                # POST /api/v1/action/settings
                 path(
-                    "host/<host_id>",
-                    DeleteHostEndpoint.as_view(),
-                    name="app.api.v1.host.delete.endpoint",
+                    "action/settings",
+                    SettingsEndpoint.as_view(),
+                    name="app.api.v1.settings.update.endpoint",
                 ),
             ]
         ),
