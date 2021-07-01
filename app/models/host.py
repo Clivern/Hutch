@@ -15,6 +15,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from .group import Group
+from .cluster import Cluster
 from .key import Key
 
 
@@ -39,6 +40,14 @@ class Host(models.Model):
 
     group = models.ForeignKey(
         Group, on_delete=models.CASCADE, db_index=True, verbose_name="Related Group"
+    )
+
+    cluster = models.ForeignKey(
+        Cluster,
+        on_delete=models.CASCADE,
+        db_index=True,
+        verbose_name="Related Cluster",
+        null=True,
     )
 
     key = models.ForeignKey(
