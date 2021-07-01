@@ -120,10 +120,6 @@
       }
     }
   };
-  var updateBodyClasses = function updateBodyClasses() {
-    document.body.classList.remove('theme-dark', 'theme-light');
-    document.body.classList.add("theme-".concat(config.theme));
-  };
   var submitForm = function submitForm(form) {
     for (var _i3 = 0, _Object$entries3 = Object.entries(items); _i3 < _Object$entries3.length; _i3++) {
       var _Object$entries3$_i = _slicedToArray(_Object$entries3[_i3], 2),
@@ -133,12 +129,10 @@
       localStorage.setItem(_params2.localStorage, value);
       config[_key3] = value;
     }
-    updateBodyClasses();
     window.dispatchEvent(new Event('resize'));
     new bootstrap.Offcanvas(form).hide();
   };
   parseUrl();
-  updateBodyClasses();
   var form = document.querySelector('#offcanvasSettings');
   if (form) {
     form.addEventListener('submit', function (e) {

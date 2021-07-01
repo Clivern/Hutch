@@ -22,4 +22,7 @@ class Home(View, Controller):
     """Home Page Controller"""
 
     def get(self, request):
+        """
+        Home Page
+        """
         return redirect("app.web.login")

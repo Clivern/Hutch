@@ -27,6 +27,9 @@ class Login(View, Controller):
 
     @redirect_if_not_installed
     def get(self, request):
+        """
+        Login Page
+        """
         return render(
             request,
             self.template_name,

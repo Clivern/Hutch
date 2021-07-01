@@ -27,16 +27,16 @@ class Profile(View, Controller):
     template_name = "templates/admin/profile.html"
 
     def __init__(self):
-        self.profile_module = ProfileModule()
+        self.profile = ProfileModule()
         self.logger = Logger().get_logger(__name__)
 
     def get(self, request):
         """
         Profile Page
         """
-        user = self.profile_module.get_user(request.user.id)
+        user = self.profile.get_user(request.user.id)
 
-        profile = self.profile_module.get_profile(request.user.id)
+        profile = self.profile.get_profile(request.user.id)
 
         return render(
             request,

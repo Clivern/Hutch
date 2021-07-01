@@ -19,6 +19,7 @@ from app.shortcuts import Logger
 from app.shortcuts import get_config
 from app.controllers.controller import Controller
 from app.module.settings import Settings as SettingsModule
+from app.module.profile import Profile as ProfileModule
 
 
 class Settings(View, Controller):
@@ -27,11 +28,15 @@ class Settings(View, Controller):
     template_name = "templates/admin/settings.html"
 
     def __init__(self):
-        self.settings_module = SettingsModule()
+        self.profile = ProfileModule()
+        self.settings = SettingsModule()
         self.logger = Logger().get_logger(__name__)
 
     def get(self, request):
-        data = self.settings_module.get_settings(
+        """
+        Settings Page
+        """
+        data = self.settings.get_settings(
             [
                 "app_name",
                 "app_url",
@@ -41,6 +46,8 @@ class Settings(View, Controller):
             ]
         )
 
+        profile = self.profile.get_profile(request.user.id)
+
         return render(
             request,
             self.template_name,
@@ -49,5 +56,6 @@ class Settings(View, Controller):
                 "description": get_config("app_description", ""),
                 "base_url": get_config("app_url", ""),
                 "data": data,
+                "profile": profile,
             },
         )

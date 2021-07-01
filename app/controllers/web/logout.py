@@ -27,6 +27,9 @@ class Logout(View, Controller):
 
     @login_if_not_authenticated
     def get(self, request):
+        """
+        Logout Page
+        """
         logout(request)
         messages.success(request, _("You've been logged out successfully"))
         return redirect("app.web.login")

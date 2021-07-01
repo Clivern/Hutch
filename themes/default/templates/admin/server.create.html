@@ -1,3 +1,25 @@
 {% extends 'layouts/dashboard.html' %}
 {% load static %}
 {% load i18n %}
+
+{% block page_content_header %}
+	<div class="row g-2 align-items-center">
+	  <div class="col">
+	    <h2 class="page-title">
+	      {% trans "Servers" %}
+	    </h2>
+	  </div>
+	</div>
+{% endblock %}
+
+{% block app_theme %}
+  theme-{{ profile.theme }}
+{% endblock %}
+
+{% block page_content_body %}
+  <div class="page-body">
+    <div class="container-xl" id="app_group_create">
+
+    </div>
+  </div>
+{% endblock %}

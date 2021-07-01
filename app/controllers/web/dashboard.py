@@ -15,8 +15,10 @@
 from django.views import View
 from django.shortcuts import render
 
+from app.shortcuts import Logger
 from app.shortcuts import get_config
 from app.controllers.controller import Controller
+from app.module.profile import Profile as ProfileModule
 
 
 class Dashboard(View, Controller):
@@ -24,7 +26,16 @@ class Dashboard(View, Controller):
 
     template_name = "templates/dashboard.html"
 
+    def __init__(self):
+        self.profile = ProfileModule()
+        self.logger = Logger().get_logger(__name__)
+
     def get(self, request):
+        """
+        Dashboard Page
+        """
+        profile = self.profile.get_profile(request.user.id)
+
         return render(
             request,
             self.template_name,
@@ -32,5 +43,6 @@ class Dashboard(View, Controller):
                 "title": get_config("app_name", "Chestnut"),
                 "description": get_config("app_description", ""),
                 "base_url": get_config("app_url", ""),
+                "profile": profile,
             },
         )

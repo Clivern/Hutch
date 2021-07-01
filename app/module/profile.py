@@ -41,7 +41,9 @@ class Profile:
         """
         Update Profile by User ID
         """
-        return self.profile_repository.update_profile(data.update({"user": user_id}))
+        data.update({"user": user_id})
+
+        return self.profile_repository.update_profile(data)
 
     def update_user_by_id(self, user_id, data):
         """

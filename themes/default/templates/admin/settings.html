@@ -12,6 +12,10 @@
 	</div>
 {% endblock %}
 
+{% block app_theme %}
+  theme-{{ profile.theme }}
+{% endblock %}
+
 {% block page_content_body %}
   <div class="page-body">
     <div class="container-xl" id="app_settings">
