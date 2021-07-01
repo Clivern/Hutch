@@ -105,6 +105,6 @@ class DeleteGroup(View, Controller):
         """
         self.logger.info("Validate incoming request")
 
-        self.group_repository.delete_one_by_id(group_id)
+        self.group_repository.delete_one_by_id(int(group_id))
 
-        return JsonResponse({}, status=HTTPStatus.OK)
+        return JsonResponse({}, status=HTTPStatus.NO_CONTENT)

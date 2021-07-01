@@ -105,4 +105,6 @@ class DeleteKey(View, Controller):
         """
         self.logger.info("Validate incoming request")
 
-        return JsonResponse({}, status=HTTPStatus.OK)
+        self.key_repository.delete_one_by_id(int(key_id))
+
+        return JsonResponse({}, status=HTTPStatus.NO_CONTENT)
