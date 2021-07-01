@@ -20,6 +20,7 @@
   <div class="page-body">
     <div class="container-xl" id="app_profile">
       <form class="card" action="{% url 'app.api.v1.profile.update.endpoint' %}" v-on:submit.prevent="profileAction"  method="post">
+        {% csrf_token %}
         <div class="card-header">
           <h3 class="card-title">{% trans "Profile" %}</h3>
         </div>
@@ -27,25 +28,25 @@
           <div class="row">
             <div class="col-xl-12">
                 <div class="mb-3">
-                  <label class="form-label">{% trans "First Name" %}</label>
+                  <label class="form-label required">{% trans "First Name" %}</label>
                   <input type="text" class="form-control" name="first_name" value="{{ user.first_name }}">
                 </div>
             </div>
             <div class="col-xl-12">
                 <div class="mb-3">
-                  <label class="form-label">{% trans "Last Name" %}</label>
+                  <label class="form-label required">{% trans "Last Name" %}</label>
                   <input type="text" class="form-control" name="last_name" value="{{ user.last_name }}">
                 </div>
             </div>
             <div class="col-xl-12">
                 <div class="mb-3">
-                  <label class="form-label">{% trans "Email" %}</label>
+                  <label class="form-label required">{% trans "Email" %}</label>
                   <input type="email" class="form-control" name="email" value="{{ user.email }}">
                 </div>
             </div>
             <div class="col-xl-12">
               <div class="mb-3">
-                <label class="form-label">{% trans "Theme" %}</label>
+                <label class="form-label required">{% trans "Theme" %}</label>
                 <select class="form-select" name="theme">
                   <option value="dark" {% if profile.theme == 'dark'  %} selected {% endif %}>{% trans "Dark" %}</option>
                   <option value="light" {% if profile.theme == 'light'  %} selected {% endif %}>{% trans "Light" %}</option>
@@ -66,7 +67,7 @@
             </div>
             <div class="col-xl-12">
                 <div class="mb-3">
-                  <label class="form-label">{% trans "Job Title" %}</label>
+                  <label class="form-label required">{% trans "Job Title" %}</label>
                   <input type="text" class="form-control" name="job_title" value="{{ profile.job_title }}">
                 </div>
             </div>

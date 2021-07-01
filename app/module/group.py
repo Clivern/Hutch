@@ -35,7 +35,7 @@ class Group:
         """
         result = self.group.insert_one(data)
 
-        if request:
+        if result:
             self.logger.info(
                 "Create a host group with id {} and name {}".format(
                     result.id, result.name

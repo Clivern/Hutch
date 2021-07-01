@@ -50,7 +50,7 @@ class GroupRepository:
         """
         Update a group by id
         """
-        group = self.get_one_by_id(id)
+        group = Group.objects.get(id=id)
 
         if group is not False:
             if "name" in data:

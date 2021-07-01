@@ -64,7 +64,7 @@ class KeyRepository:
         """
         Update ssh key by id
         """
-        key = self.get_one_by_id(id)
+        key = Key.objects.get(id=id)
 
         if key is not False:
             if "name" in data:

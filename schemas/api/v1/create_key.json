@@ -15,8 +15,7 @@
          "id":"cloudProvider",
          "type":"string",
          "description":"The cloud provider",
-         "minLength":3,
-         "maxLength":60
+         "enum": ["local", "digitalocean"]
       },
       "publicKey":{
          "id":"publicKey",

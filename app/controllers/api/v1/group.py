@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import json
 from http import HTTPStatus
 
 from django.views import View
@@ -27,44 +28,11 @@ from app.exceptions.resource_not_found import ResourceNotFound
 from app.helpers.decorators import prevent_if_not_authenticated
 
 
-class GetGroup(View, Controller):
-    """GetGroup Endpoint Controller"""
+class Groups(View, Controller):
+    """Groups Endpoint Controller"""
 
     def __init__(self):
-        self.group = GroupModule()
-        self.logger = Logger().get_logger(__name__)
-
-    @prevent_if_not_authenticated
-    def get(self, request, group_id):
-        """
-        Get Group
-        """
-        self.logger.info("Validate incoming request")
-
-        group = self.group.get_one_by_id(group_id, request.user.id)
-
-        if not group:
-            self.logger.info("Group with id {} not found".format(group_id))
-            raise ResourceNotFound("Group with id {} not found".format(group_id))
-
-        return JsonResponse(
-            {
-                "id": group.id,
-                "uuid": group.uuid,
-                "name": group.name,
-                "description": group.description,
-                "user": {"id": group.user.id, "email": group.user.email},
-                "createdAt": group.created_at.strftime("%b %d %Y %H:%M:%S"),
-                "updatedAt": group.updated_at.strftime("%b %d %Y %H:%M:%S"),
-            },
-            status=HTTPStatus.OK,
-        )
-
-
-class GetGroups(View, Controller):
-    """GetGroups Endpoint Controller"""
-
-    def __init__(self):
+        self.validator = Validator()
         self.group = GroupModule()
         self.logger = Logger().get_logger(__name__)
 
@@ -91,6 +59,9 @@ class GetGroups(View, Controller):
                     "name": group.name,
                     "description": group.description,
                     "user": {"id": group.user.id, "email": group.user.email},
+                    "hostsCount": self.group.count_hosts_by_group(
+                        group.id, request.user.id
+                    ),
                     "createdAt": group.created_at.strftime("%b %d %Y %H:%M:%S"),
                     "updatedAt": group.updated_at.strftime("%b %d %Y %H:%M:%S"),
                 }
@@ -106,15 +77,6 @@ class GetGroups(View, Controller):
                 },
             }
         )
-
-
-class CreateGroup(View, Controller):
-    """CreateGroup Endpoint Controller"""
-
-    def __init__(self):
-        self.validator = Validator()
-        self.group = GroupModule()
-        self.logger = Logger().get_logger(__name__)
 
     @prevent_if_not_authenticated
     def post(self, request):
@@ -151,6 +113,9 @@ class CreateGroup(View, Controller):
                 "name": group.name,
                 "description": group.description,
                 "user": {"id": group.user.id, "email": group.user.email},
+                "hostsCount": self.group.count_hosts_by_group(
+                    group.id, request.user.id
+                ),
                 "createdAt": group.created_at.strftime("%b %d %Y %H:%M:%S"),
                 "updatedAt": group.updated_at.strftime("%b %d %Y %H:%M:%S"),
             },
@@ -158,13 +123,42 @@ class CreateGroup(View, Controller):
         )
 
 
-class UpdateGroup(View, Controller):
-    """UpdateGroup Endpoint Controller"""
+class Group(View, Controller):
+    """Group Endpoint Controller"""
 
     def __init__(self):
         self.validator = Validator()
         self.group = GroupModule()
         self.logger = Logger().get_logger(__name__)
+
+    @prevent_if_not_authenticated
+    def get(self, request, group_id):
+        """
+        Get Group
+        """
+        self.logger.info("Validate incoming request")
+
+        group = self.group.get_one_by_id(group_id, request.user.id)
+
+        if not group:
+            self.logger.info("Group with id {} not found".format(group_id))
+            raise ResourceNotFound("Group with id {} not found".format(group_id))
+
+        return JsonResponse(
+            {
+                "id": group.id,
+                "uuid": group.uuid,
+                "name": group.name,
+                "description": group.description,
+                "user": {"id": group.user.id, "email": group.user.email},
+                "hostsCount": self.group.count_hosts_by_group(
+                    group_id, request.user.id
+                ),
+                "createdAt": group.created_at.strftime("%b %d %Y %H:%M:%S"),
+                "updatedAt": group.updated_at.strftime("%b %d %Y %H:%M:%S"),
+            },
+            status=HTTPStatus.OK,
+        )
 
     @prevent_if_not_authenticated
     def put(self, request, group_id):
@@ -209,19 +203,14 @@ class UpdateGroup(View, Controller):
                 "name": group.name,
                 "description": group.description,
                 "user": {"id": group.user.id, "email": group.user.email},
+                "hostsCount": self.group.count_hosts_by_group(
+                    group.id, request.user.id
+                ),
                 "createdAt": group.created_at.strftime("%b %d %Y %H:%M:%S"),
                 "updatedAt": group.updated_at.strftime("%b %d %Y %H:%M:%S"),
             },
             status=HTTPStatus.OK,
         )
-
-
-class DeleteGroup(View, Controller):
-    """DeleteGroup Endpoint Controller"""
-
-    def __init__(self):
-        self.group = GroupModule()
-        self.logger = Logger().get_logger(__name__)
 
     @prevent_if_not_authenticated
     def delete(self, request, group_id):

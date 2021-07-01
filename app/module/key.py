@@ -35,7 +35,7 @@ class Key:
         """
         result = self.key.insert_one(data)
 
-        if request:
+        if result:
             self.logger.info(
                 "Create an ssh key with id {} and name {}".format(
                     result.id, result.name

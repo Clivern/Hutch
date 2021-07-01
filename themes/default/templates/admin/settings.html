@@ -20,6 +20,7 @@
   <div class="page-body">
     <div class="container-xl" id="app_settings">
       <form class="card" action="{% url 'app.api.v1.settings.update.endpoint' %}" v-on:submit.prevent="settingsAction"  method="post">
+        {% csrf_token %}
         <div class="card-header">
           <h3 class="card-title">{% trans "Settings" %}</h3>
         </div>
@@ -27,25 +28,25 @@
           <div class="row">
             <div class="col-xl-12">
               <div class="mb-3">
-                <label class="form-label">{% trans "App Name" %}</label>
+                <label class="form-label required">{% trans "App Name" %}</label>
                 <input type="text" class="form-control" name="app_name" value="{{ data.app_name }}">
               </div>
             </div>
             <div class="col-xl-12">
               <div class="mb-3">
-                <label class="form-label">{% trans "App URL" %}</label>
+                <label class="form-label required">{% trans "App URL" %}</label>
                 <input type="url" class="form-control" name="app_url" value="{{ data.app_url }}">
               </div>
             </div>
             <div class="col-xl-12">
               <div class="mb-3">
-                <label class="form-label">{% trans "App Email" %}</label>
+                <label class="form-label required">{% trans "App Email" %}</label>
                 <input type="email" class="form-control" name="app_email" value="{{ data.app_email }}">
               </div>
             </div>
             <div class="col-xl-12">
               <div class="mb-3">
-                <label class="form-label">{% trans "Digitalocean Status" %}</label>
+                <label class="form-label required">{% trans "Digitalocean Status" %}</label>
                 <select class="form-select" name="digitalocean_status">
                   <option value="enabled" {% if data.digitalocean_status == "enabled"  %} selected {% endif %}>{% trans "Enabled" %}</option>
                   <option value="disabled" {% if data.digitalocean_status == "disabled"  %} selected {% endif %}>{% trans "Disabled" %}</option>

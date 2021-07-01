@@ -18,10 +18,19 @@
 
 <script type="text/javascript">
     let app_globals = {
+      group_edit_url: "{% url 'app.web.admin.group.edit' '__' %}",
+      group_delete_endpoint: "{% url 'app.api.v1.group.endpoint' '__' %}",
+      group_list_url: "{% url 'app.api.v1.groups.endpoint' %}",
 
+      key_delete_endpoint: "{% url 'app.api.v1.key.endpoint' '__' %}",
+      key_list_url: "{% url 'app.api.v1.keys.endpoint' %}",
+      generate_keys: "{% url 'app.api.v1.key.generate.endpoint' %}"
     };
     let _i18n = {
         confirm_msg: "{% trans 'Are you sure!' %}",
-        required: "{% trans 'Please fill all required fields!' %}"
+        required: "{% trans 'Please fill all required fields!' %}",
+        resource_created: "{% trans 'Resource created successfully' %}",
+        resource_updated: "{% trans 'Resource updated successfully' %}",
+        resource_deleted: "{% trans 'Resource deleted successfully' %}"
     };
 </script>

@@ -26,12 +26,10 @@ from app.controllers.web.host import CreateHost
 from app.controllers.web.host import UpdateHost
 from app.controllers.web.host import ViewHosts
 
-from app.controllers.web.group import ViewGroup
 from app.controllers.web.group import CreateGroup
 from app.controllers.web.group import UpdateGroup
 from app.controllers.web.group import ViewGroups
 
-from app.controllers.web.key import ViewKey
 from app.controllers.web.key import CreateKey
 from app.controllers.web.key import ViewKeys
 
@@ -60,12 +58,12 @@ from app.controllers.api.v1.host import CreateHost as CreateHostEndpoint
 from app.controllers.api.v1.host import UpdateHost as UpdateHostEndpoint
 from app.controllers.api.v1.host import DeleteHost as DeleteHostEndpoint
 
-from app.controllers.api.v1.key import GetKey as GetKeyEndpoint
-from app.controllers.api.v1.key import GetKeys as GetKeysEndpoint
-from app.controllers.api.v1.key import CreateKey as CreateKeyEndpoint
+from app.controllers.api.v1.key import Key as KeyEndpoint
+from app.controllers.api.v1.key import Keys as KeysEndpoint
 from app.controllers.api.v1.key import GenerateKey as GenerateKeyEndpoint
-from app.controllers.api.v1.key import DeleteKey as DeleteKeyEndpoint
 
+from app.controllers.api.v1.group import Group as GroupEndpoint
+from app.controllers.api.v1.group import Groups as GroupsEndpoint
 
 from app.controllers.api.v1.settings import Settings as SettingsEndpoint
 from app.controllers.api.v1.profile import Profile as ProfileEndpoint
@@ -91,11 +89,6 @@ urlpatterns = [
                 # Group Web Pages
                 path("group", ViewGroups.as_view(), name="app.web.admin.group.list"),
                 path(
-                    "group/<group_id>",
-                    ViewGroup.as_view(),
-                    name="app.web.admin.group.view",
-                ),
-                path(
                     "group/create",
                     CreateGroup.as_view(),
                     name="app.web.admin.group.add",
@@ -107,11 +100,6 @@ urlpatterns = [
                 ),
                 # Key Web Pages
                 path("key", ViewKeys.as_view(), name="app.web.admin.key.list"),
-                path(
-                    "key/<key_id>",
-                    ViewKey.as_view(),
-                    name="app.web.admin.key.view",
-                ),
                 path(
                     "key/create",
                     CreateKey.as_view(),
@@ -217,35 +205,30 @@ urlpatterns = [
                     UpdateHostEndpoint.as_view(),
                     name="app.api.v1.host.update.endpoint",
                 ),
-                # GET /api/v1/key
+                path(
+                    "group",
+                    GroupsEndpoint.as_view(),
+                    name="app.api.v1.groups.endpoint",
+                ),
+                path(
+                    "group/<group_id>",
+                    GroupEndpoint.as_view(),
+                    name="app.api.v1.group.endpoint",
+                ),
                 path(
                     "key",
-                    GetKeysEndpoint.as_view(),
-                    name="app.api.v1.key.get_many.endpoint",
+                    KeysEndpoint.as_view(),
+                    name="app.api.v1.keys.endpoint",
                 ),
-                # POST /api/v1/key
-                path(
-                    "key",
-                    CreateKeyEndpoint.as_view(),
-                    name="app.api.v1.key.create.endpoint",
-                ),
-                # GET /api/v1/action/key/generate
                 path(
                     "action/key/generate",
                     GenerateKeyEndpoint.as_view(),
                     name="app.api.v1.key.generate.endpoint",
                 ),
-                # GET /api/v1/key/<key_id>
                 path(
                     "key/<key_id>",
-                    GetKeyEndpoint.as_view(),
-                    name="app.api.v1.key.get_one.endpoint",
-                ),
-                # DELETE /api/v1/key/<key_id>
-                path(
-                    "key/<key_id>",
-                    DeleteKeyEndpoint.as_view(),
-                    name="app.api.v1.key.delete_one.endpoint",
+                    KeyEndpoint.as_view(),
+                    name="app.api.v1.key.endpoint",
                 ),
                 # POST /api/v1/action/settings
                 path(

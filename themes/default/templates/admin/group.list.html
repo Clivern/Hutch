@@ -3,13 +3,20 @@
 {% load i18n %}
 
 {% block page_content_header %}
-	<div class="row g-2 align-items-center">
-	  <div class="col">
-	    <h2 class="page-title">
-	      {% trans "Host Groups" %}
-	    </h2>
-	  </div>
-	</div>
+  <div class="container-xl">
+    <div class="row g-2 align-items-center">
+      <div class="col-8">
+        <h2 class="page-title">
+          {% trans "Host Groups" %}
+        </h2>
+      </div>
+      <div class="col-4">
+        <div class="text-end">
+          <a href="{% url 'app.web.admin.group.add' %}" class="btn btn-light">{% trans "Add New" %}</a>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
 
 {% block app_theme %}
@@ -19,7 +26,48 @@
 {% block page_content_body %}
   <div class="page-body">
     <div class="container-xl" id="app_group_list">
-
+      <div class="row row-cards">
+        <div class="col-12">
+          <div class="card">
+            <div class="table-responsive">
+              <table class="table table-vcenter card-table table-striped">
+                <thead>
+                  <tr>
+                    <th>{% trans "Name" %}</th>
+                    <th>{% trans "Host" %}</th>
+                    <th>{% trans "Created at" %}</th>
+                    <th>{% trans "Updated at" %}</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="group in groups">
+                    <td>${group.name}</td>
+                    <td class="text-muted">${group.hostsCount}</td>
+                    <td class="text-muted">${group.createdAt}</td>
+                    <td class="text-muted">${group.updatedAt}</td>
+                    <td>
+                      <a :href="group.editLink" class="text-muted">{% trans "Edit" %}</a> -
+                      <a href="#" :endpoint="group.deleteLink" class="text-danger" v-on:click.prevent="deleteGroup">
+                        {% trans "Delete" %}
+                      </a>
+                    </td>
+                  </tr>
+                  <tr v-show="noRecords">
+                    <td colspan="5" class="text-center text-muted">
+                      {% trans "No Records Found!" %}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <br/>
+        <div class="col-12 text-center" v-show="showLoad">
+          <button v-on:click.prevent="getNextHostGroups" class="btn btn-light">{% trans "Load More!" %}</button>
+        </div>
+      </div>
     </div>
   </div>
 {% endblock %}

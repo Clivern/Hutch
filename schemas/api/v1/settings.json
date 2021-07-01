@@ -37,7 +37,7 @@
          "id":"digitalocean_api_token",
          "type":"string",
          "description":"The digitalocean API token",
-         "minLength":3,
+         "minLength":0,
          "maxLength":100
       }
    },

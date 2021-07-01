@@ -16,42 +16,21 @@ from django.views import View
 from django.http import Http404
 from django.shortcuts import render
 
+from app.shortcuts import Logger
 from app.shortcuts import get_config
 from app.controllers.controller import Controller
 from app.repository import GroupRepository
-
-
-class ViewGroup(View, Controller):
-    """ViewGroup Page Controller"""
-
-    template_name = "templates/admin/group.index.html"
-
-    def get(self, request, group_id):
-        """
-        Group Index Page
-        """
-        group_repository = GroupRepository()
-        group = group_repository.get_one_by_id(group_id)
-
-        if group is False:
-            raise Http404("Group {} not found.".format(group_id))
-
-        return render(
-            request,
-            self.template_name,
-            {
-                "title": get_config("app_name", "Weasel"),
-                "description": get_config("app_description", ""),
-                "base_url": get_config("app_url", ""),
-                "group": group,
-            },
-        )
+from app.module.group import Group as GroupModule
 
 
 class ViewGroups(View, Controller):
     """ViewGroups Page Controller"""
 
     template_name = "templates/admin/group.list.html"
+
+    def __init__(self):
+        self.group = GroupModule()
+        self.logger = Logger().get_logger(__name__)
 
     def get(self, request):
         """
@@ -73,6 +52,10 @@ class CreateGroup(View, Controller):
 
     template_name = "templates/admin/group.create.html"
 
+    def __init__(self):
+        self.group = GroupModule()
+        self.logger = Logger().get_logger(__name__)
+
     def get(self, request):
         """
         Create Group Page
@@ -93,12 +76,15 @@ class UpdateGroup(View, Controller):
 
     template_name = "templates/admin/group.update.html"
 
+    def __init__(self):
+        self.group = GroupModule()
+        self.logger = Logger().get_logger(__name__)
+
     def get(self, request, group_id):
         """
         Update Group Page
         """
-        group_repository = GroupRepository()
-        group = group_repository.get_one_by_id(group_id)
+        group = self.group.get_one_by_id(group_id, request.user.id)
 
         if group is False:
             raise Http404("Group {} not found.".format(group_id))

@@ -22,37 +22,6 @@ from app.controllers.controller import Controller
 from app.module.profile import Profile as ProfileModule
 
 
-class ViewKey(View, Controller):
-    """ViewKey Page Controller"""
-
-    template_name = "templates/admin/key.index.html"
-
-    def __init__(self):
-        self.key = KeyModule()
-        self.profile = ProfileModule()
-        self.logger = Logger().get_logger(__name__)
-
-    def get(self, request, key_id):
-        """
-        Key Index Page
-        """
-        key = self.key.get_one_by_id(key_id)
-
-        if key is False:
-            raise Http404("Key {} not found.".format(key_id))
-
-        return render(
-            request,
-            self.template_name,
-            {
-                "title": get_config("app_name", "Weasel"),
-                "description": get_config("app_description", ""),
-                "base_url": get_config("app_url", ""),
-                "key": key,
-            },
-        )
-
-
 class ViewKeys(View, Controller):
     """ViewKeys Page Controller"""
 
@@ -78,7 +47,7 @@ class CreateKey(View, Controller):
 
     template_name = "templates/admin/key.create.html"
 
-    def post(self, request):
+    def get(self, request):
         """
         Create Key Page
         """

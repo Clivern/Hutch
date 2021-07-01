@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import json
 from http import HTTPStatus
 
 from django.views import View
@@ -28,11 +29,12 @@ from app.exceptions.resource_not_found import ResourceNotFound
 from app.helpers.decorators import prevent_if_not_authenticated
 
 
-class GetKey(View, Controller):
-    """GetKey Endpoint Controller"""
+class Key(View, Controller):
+    """Key Endpoint Controller"""
 
     def __init__(self):
         self.key = KeyModule()
+        self.validator = Validator()
         self.logger = Logger().get_logger(__name__)
 
     @prevent_if_not_authenticated
@@ -59,18 +61,40 @@ class GetKey(View, Controller):
                 "user": {"id": key.user.id, "email": key.user.email},
                 "publicKey": key.public_key,
                 "privateKey": key.private_key,
+                "hostsCount": self.key.count_hosts_by_key(key.id, request.user.id),
                 "createdAt": key.created_at.strftime("%b %d %Y %H:%M:%S"),
                 "updatedAt": key.updated_at.strftime("%b %d %Y %H:%M:%S"),
             },
             status=HTTPStatus.OK,
         )
 
+    @prevent_if_not_authenticated
+    def delete(self, request, key_id):
+        """
+        Delete Key
+        """
+        self.logger.info("Validate incoming request")
 
-class GetKeys(View, Controller):
-    """GetKeys Endpoint Controller"""
+        if self.key.count_hosts_by_key(key_id, request.user.id) > 0:
+            raise InvalidRequest(_("SSH Key is attached to a host"))
+
+        self.logger.info("Incoming request is valid")
+
+        self.logger.info("Delete ssh key with id {}".format(key_id))
+
+        self.key.delete_by_id(key_id, request.user.id)
+
+        self.logger.info("SSH key with id {} got deleted".format(key_id))
+
+        return JsonResponse({}, status=HTTPStatus.NO_CONTENT)
+
+
+class Keys(View, Controller):
+    """Keys Endpoint Controller"""
 
     def __init__(self):
         self.key = KeyModule()
+        self.validator = Validator()
         self.logger = Logger().get_logger(__name__)
 
     @prevent_if_not_authenticated
@@ -100,6 +124,7 @@ class GetKeys(View, Controller):
                     "user": {"id": key.user.id, "email": key.user.email},
                     "publicKey": key.public_key,
                     "privateKey": key.private_key,
+                    "hostsCount": self.key.count_hosts_by_key(key.id, request.user.id),
                     "createdAt": key.created_at.strftime("%b %d %Y %H:%M:%S"),
                     "updatedAt": key.updated_at.strftime("%b %d %Y %H:%M:%S"),
                 }
@@ -115,15 +140,6 @@ class GetKeys(View, Controller):
                 },
             }
         )
-
-
-class CreateKey(View, Controller):
-    """CreateKey Endpoint Controller"""
-
-    def __init__(self):
-        self.key = KeyModule()
-        self.validator = Validator()
-        self.logger = Logger().get_logger(__name__)
 
     @prevent_if_not_authenticated
     def post(self, request):
@@ -166,39 +182,12 @@ class CreateKey(View, Controller):
                 "user": {"id": key.user.id, "email": key.user.email},
                 "publicKey": key.public_key,
                 "privateKey": key.private_key,
+                "hostsCount": self.key.count_hosts_by_key(key.id, request.user.id),
                 "createdAt": key.created_at.strftime("%b %d %Y %H:%M:%S"),
                 "updatedAt": key.updated_at.strftime("%b %d %Y %H:%M:%S"),
             },
             status=HTTPStatus.CREATED,
         )
-
-
-class DeleteKey(View, Controller):
-    """DeleteKey Endpoint Controller"""
-
-    def __init__(self):
-        self.key = KeyModule()
-        self.logger = Logger().get_logger(__name__)
-
-    @prevent_if_not_authenticated
-    def delete(self, request, key_id):
-        """
-        Delete Key
-        """
-        self.logger.info("Validate incoming request")
-
-        if self.key.count_hosts_by_key(key_id, request.user.id) > 0:
-            raise InvalidRequest(_("SSH Key is attached to a host"))
-
-        self.logger.info("Incoming request is valid")
-
-        self.logger.info("Delete ssh key with id {}".format(key_id))
-
-        self.key.delete_by_id(key_id, request.user.id)
-
-        self.logger.info("SSH key with id {} got deleted".format(key_id))
-
-        return JsonResponse({}, status=HTTPStatus.NO_CONTENT)
 
 
 class GenerateKey(View, Controller):
