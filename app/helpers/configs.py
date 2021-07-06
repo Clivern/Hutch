@@ -26,7 +26,7 @@ def get_config(key, default=""):
 
     # Load from database
     option_repository = OptionRepository()
-    option = option_repository.get_one_by_key(key.lower())
+    option = option_repository.get_one_by_name(key.lower())
 
     if option:
         return option.value

@@ -166,4 +166,8 @@ class Ansible:
         """
         path = self.file_system.app_path("/{}/{}".format(self.CACHE_DIR, plan_uuid))
         self.logger.info("Delete directory {} and its content".format(path))
-        self.file_system.delete_directory(path)
+
+        try:
+            self.file_system.delete_directory(path)
+        except Exception:
+            pass

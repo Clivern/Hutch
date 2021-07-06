@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 import requests
 import json
 
@@ -125,6 +126,27 @@ class Digitalocean:
             )
 
         return json.loads(response.content.decode("utf-8"))["droplet"]
+
+    def power_on_droplet(self, droplet_id):
+        """
+        Start Droplet
+        """
+        data = {"type": "power_on"}
+
+        response = requests.post(
+            "{}/droplets/{}/actions".format(Digitalocean.API_URL, droplet_id),
+            headers=self._get_headers(),
+            json=data,
+        )
+
+        if response.status_code // 100 != 2:
+            raise ApiError(
+                "Digitalocean respond with invalid status code {}".format(
+                    response.status_code
+                )
+            )
+
+        return json.loads(response.content.decode("utf-8"))
 
     def destroy_droplet(self, droplet_id):
         """

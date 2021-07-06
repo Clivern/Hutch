@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import uuid
+
+from slugify import slugify
 from django.contrib.auth.models import User
 from app.models import Key
 
@@ -28,11 +31,21 @@ class KeyRepository:
         if "name" in data:
             key.name = data["name"]
 
+        if "slug" in data:
+            key.slug = data["slug"]
+        else:
+            key.slug = slugify(data["name"])
+
         if "remote_id" in data:
             key.remote_id = data["remote_id"]
 
+        if "cloud_provider" in data:
+            key.cloud_provider = data["cloud_provider"]
+
         if "uuid" in data:
             key.uuid = data["uuid"]
+        else:
+            key.uuid = str(uuid.uuid4())
 
         if "public_key" in data:
             key.public_key = data["public_key"]
@@ -56,11 +69,14 @@ class KeyRepository:
             if "name" in data:
                 key.name = data["name"]
 
+            if "slug" in data:
+                key.slug = data["slug"]
+
             if "remote_id" in data:
                 key.remote_id = data["remote_id"]
 
-            if "uuid" in data:
-                key.uuid = data["uuid"]
+            if "cloud_provider" in data:
+                key.cloud_provider = data["cloud_provider"]
 
             if "public_key" in data:
                 key.public_key = data["public_key"]

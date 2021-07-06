@@ -46,7 +46,6 @@ class Install:
         # Create a User
         user = self.user_repository.insert_one(
             {
-                "username": admin_data["username"],
                 "first_name": admin_data["first_name"],
                 "last_name": admin_data["last_name"],
                 "email": admin_data["email"],
@@ -70,9 +69,11 @@ class Install:
         # Store app data
         self.option_repository.insert_many(
             [
-                {"key": "app_name", "value": app_data["app_name"], "autoload": True},
-                {"key": "app_email", "value": app_data["app_email"], "autoload": True},
-                {"key": "app_url", "value": app_data["app_url"], "autoload": True},
-                {"key": "app_installed", "value": "true", "autoload": False},
+                {"name": "app_name", "value": app_data["app_name"], "autoload": True},
+                {"name": "app_email", "value": app_data["app_email"], "autoload": True},
+                {"name": "app_url", "value": app_data["app_url"], "autoload": True},
+                {"name": "app_installed", "value": "true", "autoload": False},
+                {"name": "digitalocean_status", "value": "disabled", "autoload": False},
+                {"name": "digitalocean_api_token", "value": "", "autoload": False},
             ]
         )

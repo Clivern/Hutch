@@ -23,7 +23,9 @@ class Key(models.Model):
         User, on_delete=models.CASCADE, db_index=True, verbose_name="Related user"
     )
 
-    name = models.CharField(max_length=100, verbose_name="Name")
+    name = models.CharField(max_length=150, verbose_name="Name")
+    slug = models.CharField(max_length=150, verbose_name="Slug")
+    cloud_provider = models.CharField(max_length=50, verbose_name="Cloud Provider")
     remote_id = models.CharField(max_length=100, verbose_name="Remote ID")
     uuid = models.CharField(max_length=60, db_index=True, verbose_name="uuid")
     public_key = models.TextField(verbose_name="Public Key")

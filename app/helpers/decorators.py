@@ -82,7 +82,7 @@ def redirect_if_not_installed(function):
     def wrap(controller, request, *args, **kwargs):
         installed = (
             False
-            if OptionRepository().get_one_by_key("app_installed") is False
+            if OptionRepository().get_one_by_name("app_installed") is False
             else True
         )
         if not installed:
@@ -96,7 +96,7 @@ def stop_request_if_installed(function):
     def wrap(controller, request, *args, **kwargs):
         installed = (
             False
-            if OptionRepository().get_one_by_key("app_installed") is False
+            if OptionRepository().get_one_by_name("app_installed") is False
             else True
         )
         if installed:

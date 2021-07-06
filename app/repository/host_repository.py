@@ -12,9 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import uuid
+
+from slugify import slugify
 from django.contrib.auth.models import User
 from app.models import Group
 from app.models import Key
+from app.models import Host
+from app.models import HostMeta
 
 
 class HostRepository:
@@ -29,11 +34,18 @@ class HostRepository:
         if "name" in data:
             host.name = data["name"]
 
+        if "slug" in data:
+            host.slug = data["slug"]
+        else:
+            host.slug = slugify(data["name"])
+
         if "remote_id" in data:
             host.remote_id = data["remote_id"]
 
         if "uuid" in data:
             host.uuid = data["uuid"]
+        else:
+            host.uuid = str(uuid.uuid4())
 
         if "cloud_provider" in data:
             host.cloud_provider = data["cloud_provider"]
@@ -75,11 +87,11 @@ class HostRepository:
             if "name" in data:
                 host.name = data["name"]
 
+            if "slug" in data:
+                host.slug = data["slug"]
+
             if "remote_id" in data:
                 host.remote_id = data["remote_id"]
-
-            if "uuid" in data:
-                host.uuid = data["uuid"]
 
             if "cloud_provider" in data:
                 host.cloud_provider = data["cloud_provider"]
@@ -152,8 +164,8 @@ class HostRepository:
         Get host by id
         """
         try:
-            activity = Host.objects.get(id=id)
-            return False if activity.pk is None else activity
+            host = Host.objects.get(id=id)
+            return False if host.pk is None else host
         except Exception:
             return False
 
@@ -161,10 +173,46 @@ class HostRepository:
         """
         Delete host by id
         """
-        activity = self.get_one_by_id(id)
+        host = self.get_one_by_id(id)
 
-        if activity is not False:
-            count, deleted = activity.delete()
+        if host is not False:
+            count, deleted = host.delete()
+            return True if count > 0 else False
+
+        return False
+
+    def add_meta(self, host_id, name, value):
+        """
+        Add Host Meta
+        """
+        meta = HostMeta()
+
+        meta.host = Host.objects.get(pk=host_id)
+        meta.name = name
+        meta.value = value
+
+        meta.save()
+        return False if meta.pk is None else meta
+
+    def get_host_meta(self, host_id, name):
+        """
+        Get Host Meta
+        """
+        meta = HostMeta.objects.filter(host_id=host_id, name=name).first()
+
+        if meta is None or meta.pk is None:
+            return None
+
+        return meta
+
+    def delete_host_meta(self, host_id, name):
+        """
+        Delete Host Meta
+        """
+        meta = self.get_host_meta(host_id, name)
+
+        if meta is not False:
+            count, deleted = meta.delete()
             return True if count > 0 else False
 
         return False

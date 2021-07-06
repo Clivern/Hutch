@@ -49,7 +49,8 @@ class Host(models.Model):
         max_length=20, choices=STATUS_CHOICES, default="pending", verbose_name="Status"
     )
 
-    name = models.CharField(max_length=100, verbose_name="Name")
+    name = models.CharField(max_length=150, verbose_name="Name")
+    slug = models.CharField(max_length=150, verbose_name="Slug")
     uuid = models.CharField(max_length=60, db_index=True, verbose_name="uuid")
     cloud_provider = models.CharField(max_length=50, verbose_name="Cloud Provider")
     specification = models.TextField(verbose_name="Specifications")

@@ -1,7 +1,0 @@
-{
-   "$id":"plan_community_base",
-   "$schema":"http://json-schema.org/draft-07/schema#",
-   "title":"base_plan",
-   "type":"object",
-   "properties":{}
-}

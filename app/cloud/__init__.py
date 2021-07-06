@@ -13,3 +13,5 @@
 # limitations under the License.
 
 from .digitalocean import Digitalocean  # noqa: F401
+from .aws import AWS  # noqa: F401
+from .gcloud import GoogleCloud  # noqa: F401

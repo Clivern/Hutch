@@ -19,23 +19,24 @@ from django.http import JsonResponse
 
 from app.shortcuts import Logger
 from app.util.validator import Validator
+from app.repository import HostRepository
 from app.controllers.controller import Controller
 
 
-class GetServer(View, Controller):
-    """GetServer Endpoint Controller"""
+class GetHost(View, Controller):
+    """GetHost Endpoint Controller"""
 
     def __init__(self):
         self.validator = Validator()
         self.logger = Logger().get_logger(__name__)
 
-    def get(self, request, server_id):
+    def get(self, request, host_id):
         """
-        Get Server Request
+        Get Host Request
 
         Args:
             request: the request
-            server_id: The server id
+            host_id: The host id
 
         Returns:
             The JSON Response
@@ -45,8 +46,8 @@ class GetServer(View, Controller):
         return JsonResponse({}, status=HTTPStatus.OK)
 
 
-class GetServers(View, Controller):
-    """GetServers Endpoint Controller"""
+class GetHosts(View, Controller):
+    """GetHosts Endpoint Controller"""
 
     def __init__(self):
         self.validator = Validator()
@@ -54,7 +55,7 @@ class GetServers(View, Controller):
 
     def get(self, request):
         """
-        Get Server Request
+        Get Host Request
 
         Args:
             request: the request
@@ -67,8 +68,8 @@ class GetServers(View, Controller):
         return JsonResponse({}, status=HTTPStatus.OK)
 
 
-class CreateServer(View, Controller):
-    """CreateServer Endpoint Controller"""
+class CreateHost(View, Controller):
+    """CreateHost Endpoint Controller"""
 
     def __init__(self):
         self.validator = Validator()
@@ -76,7 +77,7 @@ class CreateServer(View, Controller):
 
     def post(self, request):
         """
-        Create Server Request
+        Create Host Request
 
         Args:
             request: the request
@@ -89,20 +90,20 @@ class CreateServer(View, Controller):
         return JsonResponse({}, status=HTTPStatus.OK)
 
 
-class UpdateServer(View, Controller):
-    """UpdateServer Endpoint Controller"""
+class UpdateHost(View, Controller):
+    """UpdateHost Endpoint Controller"""
 
     def __init__(self):
         self.validator = Validator()
         self.logger = Logger().get_logger(__name__)
 
-    def put(self, request, server_id):
+    def put(self, request, host_id):
         """
-        Update Server Request
+        Update Host Request
 
         Args:
             request: the request
-            server_id: The server id
+            host_id: The host id
 
         Returns:
             The JSON Response
@@ -112,20 +113,20 @@ class UpdateServer(View, Controller):
         return JsonResponse({}, status=HTTPStatus.OK)
 
 
-class DeleteServer(View, Controller):
-    """DeleteServer Endpoint Controller"""
+class DeleteHost(View, Controller):
+    """DeleteHost Endpoint Controller"""
 
     def __init__(self):
         self.validator = Validator()
         self.logger = Logger().get_logger(__name__)
 
-    def delete(self, request, server_id):
+    def delete(self, request, host_id):
         """
-        Delete Server Request
+        Delete Host Request
 
         Args:
             request: the request
-            server_id: The server id
+            host_id: The host id
 
         Returns:
             The JSON Response
@@ -135,24 +136,16 @@ class DeleteServer(View, Controller):
         return JsonResponse({}, status=HTTPStatus.OK)
 
 
-class TriggerServerPlan(View, Controller):
-    """TriggerServerPlan Endpoint Controller"""
+class TriggerHostPlan(View, Controller):
+    """TriggerHostPlan Endpoint Controller"""
 
     def __init__(self):
         self.validator = Validator()
         self.logger = Logger().get_logger(__name__)
 
-    def post(self, request, server_id, plan_id):
+    def post(self, request, host_id, plan_id):
         """
-        Trigger Server Plan
-
-        Args:
-            request: the request
-            server_id: The server id
-            plan_id: The plan id
-
-        Returns:
-            The JSON Response
+        Trigger Host Plan
         """
         self.logger.info("Validate incoming request")
 

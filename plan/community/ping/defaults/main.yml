@@ -1,4 +1,4 @@
-# Copyright 2022 Clivern
+# Copyright 2021 Clivern
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,16 +13,3 @@
 # limitations under the License.
 
 ---
-name: base
-title: Chestnut Base
-description: Adds chestnut motod to the remote server.
-logo: /static/logo.png
-status: enabled
-requirements:
-  path: schema.json
-  defaults: |
-    key_a = value_a
-    key_b = value_b
-    key_c = value_c
-    key_d = value_d
-    key_e = value_e

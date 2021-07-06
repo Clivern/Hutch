@@ -18,21 +18,21 @@ from django.shortcuts import render
 
 from app.shortcuts import get_config
 from app.controllers.controller import Controller
-from app.repository.host_repository import HostRepository
+from app.repository import HostRepository
 
 
-class ViewServer(View, Controller):
-    """ViewServer Page Controller"""
+class ViewHost(View, Controller):
+    """ViewHost Page Controller"""
 
-    template_name = "templates/admin/server.view_one.html"
+    template_name = "templates/admin/host.view_one.html"
 
-    def get(self, request, server_id):
-        # Validate if server exists
-        server_repository = HostRepository()
-        server = server_repository.get_one_by_id(server_id)
+    def get(self, request, host_id):
+        # Validate if host exists
+        host_repository = HostRepository()
+        host = host_repository.get_one_by_id(host_id)
 
-        if server is False:
-            raise Http404("Server {} not found.".format(server_id))
+        if host is False:
+            raise Http404("Host {} not found.".format(host_id))
 
         return render(
             request,
@@ -41,15 +41,15 @@ class ViewServer(View, Controller):
                 "title": get_config("app_name", "Chestnut"),
                 "description": get_config("app_description", ""),
                 "base_url": get_config("app_url", ""),
-                "server": server,
+                "host": host,
             },
         )
 
 
-class ViewServers(View, Controller):
-    """ViewServers Page Controller"""
+class ViewHosts(View, Controller):
+    """ViewHosts Page Controller"""
 
-    template_name = "templates/admin/server.view_many.html"
+    template_name = "templates/admin/host.view_many.html"
 
     def get(self, request):
         return render(
@@ -63,10 +63,10 @@ class ViewServers(View, Controller):
         )
 
 
-class CreateServer(View, Controller):
-    """CreateServer Page Controller"""
+class CreateHost(View, Controller):
+    """CreateHost Page Controller"""
 
-    template_name = "templates/admin/server.create.html"
+    template_name = "templates/admin/host.create.html"
 
     def get(self, request):
         return render(
@@ -80,18 +80,18 @@ class CreateServer(View, Controller):
         )
 
 
-class UpdateServer(View, Controller):
-    """UpdateServer Page Controller"""
+class UpdateHost(View, Controller):
+    """UpdateHost Page Controller"""
 
-    template_name = "templates/admin/server.update.html"
+    template_name = "templates/admin/host.update.html"
 
-    def get(self, request, server_id):
-        # Validate if server exists
-        server_repository = HostRepository()
-        server = server_repository.get_one_by_id(server_id)
+    def get(self, request, host_id):
+        # Validate if host exists
+        host_repository = HostRepository()
+        host = host_repository.get_one_by_id(host_id)
 
-        if server is False:
-            raise Http404("Server {} not found.".format(server_id))
+        if host is False:
+            raise Http404("Host {} not found.".format(host_id))
 
         return render(
             request,
@@ -100,6 +100,6 @@ class UpdateServer(View, Controller):
                 "title": get_config("app_name", "Chestnut"),
                 "description": get_config("app_description", ""),
                 "base_url": get_config("app_url", ""),
-                "server": server,
+                "host": host,
             },
         )

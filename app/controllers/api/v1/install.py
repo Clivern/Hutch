@@ -64,7 +64,6 @@ class Install(View, Controller):
         }
 
         admin_data = {
-            "username": data["email"],
             "first_name": data["first_name"],
             "last_name": data["last_name"],
             "email": data["email"],

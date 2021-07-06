@@ -1,7 +1,0 @@
-{
-   "$id":"plan_community_ping",
-   "$schema":"http://json-schema.org/draft-07/schema#",
-   "title":"ping_plan",
-   "type":"object",
-   "properties":{}
-}

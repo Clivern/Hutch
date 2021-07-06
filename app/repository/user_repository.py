@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import uuid
+
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 
@@ -21,13 +23,15 @@ class UserRepository:
 
     def insert_one(self, user):
         """Insert a New User"""
-        if self.get_one_by_username(user["username"]) is not False:
+        if self.get_one_by_email(user["email"]) is not False:
             return False
 
         new_user = User()
 
         if "username" in user:
             new_user.username = user["username"]
+        else:
+            new_user.username = str(uuid.uuid4())
 
         if "first_name" in user:
             new_user.first_name = user["first_name"]
@@ -57,6 +61,7 @@ class UserRepository:
             new_user.date_joined = user["date_joined"]
 
         new_user.save()
+
         return False if new_user.pk is None else new_user
 
     def update_one_by_id(self, id, user_data):
@@ -100,14 +105,6 @@ class UserRepository:
     def get_one_by_id(self, user_id):
         try:
             user = User.objects.get(id=user_id)
-            return False if user.pk is None else user
-        except Exception:
-            return False
-
-    def get_one_by_username(self, username):
-        """Get User By Username"""
-        try:
-            user = User.objects.get(username=username)
             return False if user.pk is None else user
         except Exception:
             return False

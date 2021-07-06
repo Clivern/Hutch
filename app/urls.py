@@ -21,10 +21,10 @@ from app.controllers.web.login import Login
 from app.controllers.web.logout import Logout
 from app.controllers.web.install import Install
 
-from app.controllers.web.server import ViewServer
-from app.controllers.web.server import CreateServer
-from app.controllers.web.server import UpdateServer
-from app.controllers.web.server import ViewServers
+from app.controllers.web.host import ViewHost
+from app.controllers.web.host import CreateHost
+from app.controllers.web.host import UpdateHost
+from app.controllers.web.host import ViewHosts
 
 from app.controllers.web.dashboard import Dashboard
 from app.controllers.web.forgot_password import ForgotPassword
@@ -38,12 +38,12 @@ from app.controllers.api.v1.install import Install as InstallEndpoint
 from app.controllers.api.v1.auth import ResetPassword as ResetPasswordEndpoint
 from app.controllers.api.v1.auth import ForgotPassword as ForgotPasswordEndpoint
 
-from app.controllers.api.v1.server import GetServer as GetServerEndpoint
-from app.controllers.api.v1.server import GetServers as GetServersEndpoint
-from app.controllers.api.v1.server import CreateServer as CreateServerEndpoint
-from app.controllers.api.v1.server import UpdateServer as UpdateServerEndpoint
-from app.controllers.api.v1.server import DeleteServer as DeleteServerEndpoint
-from app.controllers.api.v1.server import TriggerServerPlan as TriggerServerPlanEndpoint
+from app.controllers.api.v1.host import GetHost as GetHostEndpoint
+from app.controllers.api.v1.host import GetHosts as GetHostsEndpoint
+from app.controllers.api.v1.host import CreateHost as CreateHostEndpoint
+from app.controllers.api.v1.host import UpdateHost as UpdateHostEndpoint
+from app.controllers.api.v1.host import DeleteHost as DeleteHostEndpoint
+from app.controllers.api.v1.host import TriggerHostPlan as TriggerHostPlanEndpoint
 
 
 urlpatterns = [
@@ -62,22 +62,22 @@ urlpatterns = [
             [
                 path("logout", Logout.as_view(), name="app.web.admin.logout"),
                 path("dashboard", Dashboard.as_view(), name="app.web.admin.dashboard"),
-                # Server Web Pages
-                path("server", ViewServers.as_view(), name="app.web.admin.server.list"),
+                # Host Web Pages
+                path("host", ViewHosts.as_view(), name="app.web.admin.host.list"),
                 path(
-                    "server/<server_id>",
-                    ViewServer.as_view(),
-                    name="app.web.admin.server.index",
+                    "host/<host_id>",
+                    ViewHost.as_view(),
+                    name="app.web.admin.host.index",
                 ),
                 path(
-                    "server/create",
-                    CreateServer.as_view(),
-                    name="app.web.admin.server.add",
+                    "host/create",
+                    CreateHost.as_view(),
+                    name="app.web.admin.host.add",
                 ),
                 path(
-                    "server/update/<server_id>",
-                    UpdateServer.as_view(),
-                    name="app.web.admin.server.edit",
+                    "host/update/<host_id>",
+                    UpdateHost.as_view(),
+                    name="app.web.admin.host.edit",
                 ),
             ]
         ),
@@ -117,41 +117,41 @@ urlpatterns = [
                     InstallEndpoint.as_view(),
                     name="app.api.v1.install.install.endpoint",
                 ),
-                # GET /api/v1/server
+                # GET /api/v1/host
                 path(
-                    "server",
-                    GetServersEndpoint.as_view(),
-                    name="app.api.v1.server.get_many.endpoint",
+                    "host",
+                    GetHostsEndpoint.as_view(),
+                    name="app.api.v1.host.get_many.endpoint",
                 ),
-                # POST /api/v1/server
+                # POST /api/v1/host
                 path(
-                    "server",
-                    CreateServerEndpoint.as_view(),
-                    name="app.api.v1.server.create.endpoint",
+                    "host",
+                    CreateHostEndpoint.as_view(),
+                    name="app.api.v1.host.create.endpoint",
                 ),
-                # GET /api/v1/server/<server_id>
+                # GET /api/v1/host/<host_id>
                 path(
-                    "server/<server_id>",
-                    GetServerEndpoint.as_view(),
-                    name="app.api.v1.server.get_one.endpoint",
+                    "host/<host_id>",
+                    GetHostEndpoint.as_view(),
+                    name="app.api.v1.host.get_one.endpoint",
                 ),
-                # PUT /api/v1/server/<server_id>
+                # PUT /api/v1/host/<host_id>
                 path(
-                    "server/<server_id>",
-                    UpdateServerEndpoint.as_view(),
-                    name="app.api.v1.server.update.endpoint",
+                    "host/<host_id>",
+                    UpdateHostEndpoint.as_view(),
+                    name="app.api.v1.host.update.endpoint",
                 ),
-                # DELETE /api/v1/server/<server_id>
+                # DELETE /api/v1/host/<host_id>
                 path(
-                    "server/<server_id>",
-                    DeleteServerEndpoint.as_view(),
-                    name="app.api.v1.server.delete.endpoint",
+                    "host/<host_id>",
+                    DeleteHostEndpoint.as_view(),
+                    name="app.api.v1.host.delete.endpoint",
                 ),
-                # POST /api/v1/server/<server_id>/trigger/<plan_id>
+                # POST /api/v1/host/<host_id>/trigger/<plan_id>
                 path(
-                    "server/<server_id>/trigger/<plan_id>",
-                    TriggerServerPlanEndpoint.as_view(),
-                    name="app.api.v1.server.trigger.endpoint",
+                    "host/<host_id>/trigger/<plan_id>",
+                    TriggerHostPlanEndpoint.as_view(),
+                    name="app.api.v1.host.trigger.endpoint",
                 ),
             ]
         ),

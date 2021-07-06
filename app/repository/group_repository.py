@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import uuid
+
 from django.contrib.auth.models import User
 
 from app.models import Group
@@ -31,6 +33,8 @@ class GroupRepository:
 
         if "uuid" in data:
             group.uuid = data["uuid"]
+        else:
+            group.uuid = str(uuid.uuid4())
 
         if "description" in data:
             group.description = data["description"]
@@ -50,9 +54,6 @@ class GroupRepository:
         if group is not False:
             if "name" in data:
                 group.name = data["name"]
-
-            if "uuid" in data:
-                group.uuid = data["uuid"]
 
             if "description" in data:
                 group.description = data["description"]
