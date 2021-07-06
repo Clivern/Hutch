@@ -18,9 +18,7 @@
 `Midway` is a platform as a service (PaaS) built on a top of `django` & `ansible` that is designed to efficiently and securely provision and manage a fleet of Linux servers. It offers a reliable solution for deploying and configuring commonly used services, such as databases, message brokers, graphing, tracing, and caching tools, on a variety of cloud providers.
 
 
-### Documentation
-
-#### Getting Started
+### Getting Started
 
 In order to run `midway`, you need `Python`, `Redis` and `MySQL`. Then run the following commands:
 
