@@ -21,8 +21,8 @@
 
 - name: Create the nginx configuration file
   template:
-    src: cattle.sh.j2
-    dest: /etc/nginx/sites-available/cattle.sh
+    src: chestnut.sh.j2
+    dest: /etc/nginx/sites-available/chestnut.sh
     backup: yes
     mode: '0644'
   notify: reload nginx
@@ -37,8 +37,8 @@
 
 - name: Ensure that the application site is enabled
   file:
-    src: /etc/nginx/sites-available/cattle.sh
-    dest: /etc/nginx/sites-enabled/cattle.sh
+    src: /etc/nginx/sites-available/chestnut.sh
+    dest: /etc/nginx/sites-enabled/chestnut.sh
     state: link
   notify: reload nginx
   tags: [ nginx ]

@@ -24,11 +24,11 @@
     name: nginx
     state: reloaded
 
-- name: reload cattle service
+- name: reload chestnut service
   systemd:
     state: restarted
     daemon_reload: yes
-    name: cattle
+    name: chestnut
 
 - name: reload workers service
   systemd:

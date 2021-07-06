@@ -3,7 +3,7 @@
 1. Setup servers
 
 ```bash
-$ echo "[cattle_server]
+$ echo "[chestnut_server]
 x.x.x.x     ansible_connection=ssh        ansible_user=root    ansible_python_interpreter=/usr/bin/python3" > hosts.prod
 ```
 

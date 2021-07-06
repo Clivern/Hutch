@@ -3,7 +3,7 @@ PYTHON ?= python
 
 help: Makefile
 	@echo
-	@echo " Choose a command run in Cattle:"
+	@echo " Choose a command run in Chestnut:"
 	@echo
 	@sed -n 's/^##//p' $< | column -t -s ':' |  sed -e 's/^/ /'
 	@echo
