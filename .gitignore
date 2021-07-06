@@ -111,7 +111,7 @@ ENV/
 .mypy_cache/
 
 db.sqlite3
-newrelic.ini
+test.py
 .vagrant
 
 !dist

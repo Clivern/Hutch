@@ -25,10 +25,7 @@ from app.repository.task_repository import TaskRepository
 @job
 def run_task(task_id):
     """
-    Run Plan Task in Background
-
-    Args:
-        task_id: The Async Task ID
+    Run a Task in Background
     """
     start_time = time.time()
 

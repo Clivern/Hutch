@@ -28,9 +28,6 @@ class Plan:
     def get_plans(self):
         """
         Returns a list of enabled plans (community and custom ones)
-
-        Returns:
-            A list of enabled plans and their requirements
         """
         plans = []
 
@@ -59,12 +56,6 @@ class Plan:
     def get_plan_requirements_schema(self, plan):
         """
         Get the plan schema file path
-
-        Args:
-            plan: The plan name
-
-        Returns:
-            The path to schema file or None
         """
         # Check if it is a community plan
         plan_type = ""
@@ -100,12 +91,6 @@ class Plan:
     def get_plan_requirements_defaults(self, plan):
         """
         Get the plan defaults
-
-        Args:
-            plan: The plan name
-
-        Returns:
-            The plan defaults or None
         """
         # Check if it is a community plan
         path1 = self.file_system.app_path("/plan/community/{}".format(plan))

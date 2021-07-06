@@ -24,6 +24,7 @@ class Key(models.Model):
     )
 
     name = models.CharField(max_length=100, verbose_name="Name")
+    remote_id = models.CharField(max_length=100, verbose_name="Remote ID")
     uuid = models.CharField(max_length=60, db_index=True, verbose_name="uuid")
     public_key = models.TextField(verbose_name="Public Key")
     private_key = models.TextField(verbose_name="Private Key")

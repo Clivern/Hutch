@@ -28,6 +28,9 @@ class KeyRepository:
         if "name" in data:
             key.name = data["name"]
 
+        if "remote_id" in data:
+            key.remote_id = data["remote_id"]
+
         if "uuid" in data:
             key.uuid = data["uuid"]
 
@@ -52,6 +55,9 @@ class KeyRepository:
         if key is not False:
             if "name" in data:
                 key.name = data["name"]
+
+            if "remote_id" in data:
+                key.remote_id = data["remote_id"]
 
             if "uuid" in data:
                 key.uuid = data["uuid"]

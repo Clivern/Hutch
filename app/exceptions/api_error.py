@@ -12,11 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from app.shortcuts import Logger
 
-
-class AWS:
-    """AWS Class"""
-
-    def __init__(self):
-        self.logger = Logger().get_logger(__name__)
+class ApiError(Exception):
+    pass

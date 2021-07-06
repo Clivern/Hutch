@@ -54,6 +54,7 @@ class Host(models.Model):
     cloud_provider = models.CharField(max_length=50, verbose_name="Cloud Provider")
     specification = models.TextField(verbose_name="Specifications")
     hostname = models.CharField(max_length=100, verbose_name="Hostname")
+    remote_id = models.CharField(max_length=100, verbose_name="Remote ID")
     username = models.CharField(max_length=100, verbose_name="Username")
     ipaddress = models.CharField(max_length=100, verbose_name="IP Address")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Created at")

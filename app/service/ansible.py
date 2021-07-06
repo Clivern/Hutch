@@ -27,20 +27,12 @@ class Ansible:
     CACHE_DIR = "cache"
 
     def __init__(self):
-        """Init Ansible Object"""
         self.file_system = FileSystem()
         self.logger = Logger().get_logger(__name__)
 
     def generate(self, plan_uuid, configs={}):
         """
         Generate Ansible Plan Files
-
-        Args:
-            plan_uuid: the plan uuid
-            configs: configs object
-
-        Returns:
-            Whether files/dirs got created or not
         """
         self.cleanup(plan_uuid)
 
@@ -131,12 +123,6 @@ class Ansible:
     def run(self, plan_uuid):
         """
         Run ansible playbook
-
-        Args:
-            plan_uuid: The plan uuid
-
-        Returns:
-            Whether the run succeeded or not
         """
         data_dir = self.file_system.app_path(
             "/{}/{}/{}".format(self.CACHE_DIR, plan_uuid, self.TEMP_DIR)
@@ -177,9 +163,6 @@ class Ansible:
     def cleanup(self, plan_uuid):
         """
         Cleanup plan directory
-
-        Args:
-            plan_uuid: The plan uuid
         """
         path = self.file_system.app_path("/{}/{}".format(self.CACHE_DIR, plan_uuid))
         self.logger.info("Delete directory {} and its content".format(path))

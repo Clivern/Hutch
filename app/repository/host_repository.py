@@ -29,6 +29,9 @@ class HostRepository:
         if "name" in data:
             host.name = data["name"]
 
+        if "remote_id" in data:
+            host.remote_id = data["remote_id"]
+
         if "uuid" in data:
             host.uuid = data["uuid"]
 
@@ -71,6 +74,9 @@ class HostRepository:
         if host is not False:
             if "name" in data:
                 host.name = data["name"]
+
+            if "remote_id" in data:
+                host.remote_id = data["remote_id"]
 
             if "uuid" in data:
                 host.uuid = data["uuid"]

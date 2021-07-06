@@ -20,23 +20,22 @@ class SSH:
     """SSH Service"""
 
     def generate(self):
-        # generate new RSA key pair
+        """
+        Generate SSH Keys
+        """
         key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
 
-        # serialize private key to PEM format
         private_key = key.private_bytes(
             encoding=serialization.Encoding.PEM,
             format=serialization.PrivateFormat.PKCS8,
             encryption_algorithm=serialization.NoEncryption(),
         )
 
-        # serialize public key to OpenSSH format
         public_key = key.public_key().public_bytes(
             encoding=serialization.Encoding.OpenSSH,
             format=serialization.PublicFormat.OpenSSH,
         )
 
-        # convert byte strings to regular strings
         private_key_str = private_key.decode("utf-8")
         public_key_str = public_key.decode("utf-8")
 
