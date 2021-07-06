@@ -32,9 +32,6 @@ class Install:
     def is_installed(self):
         """
         Check if the application is installed
-
-        Returns:
-            Whether the application is installed or not
         """
         return (
             False
@@ -45,10 +42,6 @@ class Install:
     def install(self, app_data, admin_data):
         """
         Install the application
-
-        Args:
-            app_data: the app data
-            admin_data: the admin data
         """
         # Create a User
         user = self.user_repository.insert_one(

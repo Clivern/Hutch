@@ -95,6 +95,7 @@ class OptionRepository:
         if option is not False:
             option.value = value
             option.save()
+
             return True
 
         return False
@@ -108,6 +109,7 @@ class OptionRepository:
         if option is not False:
             option.value = value
             option.save()
+
             return True
 
         return False

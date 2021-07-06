@@ -4,13 +4,6 @@
    "title":"install_endpoint",
    "type":"object",
    "properties":{
-      "username":{
-         "id":"username",
-         "type":"string",
-         "description":"The admin username",
-         "minLength":2,
-         "maxLength":60
-      },
       "first_name":{
          "id":"first_name",
          "type":"string",
@@ -65,7 +58,6 @@
       }
    },
    "required":[
-      "username",
       "first_name",
       "last_name",
       "email",
