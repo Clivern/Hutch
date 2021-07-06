@@ -28,7 +28,7 @@ from app.repository import TaskRepository
 @job
 def deploy_server_on_digitalocean(task_id):
     """
-    Deploy a Redis Server on Digitalocean
+    Deploy Nginx Server on Digitalocean
     """
     start_time = time.time()
 
@@ -62,20 +62,12 @@ def deploy_server_on_digitalocean(task_id):
                 "name": "community/base",
             },
             {
-                "name": "community/redis",
+                "name": "community/nginx",
             },
         ],
-        "redis_password": "admin",
     }
 
     defaults.update(json.loads(task.payload))
-
-    defaults["vars"] = [
-        {
-            "name": "redis_password",
-            "value": defaults["redis_password"],
-        },
-    ]
 
     host = host_repository.get_one_by_id(defaults["host_id"])
 
@@ -158,7 +150,7 @@ def deploy_server_on_digitalocean(task_id):
         task.id,
         {
             "result": json.dumps(
-                {"successMessage": "Redis server installed successfully"}
+                {"successMessage": "Nginx server installed successfully"}
             ),
             "status": TaskRepository.SUCCEEDED if result else TaskRepository.FAILED,
         },

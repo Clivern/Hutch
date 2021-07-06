@@ -1,4 +1,4 @@
-# Copyright 2022 Clivern
+# Copyright 2021 Uptimedog
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,20 +13,20 @@
 # limitations under the License.
 
 ---
-- name: Ensure Redis is Installed
+- name: Ensure redis is installed
   apt:
     name: redis-server
     state: present
-  tags: [chestnut.plan.community.redis]
+  tags: [ husky, redis ]
 
-- name: Ensure Redis is Started
+- name: Ensure redis is started
   service:
     name: redis-server
     state: started
     enabled: yes
-  tags: [chestnut.plan.community.redis]
+  tags: [ husky, redis ]
 
-- name: Enable Password Authentication for Redis
+- name: Enable password authentication for redis
   lineinfile:
     dest: /etc/redis/redis.conf
     regexp: "^# requirepass"
@@ -34,9 +34,9 @@
     state: present
     backup: yes
   notify: restart redis
-  tags: [chestnut.plan.community.redis]
+  tags: [ husky, redis ]
 
-- name: Run Redis from Systemd
+- name: Run redis from systemd
   lineinfile:
     dest: /etc/redis/redis.conf
     regexp: "^supervised no"
@@ -44,4 +44,4 @@
     state: present
     backup: yes
   notify: restart redis
-  tags: [chestnut.plan.community.redis]
+  tags: [ husky, redis ]

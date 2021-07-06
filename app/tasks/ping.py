@@ -22,7 +22,7 @@ from app.repository.task_repository import TaskRepository
 
 
 @job
-def ping(task_id):
+def ping_workers(task_id):
     """
     Run Ping Task in Background
 

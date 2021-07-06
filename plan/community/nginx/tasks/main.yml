@@ -1,0 +1,44 @@
+# Copyright 2021 Clivern
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+---
+- name: Install required packages
+  apt:
+    pkg:
+      - nginx
+      - apache2-utils
+      - python3-pip
+    state: present
+  tags: [chestnut.plan.community.nginx]
+
+- name: Install passlib python package
+  pip:
+    name: passlib
+  tags: [chestnut.plan.community.nginx]
+
+- name: Ensure nginx service is started
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+  tags: [chestnut.plan.community.nginx]
+
+- name: Setup logrotate scripts
+  template:
+    src: logrotate.d.j2
+    dest: /etc/logrotate.d/{{ item.name }}
+    mode: "0644"
+  with_items: "{{ nginx_logrotate_scripts }}"
+  when: nginx_logrotate_scripts is defined
+  tags: [chestnut.plan.community.nginx]

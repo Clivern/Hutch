@@ -1,9 +1,7 @@
 ### Redis Ansible Role
 
-Installs a redis server
+This role installs redis server. Available configs to override:
 
-Available configs
-
-```
+```yaml
 redis_password: admin
 ```
