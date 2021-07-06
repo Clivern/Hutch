@@ -29,6 +29,9 @@ class Digitalocean:
         self.logger = Logger().get_logger(__name__)
 
     def _get_headers(self):
+        """
+        Get Headers
+        """
         return {
             "Authorization": "Bearer " + self.token,
             "Content-Type": "application/json",
@@ -85,9 +88,9 @@ class Digitalocean:
             "backups": False,
             "ipv6": True,
             "user_data": None,
-            "private_networking": None,
             "volumes": None,
-            "tags": ['chestnut'],
+            "with_droplet_agent": True,
+            "tags": ["chestnut"],
         }
 
         response = requests.post(
