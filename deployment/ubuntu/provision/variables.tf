@@ -31,7 +31,7 @@ variable "region" {
 
 variable "name" {
     type = string
-    default = "cattle.sh"
+    default = "chestnut.sh"
     description = "Server Name"
 }
 

@@ -12,9 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-resource "digitalocean_vpc" "cattle_infra" {
+resource "digitalocean_vpc" "chestnut_infra" {
 
-    name = "cattle-infra-vpc"
+    name = "chestnut-infra-vpc"
 
     region = var.region
 }
