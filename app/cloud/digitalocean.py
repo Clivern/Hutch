@@ -87,7 +87,7 @@ class Digitalocean:
             "user_data": None,
             "private_networking": None,
             "volumes": None,
-            "tags": [],
+            "tags": ['chestnut'],
         }
 
         response = requests.post(
