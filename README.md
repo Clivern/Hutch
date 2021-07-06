@@ -15,7 +15,7 @@
     </p>
 </p>
 
-`Midway` is a fast, secure and reliable platform as a service written in `python` to provision and manage a fleet of `linux` servers. With `Midway` you can deploy and configure the commonly used services like databases, message brokers, graphing, tracing, caching tools ... etc on most of cloud providers.
+`Midway` is a platform as a service (PaaS) built on a top of `django` that is designed to efficiently and securely provision and manage a fleet of Linux servers. It offers a reliable solution for deploying and configuring commonly used services, such as databases, message brokers, graphing, tracing, and caching tools, on a variety of cloud providers.
 
 
 ### Documentation
@@ -58,9 +58,9 @@ $ make
 
 ### Versioning
 
-For transparency into our release cycle and in striving to maintain backward compatibility, Midway is maintained under the [Semantic Versioning guidelines](https://semver.org/) and release process is predictable and business-friendly.
+For transparency into our release cycle and in striving to maintain backward compatibility, `Midway` is maintained under the [Semantic Versioning guidelines](https://semver.org/) and release process is predictable and business-friendly.
 
-See the [Releases section of our GitHub project](https://github.com/clivern/midway/releases) for changelogs for each release version of Midway. It contains summaries of the most noteworthy changes made in each release. Also see the [Milestones section](https://github.com/clivern/midway/milestones) for the future roadmap.
+See the [Releases section of our GitHub project](https://github.com/clivern/midway/releases) for changelogs for each release version of `Midway`. It contains summaries of the most noteworthy changes made in each release. Also see the [Milestones section](https://github.com/clivern/midway/milestones) for the future roadmap.
 
 
 ### Bug tracker
@@ -70,7 +70,7 @@ If you have any suggestions, bug reports, or annoyances please report them to ou
 
 ### Security Issues
 
-If you discover a security vulnerability within Midway, please send an email to [hello@clivern.com](mailto:hello@clivern.com)
+If you discover a security vulnerability within `Midway`, please send an email to [hello@clivern.com](mailto:hello@clivern.com)
 
 
 ### Contributing
@@ -93,6 +93,6 @@ Shoutout to these open source projects and their maintainers.
 
 ### License
 
-© 2022, Midway. Released under [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+© 2022, `Midway`. Released under [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
 
 **Midway** is authored and maintained by [@Clivern](https://github.com/clivern).

@@ -9,3 +9,5 @@ requests==2.28.1
 mysqlclient==2.1.1
 ansible-runner==2.3.1
 pyyaml==6.0
+python-digitalocean==1.17.0
+boto3==1.26.78
