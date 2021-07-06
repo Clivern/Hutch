@@ -1,10 +1,7 @@
-<br/>
-<br/>
-<br/>
 <p align="center">
-    <img alt="Midway Logo" src="/assets/img/logo.jpeg" width="75%" />
+    <img alt="Midway Logo" src="/assets/img/logo.png" width="200" />
     <h3 align="center">Midway</h3>
-    <p align="center">A Lightweight And Powerful Control Panel, Set up in Minutes.</p>
+    <p align="center">A Fast, Secure and Reliable Platform as a Service, Set up in Minutes.</p>
     <p align="center">
         <a href="https://github.com/Clivern/Midway/actions/workflows/api.yml">
             <img src="https://github.com/Clivern/Midway/actions/workflows/api.yml/badge.svg"/>
@@ -18,7 +15,7 @@
     </p>
 </p>
 
-`Midway` is a lightweight and powerful control panel written in `python` to manage a fleet of local and remote `linux` servers. With `midway` you can control multiple servers `firewall`, `users`, user `groups`, `packages`, install open source `softwares` ... etc.
+`Midway` is a fast, secure and reliable platform as a service written in `python` to provision and manage a fleet of `linux` servers. With `Midway` you can deploy and configure the commonly used services like databases, message brokers, graphing, tracing, caching tools ... etc on most of cloud providers.
 
 
 ### Documentation
