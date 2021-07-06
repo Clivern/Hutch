@@ -15,7 +15,7 @@
 from app.models import Option
 
 
-class OptionRepository():
+class OptionRepository:
     """Option Repository"""
 
     def insert_one(self, option):
@@ -31,7 +31,7 @@ class OptionRepository():
         option = Option(
             key=option["key"],
             value=option["value"],
-            autoload=option["autoload"] if "autoload" in option else False
+            autoload=option["autoload"] if "autoload" in option else False,
         )
 
         option.save()

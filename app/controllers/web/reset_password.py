@@ -22,13 +22,17 @@ from app.controllers.controller import Controller
 class ResetPassword(View, Controller):
     """ResetPassword Page Controller"""
 
-    template_name = 'templates/reset-password.html'
+    template_name = "templates/reset-password.html"
 
     def get(self, request, token):
         # validate the reset request token
-        return render(request, self.template_name, {
-            "title": get_config("app_name", "Chestnut"),
-            "description": get_config("app_description", ""),
-            "base_url": get_config("app_url", ""),
-            "token": token,
-        })
+        return render(
+            request,
+            self.template_name,
+            {
+                "title": get_config("app_name", "Chestnut"),
+                "description": get_config("app_description", ""),
+                "base_url": get_config("app_url", ""),
+                "token": token,
+            },
+        )

@@ -17,7 +17,7 @@ from django.contrib.auth.models import User
 from app.models import Activity
 
 
-class ActivityRepository():
+class ActivityRepository:
     """Activity Repository"""
 
     def insert_one(self, activity):
@@ -57,15 +57,17 @@ class ActivityRepository():
 
     def get_all(self, offset=None, limit=None):
         if offset is None or limit is None:
-            return Activity.objects.order_by('-created_at')
+            return Activity.objects.order_by("-created_at")
 
-        return Activity.objects.order_by('-created_at')[offset:limit+offset]
+        return Activity.objects.order_by("-created_at")[offset : limit + offset]
 
     def get(self, user_id, offset=None, limit=None):
         if offset is None or limit is None:
-            return Activity.objects.filter(user_id=user_id).order_by('-created_at')
+            return Activity.objects.filter(user_id=user_id).order_by("-created_at")
 
-        return Activity.objects.filter(user_id=user_id).order_by('-created_at')[offset:limit+offset]
+        return Activity.objects.filter(user_id=user_id).order_by("-created_at")[
+            offset : limit + offset
+        ]
 
     def get_one_by_id(self, incident_id):
         try:

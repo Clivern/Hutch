@@ -49,7 +49,7 @@ def ping(task_id):
 
     logger.info("Task with uuid {} spent {} millisec".format(task.uuid, duration))
 
-    task_repository.update_one_by_id(task.id, {
-        "result": json.dumps({"message": "pong"}),
-        "status": TaskRepository.SUCCEEDED
-    })
+    task_repository.update_one_by_id(
+        task.id,
+        {"result": json.dumps({"message": "pong"}), "status": TaskRepository.SUCCEEDED},
+    )

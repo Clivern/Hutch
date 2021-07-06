@@ -13,6 +13,7 @@
 # limitations under the License.
 
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Task(models.Model):
@@ -23,13 +24,23 @@ class Task(models.Model):
     SUCCEEDED = "succeeded"
 
     STATUS_CHOICES = (
-        ('pending', PENDING),
-        ('failed', FAILED),
-        ('succeeded', SUCCEEDED)
+        ("pending", PENDING),
+        ("failed", FAILED),
+        ("succeeded", SUCCEEDED),
+    )
+
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        db_index=True,
+        verbose_name="Parent User",
+        null=True,
     )
 
     uuid = models.CharField(max_length=60, db_index=True, verbose_name="UUID")
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="pending", verbose_name="Status")
+    status = models.CharField(
+        max_length=20, choices=STATUS_CHOICES, default="pending", verbose_name="Status"
+    )
     payload = models.TextField(verbose_name="payload")
     result = models.TextField(verbose_name="Result")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Created at")

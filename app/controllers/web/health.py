@@ -22,6 +22,4 @@ class Health(View, Controller):
     """Health Page Controller"""
 
     def get(self, request):
-        return JsonResponse({
-            "status": "OK"
-        })
+        return JsonResponse({"status": "OK"})

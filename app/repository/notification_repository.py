@@ -18,7 +18,7 @@ from app.models import Task
 from app.models import Notification
 
 
-class NotificationRepository():
+class NotificationRepository:
     """Notification Repository"""
 
     def insert_one(self, notification):
@@ -30,7 +30,9 @@ class NotificationRepository():
             type=notification["type"],
             delivered=notification["delivered"],
             user=User.objects.get(pk=notification["user_id"]),
-            task=Task.objects.get(pk=notification["task_id"]) if notification["task_id"] is not None else notification["task_id"]
+            task=Task.objects.get(pk=notification["task_id"])
+            if notification["task_id"] is not None
+            else notification["task_id"],
         )
 
         notification.save()
@@ -63,7 +65,9 @@ class NotificationRepository():
 
     def get_many_by_user(self, user_id, order_by, asc, count=5):
         """Get Many Notifications By User ID"""
-        notifications = Notification.objects.filter(user=user_id).order_by(order_by if asc else "-%s" % order_by)[:count]
+        notifications = Notification.objects.filter(user=user_id).order_by(
+            order_by if asc else "-%s" % order_by
+        )[:count]
 
         return notifications
 
@@ -91,7 +95,11 @@ class NotificationRepository():
                 notification.user = User.objects.get(pk=new_data["user_id"])
 
             if "task_id" in new_data:
-                notification.task = Task.objects.get(pk=notification["task_id"]) if notification["task_id"] is not None else notification["task_id"]
+                notification.task = (
+                    Task.objects.get(pk=notification["task_id"])
+                    if notification["task_id"] is not None
+                    else notification["task_id"]
+                )
 
             notification.save()
             return True
@@ -126,7 +134,11 @@ class NotificationRepository():
                 notification.user = User.objects.get(pk=new_data["user_id"])
 
             if "task_id" in new_data:
-                notification.task = Task.objects.get(pk=notification["task_id"]) if notification["task_id"] is not None else notification["task_id"]
+                notification.task = (
+                    Task.objects.get(pk=notification["task_id"])
+                    if notification["task_id"] is not None
+                    else notification["task_id"]
+                )
 
             notification.save()
             return True
@@ -157,6 +169,8 @@ class NotificationRepository():
 
     def get(self, user_id, offset=None, limit=None):
         if offset is None or limit is None:
-            return Notification.objects.filter(user_id=user_id).order_by('-created_at')
+            return Notification.objects.filter(user_id=user_id).order_by("-created_at")
 
-        return Notification.objects.filter(user_id=user_id).order_by('-created_at')[offset:limit+offset]
+        return Notification.objects.filter(user_id=user_id).order_by("-created_at")[
+            offset : limit + offset
+        ]

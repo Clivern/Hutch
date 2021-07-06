@@ -52,10 +52,13 @@ class GetTask(View, Controller):
 
         self.logger.info("Found a task with uuid {}".format(task_id))
 
-        return JsonResponse({
-            "id": task_id,
-            "status": task.status.upper(),
-            "result": json.loads(task.result),
-            "createdAt": task.created_at,
-            "updatedAt":  task.updated_at
-        }, status=HTTPStatus.OK)
+        return JsonResponse(
+            {
+                "id": task_id,
+                "status": task.status.upper(),
+                "result": json.loads(task.result),
+                "createdAt": task.created_at,
+                "updatedAt": task.updated_at,
+            },
+            status=HTTPStatus.OK,
+        )

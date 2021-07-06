@@ -47,20 +47,20 @@ class Install(View, Controller):
         self.logger.info("Validate incoming request")
 
         result = self.validator.validate(
-            request.body.decode('utf-8'),
-            self.validator.get_schema_path("/schemas/api/v1/install.json")
+            request.body.decode("utf-8"),
+            self.validator.get_schema_path("/schemas/api/v1/install.json"),
         )
 
         if not result:
             self.logger.info("Request is invalid")
             raise InvalidRequest(self.validator.get_error())
 
-        data = json.loads(request.body.decode('utf-8'))
+        data = json.loads(request.body.decode("utf-8"))
 
         app_data = {
             "app_name": data["app_name"],
             "app_email": data["app_email"],
-            "app_url": data["app_url"]
+            "app_url": data["app_url"],
         }
 
         admin_data = {
@@ -68,13 +68,14 @@ class Install(View, Controller):
             "first_name": data["first_name"],
             "last_name": data["last_name"],
             "email": data["email"],
-            "password": data["password"]
+            "password": data["password"],
         }
 
         self.logger.info("Install the application")
         self.install.install(app_data, admin_data)
         self.logger.info("Application is installed")
 
-        return JsonResponse({
-            "successMessage": _("Application installed successfully!")
-        }, status=HTTPStatus.CREATED)
+        return JsonResponse(
+            {"successMessage": _("Application installed successfully!")},
+            status=HTTPStatus.CREATED,
+        )

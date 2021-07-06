@@ -35,58 +35,61 @@ SECRET_KEY = os.getenv("APP_KEY", "")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(os.getenv("APP_DEBUG_MODE", "false").lower() == "true")
 
-ALLOWED_HOSTS = [] if (os.getenv("ALLOWED_HOSTS", "") == "") else os.getenv("ALLOWED_HOSTS", "").split(",")
+ALLOWED_HOSTS = (
+    []
+    if (os.getenv("ALLOWED_HOSTS", "") == "")
+    else os.getenv("ALLOWED_HOSTS", "").split(",")
+)
 
 # Application definition
 INSTALLED_APPS = [
     # 'django.contrib.admin',
     # Incase authentication needed
-    'django.contrib.auth',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.contenttypes',
-    'django.contrib.staticfiles',
+    "django.contrib.auth",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.contenttypes",
+    "django.contrib.staticfiles",
     "django_rq",
-    "app"
+    "app",
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
     # App custom middlewares
-    'app.middleware.correlation.Correlation',
-    'app.middleware.authentication.Authentication',
-    'app.middleware.authorization.Authorization',
-    'app.middleware.logging.Logging',
-    'app.middleware.errors.Errors'
+    "app.middleware.correlation.Correlation",
+    "app.middleware.authentication.Authentication",
+    "app.middleware.authorization.Authorization",
+    "app.middleware.logging.Logging",
+    "app.middleware.errors.Errors",
 ]
 
-ROOT_URLCONF = 'app.urls'
+ROOT_URLCONF = "app.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [
             # Support child themes and themes overriding
             APP_ROOT + "/themes/child",
             APP_ROOT + "/themes/" + os.getenv("CURRENT_THEME", "default"),
             APP_ROOT + "/themes/default",
         ],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages'
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
             ],
         },
     },
@@ -107,27 +110,41 @@ if os.getenv("EMAIL_HOST_PASSWORD", None) is not None:
     EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD", "")
 
 if os.getenv("EMAIL_USE_TLS", None) is not None:
-    EMAIL_USE_TLS = True if os.getenv("EMAIL_USE_TLS", "false").lower() == "true" else False
+    EMAIL_USE_TLS = (
+        True if os.getenv("EMAIL_USE_TLS", "false").lower() == "true" else False
+    )
 
 if os.getenv("EMAIL_USE_SSL", None) is not None:
-    EMAIL_USE_SSL = True if os.getenv("EMAIL_USE_SSL", "false").lower() == "true" else False
+    EMAIL_USE_SSL = (
+        True if os.getenv("EMAIL_USE_SSL", "false").lower() == "true" else False
+    )
 
 if os.getenv("EMAIL_TIMEOUT", None) is not None:
     EMAIL_TIMEOUT = os.getenv("EMAIL_TIMEOUT", None)
 
-if os.getenv("EMAIL_SSL_KEYFILE", None) is not None and os.path.isfile(APP_ROOT + os.getenv("EMAIL_SSL_KEYFILE", "")):
+if os.getenv("EMAIL_SSL_KEYFILE", None) is not None and os.path.isfile(
+    APP_ROOT + os.getenv("EMAIL_SSL_KEYFILE", "")
+):
     EMAIL_SSL_KEYFILE = APP_ROOT + os.getenv("EMAIL_SSL_KEYFILE", "")
 
-if os.getenv("EMAIL_SSL_CERTFILE", None) is not None and os.path.isfile(APP_ROOT + os.getenv("EMAIL_SSL_CERTFILE", "")):
+if os.getenv("EMAIL_SSL_CERTFILE", None) is not None and os.path.isfile(
+    APP_ROOT + os.getenv("EMAIL_SSL_CERTFILE", "")
+):
     EMAIL_SSL_CERTFILE = APP_ROOT + os.getenv("EMAIL_SSL_CERTFILE", "")
 
-if os.getenv("EMAIL_BACKEND", None) is not None and os.getenv("EMAIL_BACKEND", None) in ["smtp", "console", "filebased"]:
-    EMAIL_BACKEND = "django.core.mail.backends." + os.getenv("EMAIL_BACKEND", "smtp") + ".EmailBackend"
+if os.getenv("EMAIL_BACKEND", None) is not None and os.getenv(
+    "EMAIL_BACKEND", None
+) in ["smtp", "console", "filebased"]:
+    EMAIL_BACKEND = (
+        "django.core.mail.backends."
+        + os.getenv("EMAIL_BACKEND", "smtp")
+        + ".EmailBackend"
+    )
     if os.getenv("EMAIL_BACKEND", None) == "filebased":
         EMAIL_FILE_PATH = APP_ROOT + "/storage/mails"
 
 
-WSGI_APPLICATION = 'app.wsgi.application'
+WSGI_APPLICATION = "app.wsgi.application"
 
 
 # Database
@@ -150,112 +167,138 @@ if os.getenv("DATABASE_URL", "") != "":
 
 if db_connection == "mysql":
     default_db = {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': db_name,
-        'USER': db_username,
-        'PASSWORD': db_password,
-        'HOST': db_host,
-        'PORT': db_port,
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": db_name,
+        "USER": db_username,
+        "PASSWORD": db_password,
+        "HOST": db_host,
+        "PORT": db_port,
     }
 else:
     default_db = {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(APP_ROOT + "/storage/database/", 'db.sqlite3')
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": os.path.join(APP_ROOT + "/storage/database/", "db.sqlite3"),
     }
 
-DATABASES = {
-    'default': default_db
-}
+DATABASES = {"default": default_db}
 
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 
 # Logging
 # https://docs.djangoproject.com/en/3.0/topics/logging/
-DJANGO_LOGGING_HANDLERS = [] if os.getenv("DJANGO_LOGGING_HANDLERS", "") == "" else os.getenv("DJANGO_LOGGING_HANDLERS", "").split(",")
-DJANGO_LOGGING_LEVEL = "WARNING" if os.getenv("DJANGO_LOGGING_LEVEL", "") == "" else os.getenv("DJANGO_LOGGING_LEVEL", "").upper()
-DJANGO_LOGGING_PROPAGATE = True if os.getenv("DJANGO_LOGGING_PROPAGATE", "") == "" or os.getenv("DJANGO_LOGGING_PROPAGATE", "") == "true" else False
+DJANGO_LOGGING_HANDLERS = (
+    []
+    if os.getenv("DJANGO_LOGGING_HANDLERS", "") == ""
+    else os.getenv("DJANGO_LOGGING_HANDLERS", "").split(",")
+)
+DJANGO_LOGGING_LEVEL = (
+    "WARNING"
+    if os.getenv("DJANGO_LOGGING_LEVEL", "") == ""
+    else os.getenv("DJANGO_LOGGING_LEVEL", "").upper()
+)
+DJANGO_LOGGING_PROPAGATE = (
+    True
+    if os.getenv("DJANGO_LOGGING_PROPAGATE", "") == ""
+    or os.getenv("DJANGO_LOGGING_PROPAGATE", "") == "true"
+    else False
+)
 
-APP_LOGGING_HANDLERS = ["file"] if os.getenv("APP_LOGGING_HANDLERS", "") == "" else os.getenv("APP_LOGGING_HANDLERS", "").split(",")
-APP_LOGGING_LEVEL = "WARNING" if os.getenv("APP_LOGGING_LEVEL", "") == "" else os.getenv("APP_LOGGING_LEVEL", "").upper()
-APP_LOGGING_PROPAGATE = True if os.getenv("APP_LOGGING_PROPAGATE", "") == "" or os.getenv("APP_LOGGING_PROPAGATE", "").lower() == "true" else False
+APP_LOGGING_HANDLERS = (
+    ["file"]
+    if os.getenv("APP_LOGGING_HANDLERS", "") == ""
+    else os.getenv("APP_LOGGING_HANDLERS", "").split(",")
+)
+APP_LOGGING_LEVEL = (
+    "WARNING"
+    if os.getenv("APP_LOGGING_LEVEL", "") == ""
+    else os.getenv("APP_LOGGING_LEVEL", "").upper()
+)
+APP_LOGGING_PROPAGATE = (
+    True
+    if os.getenv("APP_LOGGING_PROPAGATE", "") == ""
+    or os.getenv("APP_LOGGING_PROPAGATE", "").lower() == "true"
+    else False
+)
 
 LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': True,
-    'formatters': {
-        'verbose': {
-            'format': '%(levelname)s %(asctime)s %(filename)s %(module)s %(process)d %(thread)d %(message)s'
+    "version": 1,
+    "disable_existing_loggers": True,
+    "formatters": {
+        "verbose": {
+            "format": "%(levelname)s %(asctime)s %(filename)s %(module)s %(process)d %(thread)d %(message)s"
         },
-        'simple': {
-            'format': '%(levelname)s %(asctime)s %(message)s {\'correlationId\':\'%(correlation_id)s\'}'
+        "simple": {
+            "format": "%(levelname)s %(asctime)s %(message)s {'correlationId':'%(correlation_id)s'}"
         },
     },
-    'filters': {
-        'correlation_filter': {
-            '()': 'app.middleware.correlation.CorrelationFilter',
+    "filters": {
+        "correlation_filter": {
+            "()": "app.middleware.correlation.CorrelationFilter",
         }
     },
-    'handlers': {
-        'file': {
-            'level': 'DEBUG',
-            'filters': ['correlation_filter'],
-            'class': 'logging.FileHandler',
-            'filename': os.path.join(APP_ROOT + "/storage/logs/", "dev" if DEBUG else "prod" + ".log"),
-            'formatter': 'simple'
+    "handlers": {
+        "file": {
+            "level": "DEBUG",
+            "filters": ["correlation_filter"],
+            "class": "logging.FileHandler",
+            "filename": os.path.join(
+                APP_ROOT + "/storage/logs/", "dev" if DEBUG else "prod" + ".log"
+            ),
+            "formatter": "simple",
         },
-        'console': {
-            'level': 'DEBUG',
-            'filters': ['correlation_filter'],
-            'class': 'logging.StreamHandler',
-            'formatter': 'simple'
+        "console": {
+            "level": "DEBUG",
+            "filters": ["correlation_filter"],
+            "class": "logging.StreamHandler",
+            "formatter": "simple",
         },
     },
-    'loggers': {
-        'django': {
-            'handlers': DJANGO_LOGGING_HANDLERS,
-            'level': DJANGO_LOGGING_LEVEL,
-            'propagate': DJANGO_LOGGING_PROPAGATE,
+    "loggers": {
+        "django": {
+            "handlers": DJANGO_LOGGING_HANDLERS,
+            "level": DJANGO_LOGGING_LEVEL,
+            "propagate": DJANGO_LOGGING_PROPAGATE,
         },
-        'app': {
-            'handlers': APP_LOGGING_HANDLERS,
-            'level': APP_LOGGING_LEVEL,
-            'propagate': APP_LOGGING_PROPAGATE,
+        "app": {
+            "handlers": APP_LOGGING_HANDLERS,
+            "level": APP_LOGGING_LEVEL,
+            "propagate": APP_LOGGING_PROPAGATE,
         },
-        'django.db.backends': {
-            'handlers': APP_LOGGING_HANDLERS,
-            'level': APP_LOGGING_LEVEL,
-            'propagate': APP_LOGGING_PROPAGATE,
+        "django.db.backends": {
+            "handlers": APP_LOGGING_HANDLERS,
+            "level": APP_LOGGING_LEVEL,
+            "propagate": APP_LOGGING_PROPAGATE,
         },
-        'django.request': {
-            'handlers': APP_LOGGING_HANDLERS,
-            'level': APP_LOGGING_LEVEL,
-            'propagate': APP_LOGGING_PROPAGATE,
+        "django.request": {
+            "handlers": APP_LOGGING_HANDLERS,
+            "level": APP_LOGGING_LEVEL,
+            "propagate": APP_LOGGING_PROPAGATE,
         },
-        'django.server': {
-            'handlers': APP_LOGGING_HANDLERS,
-            'level': APP_LOGGING_LEVEL,
-            'propagate': APP_LOGGING_PROPAGATE,
+        "django.server": {
+            "handlers": APP_LOGGING_HANDLERS,
+            "level": APP_LOGGING_LEVEL,
+            "propagate": APP_LOGGING_PROPAGATE,
         },
-        'django.template': {
-            'handlers': APP_LOGGING_HANDLERS,
-            'level': APP_LOGGING_LEVEL,
-            'propagate': APP_LOGGING_PROPAGATE,
+        "django.template": {
+            "handlers": APP_LOGGING_HANDLERS,
+            "level": APP_LOGGING_LEVEL,
+            "propagate": APP_LOGGING_PROPAGATE,
         },
     },
 }
@@ -263,11 +306,7 @@ LOGGING = {
 CSRF_FAILURE_VIEW = "app.controllers.web.error.csrf_failure"
 
 # Languages List
-LANGUAGES = (
-    ('fr', _('French')),
-    ('en', _('English')),
-    ('de', _('Deutsch'))
-)
+LANGUAGES = (("fr", _("French")), ("en", _("English")), ("de", _("Deutsch")))
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
@@ -281,27 +320,25 @@ USE_L10N = True
 
 USE_TZ = True
 
-DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-STATIC_URL = '/static/'
+STATIC_URL = "/static/"
 
 STATIC_ROOT = APP_ROOT + STATIC_URL
 
 STATICFILES_DIRS = [APP_ROOT + "/assets"]
 
-LOCALE_PATHS = [
-    APP_ROOT + "/translation/"
-]
+LOCALE_PATHS = [APP_ROOT + "/translation/"]
 
 # RQ Queue Configs
 RQ_QUEUES = {
-    'default': {
-        'HOST': os.getenv("REDIS_HOST"),
-        'PORT': int(os.getenv("REDIS_PORT")),
-        'DB': int(os.getenv("REDIS_DB")),
-        'PASSWORD': os.getenv("REDIS_PASSWORD"),
-        'DEFAULT_TIMEOUT': 360,
+    "default": {
+        "HOST": os.getenv("REDIS_HOST"),
+        "PORT": int(os.getenv("REDIS_PORT")),
+        "DB": int(os.getenv("REDIS_DB")),
+        "PASSWORD": os.getenv("REDIS_PASSWORD"),
+        "DEFAULT_TIMEOUT": 360,
     }
 }

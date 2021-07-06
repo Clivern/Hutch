@@ -21,7 +21,7 @@ from django.utils.crypto import get_random_string
 from app.models import ResetRequest
 
 
-class ResetRequestRepository():
+class ResetRequestRepository:
     """ResetRequest Repository"""
 
     def gererate_token(self):
@@ -41,8 +41,10 @@ class ResetRequestRepository():
         request = ResetRequest(
             email=request["email"],
             token=request["token"] if "token" in request else self.gererate_token(),
-            expire_at=request["expire_at"] if "expire_at" in request else timezone.now() + timedelta(hours=int(request["expire_after"])),
-            messages_count=request["messages_count"]
+            expire_at=request["expire_at"]
+            if "expire_at" in request
+            else timezone.now() + timedelta(hours=int(request["expire_after"])),
+            messages_count=request["messages_count"],
         )
 
         request.save()

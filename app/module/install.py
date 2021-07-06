@@ -12,13 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import uuid
+
 from app.shortcuts import Logger
 from app.repository.option_repository import OptionRepository
 from app.repository.user_repository import UserRepository
 from app.repository.profile_repository import ProfileRepository
 
 
-class Install():
+class Install:
     """Install Class"""
 
     def __init__(self):
@@ -34,7 +36,11 @@ class Install():
         Returns:
             Whether the application is installed or not
         """
-        return False if self.option_repository.get_one_by_key("app_installed") is False else True
+        return (
+            False
+            if self.option_repository.get_one_by_key("app_installed") is False
+            else True
+        )
 
     def install(self, app_data, admin_data):
         """
@@ -45,27 +51,33 @@ class Install():
             admin_data: the admin data
         """
         # Create a User
-        user = self.user_repository.insert_one({
-            "username": admin_data["username"],
-            "first_name": admin_data["first_name"],
-            "last_name": admin_data["last_name"],
-            "email": admin_data["email"],
-            "password": admin_data["password"]
-        })
+        user = self.user_repository.insert_one(
+            {
+                "username": admin_data["username"],
+                "first_name": admin_data["first_name"],
+                "last_name": admin_data["last_name"],
+                "email": admin_data["email"],
+                "password": admin_data["password"],
+            }
+        )
 
         # Create a Profile
-        self.profile_repository.create_profile({
-            "job_title": "",
-            "company": "",
-            "personal_url": "",
-            "api_key": "",
-            "user": user.pk
-        })
+        self.profile_repository.create_profile(
+            {
+                "job_title": "",
+                "company": "",
+                "personal_url": "",
+                "api_key": str(uuid.uuid4()),
+                "user": user.pk,
+            }
+        )
 
         # Store app data
-        self.option_repository.insert_many([
-            {"key": "app_name", "value": app_data["app_name"], "autoload": True},
-            {"key": "app_email", "value": app_data["app_email"], "autoload": True},
-            {"key": "app_url", "value": app_data["app_url"], "autoload": True},
-            {"key": "app_installed", "value": "true", "autoload": False}
-        ])
+        self.option_repository.insert_many(
+            [
+                {"key": "app_name", "value": app_data["app_name"], "autoload": True},
+                {"key": "app_email", "value": app_data["app_email"], "autoload": True},
+                {"key": "app_url", "value": app_data["app_url"], "autoload": True},
+                {"key": "app_installed", "value": "true", "autoload": False},
+            ]
+        )

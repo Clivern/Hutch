@@ -18,72 +18,88 @@ from django.shortcuts import render
 
 from app.shortcuts import get_config
 from app.controllers.controller import Controller
-from app.repository.server_repository import ServerRepository
+from app.repository.host_repository import HostRepository
 
 
 class ViewServer(View, Controller):
     """ViewServer Page Controller"""
 
-    template_name = 'templates/admin/server.view_one.html'
+    template_name = "templates/admin/server.view_one.html"
 
     def get(self, request, server_id):
         # Validate if server exists
-        server_repository = ServerRepository()
+        server_repository = HostRepository()
         server = server_repository.get_one_by_id(server_id)
 
         if server is False:
             raise Http404("Server {} not found.".format(server_id))
 
-        return render(request, self.template_name, {
-            "title": get_config("app_name", "Chestnut"),
-            "description": get_config("app_description", ""),
-            "base_url": get_config("app_url", ""),
-            "server": server,
-        })
+        return render(
+            request,
+            self.template_name,
+            {
+                "title": get_config("app_name", "Chestnut"),
+                "description": get_config("app_description", ""),
+                "base_url": get_config("app_url", ""),
+                "server": server,
+            },
+        )
 
 
 class ViewServers(View, Controller):
     """ViewServers Page Controller"""
 
-    template_name = 'templates/admin/server.view_many.html'
+    template_name = "templates/admin/server.view_many.html"
 
     def get(self, request):
-        return render(request, self.template_name, {
-            "title": get_config("app_name", "Chestnut"),
-            "description": get_config("app_description", ""),
-            "base_url": get_config("app_url", ""),
-        })
+        return render(
+            request,
+            self.template_name,
+            {
+                "title": get_config("app_name", "Chestnut"),
+                "description": get_config("app_description", ""),
+                "base_url": get_config("app_url", ""),
+            },
+        )
 
 
 class CreateServer(View, Controller):
     """CreateServer Page Controller"""
 
-    template_name = 'templates/admin/server.create.html'
+    template_name = "templates/admin/server.create.html"
 
     def get(self, request):
-        return render(request, self.template_name, {
-            "title": get_config("app_name", "Chestnut"),
-            "description": get_config("app_description", ""),
-            "base_url": get_config("app_url", ""),
-        })
+        return render(
+            request,
+            self.template_name,
+            {
+                "title": get_config("app_name", "Chestnut"),
+                "description": get_config("app_description", ""),
+                "base_url": get_config("app_url", ""),
+            },
+        )
 
 
 class UpdateServer(View, Controller):
     """UpdateServer Page Controller"""
 
-    template_name = 'templates/admin/server.update.html'
+    template_name = "templates/admin/server.update.html"
 
     def get(self, request, server_id):
         # Validate if server exists
-        server_repository = ServerRepository()
+        server_repository = HostRepository()
         server = server_repository.get_one_by_id(server_id)
 
         if server is False:
             raise Http404("Server {} not found.".format(server_id))
 
-        return render(request, self.template_name, {
-            "title": get_config("app_name", "Chestnut"),
-            "description": get_config("app_description", ""),
-            "base_url": get_config("app_url", ""),
-            "server": server,
-        })
+        return render(
+            request,
+            self.template_name,
+            {
+                "title": get_config("app_name", "Chestnut"),
+                "description": get_config("app_description", ""),
+                "base_url": get_config("app_url", ""),
+                "server": server,
+            },
+        )

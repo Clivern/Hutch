@@ -20,7 +20,7 @@ from django.utils.translation import gettext as _
 from app.shortcuts import Logger
 
 
-class Logging():
+class Logging:
     """
     Logging Middleware
 
@@ -44,29 +44,41 @@ class Logging():
         """
         start_time = time.time()
 
-        self.logger.info(_("Incoming {method} Request to {path} with {body} and headers {headers}").format(
-            method=request.method,
-            path=request.path,
-            body=request.body,
-            headers=request.headers
-        ))
+        self.logger.info(
+            _(
+                "Incoming {method} Request to {path} with {body} and headers {headers}"
+            ).format(
+                method=request.method,
+                path=request.path,
+                body=request.body,
+                headers=request.headers,
+            )
+        )
 
         response = self.get_response(request)
 
         resp_time = (time.time() - start_time) * 1000
 
         if isinstance(response, JsonResponse):
-            self.logger.info(_("Outgoing {status} Response to {path} with {body} and latency {latency_millisec} millisec").format(
-                status=response.status_code,
-                path=request.path,
-                body=response.content,
-                latency_millisec=resp_time
-            ))
+            self.logger.info(
+                _(
+                    "Outgoing {status} Response to {path} with {body} and latency {latency_millisec} millisec"
+                ).format(
+                    status=response.status_code,
+                    path=request.path,
+                    body=response.content,
+                    latency_millisec=resp_time,
+                )
+            )
         else:
-            self.logger.info(_("Outgoing {status} Response to {path}: <html>.. and latency {latency_millisec} millisec").format(
-                status=response.status_code,
-                path=request.path,
-                latency_millisec=resp_time
-            ))
+            self.logger.info(
+                _(
+                    "Outgoing {status} Response to {path}: <html>.. and latency {latency_millisec} millisec"
+                ).format(
+                    status=response.status_code,
+                    path=request.path,
+                    latency_millisec=resp_time,
+                )
+            )
 
         return response

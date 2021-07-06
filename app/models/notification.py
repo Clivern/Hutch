@@ -21,19 +21,18 @@ from .task import Task
 class Notification(models.Model):
     """Notification Model"""
 
+    RUNNING = "running"
+    SUCCESS = "success"
+    FAILED = "failed"
+
     KIND_CHOICES = (
-        ('pending', 'PENDING'),
-        ('failed', 'FAILED'),
-        ('passed', 'PASSED'),
-        ('error', 'ERROR'),
-        ('message', 'MESSAGE')
+        ("running", "RUNNING"),
+        ("success", "SUCCESS"),
+        ("failed", "FAILED"),
     )
 
     user = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE,
-        db_index=True,
-        verbose_name="Related user"
+        User, on_delete=models.CASCADE, db_index=True, verbose_name="Related user"
     )
 
     task = models.ForeignKey(
@@ -41,13 +40,13 @@ class Notification(models.Model):
         on_delete=models.CASCADE,
         db_index=True,
         verbose_name="Related Task",
-        null=True
+        null=True,
     )
 
-    highlight = models.CharField(max_length=200, verbose_name="Highlight")
-    notification = models.CharField(max_length=200, verbose_name="Notification")
-    url = models.CharField(max_length=200, verbose_name="URL")
-    kind = models.CharField(max_length=20, choices=KIND_CHOICES, default="message", verbose_name="Kind")
+    content = models.CharField(max_length=200, verbose_name="Content")
+    kind = models.CharField(
+        max_length=20, choices=KIND_CHOICES, default="message", verbose_name="Kind"
+    )
     delivered = models.BooleanField(default=False, verbose_name="Delivered")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Created at")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Updated at")

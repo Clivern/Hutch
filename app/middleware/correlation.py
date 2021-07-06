@@ -21,7 +21,7 @@ import uuid
 _locals = local()
 
 
-class Correlation():
+class Correlation:
     """
     Correlation Middleware
 
@@ -47,7 +47,7 @@ class Correlation():
 
         response = self.get_response(request)
 
-        response['X-Correlation-ID'] = request.META["X-Correlation-ID"]
+        response["X-Correlation-ID"] = request.META["X-Correlation-ID"]
 
         return response
 
@@ -60,10 +60,10 @@ class CorrelationFilter(logging.Filter):
     """
 
     def filter(self, record):
-        if not hasattr(record, 'correlation_id'):
+        if not hasattr(record, "correlation_id"):
             record.correlation_id = ""
 
-        if hasattr(_locals, 'correlation_id'):
+        if hasattr(_locals, "correlation_id"):
             record.correlation_id = _locals.correlation_id
 
         return True

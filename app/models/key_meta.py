@@ -13,28 +13,23 @@
 # limitations under the License.
 
 from django.db import models
+from .key import Key
 
 
-class Server(models.Model):
-    """Server Model"""
+class KeyMeta(models.Model):
+    """KeyMeta Model"""
 
-    name = models.CharField(max_length=100, verbose_name="Name")
-    uuid = models.CharField(max_length=60, db_index=True, verbose_name="uuid")
-    hostname = models.CharField(max_length=100, verbose_name="Hostname")
-    ipaddress = models.CharField(max_length=100, verbose_name="IP Address")
+    key = models.ForeignKey(
+        Key, on_delete=models.CASCADE, db_index=True, verbose_name="Related Key"
+    )
+
+    name = models.CharField(max_length=60, db_index=True, verbose_name="Meta name")
+    value = models.TextField(verbose_name="Meta Value")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Created at")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Updated at")
 
-    @property
-    def tags(self):
-        return []
-
-    @property
-    def keys(self):
-        return []
-
     def __str__(self):
-        return self.uuid
+        return self.name
 
     class Meta:
-        db_table = "app_server"
+        db_table = "app_key_meta"

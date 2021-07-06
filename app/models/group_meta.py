@@ -13,19 +13,23 @@
 # limitations under the License.
 
 from django.db import models
-from django.contrib.auth.models import User
+from .group import Group
 
 
-class Activity(models.Model):
-    """Activity Model"""
+class GroupMeta(models.Model):
+    """GroupMeta Model"""
 
-    user = models.ForeignKey(
-        User, on_delete=models.CASCADE, db_index=True, verbose_name="Related User"
+    group = models.ForeignKey(
+        Group, on_delete=models.CASCADE, db_index=True, verbose_name="Related Group"
     )
 
-    activity = models.TextField(verbose_name="Activity")
+    name = models.CharField(max_length=60, db_index=True, verbose_name="Meta name")
+    value = models.TextField(verbose_name="Meta Value")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Created at")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Updated at")
 
+    def __str__(self):
+        return self.name
+
     class Meta:
-        db_table = "app_activity"
+        db_table = "app_group_meta"

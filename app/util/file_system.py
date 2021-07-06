@@ -19,7 +19,7 @@ from os.path import exists as file_exists
 from app import APP_ROOT
 
 
-class FileSystem():
+class FileSystem:
     """FileSystem Class"""
 
     def read_file(self, file_path):

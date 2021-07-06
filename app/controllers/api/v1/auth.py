@@ -47,31 +47,27 @@ class Login(View, Controller):
         self.logger.info("Validate incoming request")
 
         result = self.validator.validate(
-            request.body.decode('utf-8'),
-            self.validator.get_schema_path("/schemas/api/v1/login.json")
+            request.body.decode("utf-8"),
+            self.validator.get_schema_path("/schemas/api/v1/login.json"),
         )
 
         if not result:
             self.logger.info("Request is invalid")
             raise InvalidRequest(self.validator.get_error())
 
-        data = json.loads(request.body.decode('utf-8'))
+        data = json.loads(request.body.decode("utf-8"))
 
-        result = self.auth.authenticate(
-            data["email"],
-            data["password"],
-            request
-        )
+        result = self.auth.authenticate(data["email"], data["password"], request)
 
         if result:
             return JsonResponse(
                 {"successMessage": _("User logged in successfully!")},
-                status=HTTPStatus.ACCEPTED
+                status=HTTPStatus.ACCEPTED,
             )
         else:
             return JsonResponse(
                 {"errorMessage": _("Invalid username or password!")},
-                status=HTTPStatus.FORBIDDEN
+                status=HTTPStatus.FORBIDDEN,
             )
 
 
@@ -96,8 +92,8 @@ class ForgotPassword(View, Controller):
         self.logger.info("Validate incoming request")
 
         result = self.validator.validate(
-            request.body.decode('utf-8'),
-            self.validator.get_schema_path("/schemas/api/v1/forgot_password.json")
+            request.body.decode("utf-8"),
+            self.validator.get_schema_path("/schemas/api/v1/forgot_password.json"),
         )
 
         if not result:
@@ -128,8 +124,8 @@ class ResetPassword(View, Controller):
         self.logger.info("Validate incoming request")
 
         result = self.validator.validate(
-            request.body.decode('utf-8'),
-            self.validator.get_schema_path("/schemas/api/v1/reset_password.json")
+            request.body.decode("utf-8"),
+            self.validator.get_schema_path("/schemas/api/v1/reset_password.json"),
         )
 
         if not result:

@@ -22,11 +22,15 @@ from app.controllers.controller import Controller
 class Dashboard(View, Controller):
     """Dashboard Page Controller"""
 
-    template_name = 'templates/dashboard.html'
+    template_name = "templates/dashboard.html"
 
     def get(self, request):
-        return render(request, self.template_name, {
-            "title": get_config("app_name", "Chestnut"),
-            "description": get_config("app_description", ""),
-            "base_url": get_config("app_url", ""),
-        })
+        return render(
+            request,
+            self.template_name,
+            {
+                "title": get_config("app_name", "Chestnut"),
+                "description": get_config("app_description", ""),
+                "base_url": get_config("app_url", ""),
+            },
+        )

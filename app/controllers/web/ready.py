@@ -28,18 +28,19 @@ class Ready(View, Controller):
         readiness = Readiness()
 
         if not readiness.check_db_connection():
-            return JsonResponse({
-                "status": "down",
-                "errorMessage": "Error while connecting to the database"
-            }, status=HTTPStatus.INTERNAL_SERVER_ERROR)
+            return JsonResponse(
+                {
+                    "status": "down",
+                    "errorMessage": "Error while connecting to the database",
+                },
+                status=HTTPStatus.INTERNAL_SERVER_ERROR,
+            )
 
         # Check workers speed
         if not readiness.check_workers(30):
-            return JsonResponse({
-                "status": "down",
-                "errorMessage": "Workers are damn slow"
-            }, status=HTTPStatus.INTERNAL_SERVER_ERROR)
+            return JsonResponse(
+                {"status": "down", "errorMessage": "Workers are damn slow"},
+                status=HTTPStatus.INTERNAL_SERVER_ERROR,
+            )
 
-        return JsonResponse({
-            "status": "up"
-        })
+        return JsonResponse({"status": "up"})

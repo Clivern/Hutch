@@ -13,8 +13,7 @@
 # limitations under the License.
 
 
-class Controller():
-
+class Controller:
     def get_correlation_id(self, request):
         if "X-Correlation-ID" in request.META.keys():
             return request.META["X-Correlation-ID"]

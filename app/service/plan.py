@@ -18,7 +18,7 @@ from app.shortcuts import Logger
 from app.util.file_system import FileSystem
 
 
-class Plan():
+class Plan:
     """Plan Service"""
 
     def __init__(self):
@@ -34,13 +34,13 @@ class Plan():
         """
         plans = []
 
-        dirs = self.file_system.list_sub_dirs(self.file_system.app_path(
-            "/plan/community"
-        ))
+        dirs = self.file_system.list_sub_dirs(
+            self.file_system.app_path("/plan/community")
+        )
 
-        dirs += self.file_system.list_sub_dirs(self.file_system.app_path(
-            "/plan/plugin"
-        ))
+        dirs += self.file_system.list_sub_dirs(
+            self.file_system.app_path("/plan/plugin")
+        )
 
         for d in dirs:
             if not self.file_system.file_exists("{}/info.yml".format(d)):
@@ -49,7 +49,7 @@ class Plan():
             content = self.file_system.read_file("{}/info.yml".format(d))
             data = yaml.safe_load(content)
 
-            if not data['status'] == 'enabled':
+            if not data["status"] == "enabled":
                 continue
 
             plans.append(data)
@@ -88,7 +88,9 @@ class Plan():
         if data["requirements"]["path"] is None:
             return None
 
-        path = self.file_system.app_path("/plan/{}/{}/{}".format(plan_type, plan, data["requirements"]["path"]))
+        path = self.file_system.app_path(
+            "/plan/{}/{}/{}".format(plan_type, plan, data["requirements"]["path"])
+        )
 
         if self.file_system.file_exists(path):
             return path
@@ -120,4 +122,8 @@ class Plan():
         else:
             raise Exception("Invalid plan {} provided".format(plan))
 
-        return data["requirements"]["defaults"] if data["requirements"]["defaults"] is None else data["requirements"]["defaults"].strip()
+        return (
+            data["requirements"]["defaults"]
+            if data["requirements"]["defaults"] is None
+            else data["requirements"]["defaults"].strip()
+        )

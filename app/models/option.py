@@ -18,14 +18,14 @@ from django.db import models
 class Option(models.Model):
     """Option Model"""
 
-    key = models.CharField(max_length=30, db_index=True, verbose_name="Key")
+    name = models.CharField(max_length=30, db_index=True, verbose_name="Name")
     value = models.CharField(max_length=200, verbose_name="Value")
     autoload = models.BooleanField(default=False, verbose_name="Autoload")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Created at")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Updated at")
 
     def __str__(self):
-        return self.key
+        return self.name
 
     class Meta:
         db_table = "app_option"

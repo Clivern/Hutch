@@ -15,7 +15,7 @@
 import base64
 
 
-class Encoder():
+class Encoder:
     """Encoder Class"""
 
     def b64encode(self, text):
@@ -28,7 +28,7 @@ class Encoder():
         Returns:
             The base64 encoded test
         """
-        return str(base64.b64encode(bytes(text, 'utf-8')), "utf-8")
+        return str(base64.b64encode(bytes(text, "utf-8")), "utf-8")
 
     def b64decode(self, encoded):
         """

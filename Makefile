@@ -116,13 +116,6 @@ outdated-pkg:
 	$(PIP) list --outdated
 
 
-## precommit: Run pre-commit hooks
-.PHONY: precommit
-precommit:
-	$(PRECOMMIT) install
-	$(PRECOMMIT) run --all-files
-
-
 ## lint_plans: Lint ansible plans
 .PHONY: lint_plans
 lint_plans:
@@ -137,7 +130,7 @@ venv:
 
 ## ci: Run all CI tests.
 .PHONY: ci
-ci: coverage lint lint_plans precommit outdated-pkg
+ci: coverage lint_plans outdated-pkg
 	@echo "\n>> ============= All quality checks passed ============= <<"
 
 

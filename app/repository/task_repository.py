@@ -15,7 +15,7 @@
 from app.models import Task
 
 
-class TaskRepository():
+class TaskRepository:
     """Task Repository"""
 
     PENDING = "pending"
@@ -36,7 +36,7 @@ class TaskRepository():
             uuid=task["uuid"],
             status=task["status"],
             payload=task["payload"],
-            result=task["result"]
+            result=task["result"],
         )
 
         task.save()
@@ -146,7 +146,7 @@ class TaskRepository():
             The latest task object or None
         """
         try:
-            task = Task.objects.latest('id')
+            task = Task.objects.latest("id")
             return None if task is None else task
         except Exception:
             return None

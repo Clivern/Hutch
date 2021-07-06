@@ -24,7 +24,7 @@ from app.module.install import Install as InstallModule
 class Install(View, Controller):
     """Install Page Controller"""
 
-    template_name = 'templates/install.html'
+    template_name = "templates/install.html"
 
     def get(self, request):
         # Redirect to login page if application is installed
@@ -33,8 +33,12 @@ class Install(View, Controller):
         if install_module.is_installed():
             return redirect("app.web.login")
 
-        return render(request, self.template_name, {
-            "title": get_config("app_name", "Chestnut"),
-            "description": get_config("app_description", ""),
-            "base_url": get_config("app_url", ""),
-        })
+        return render(
+            request,
+            self.template_name,
+            {
+                "title": get_config("app_name", "Chestnut"),
+                "description": get_config("app_description", ""),
+                "base_url": get_config("app_url", ""),
+            },
+        )

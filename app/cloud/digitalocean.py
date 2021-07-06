@@ -15,7 +15,7 @@
 from app.shortcuts import Logger
 
 
-class Digitalocean():
+class Digitalocean:
     """Digitalocean Class"""
 
     def __init__(self):

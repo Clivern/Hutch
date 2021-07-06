@@ -16,7 +16,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 
 
-class UserRepository():
+class UserRepository:
     """User Repository"""
 
     def insert_one(self, user):
@@ -155,8 +155,8 @@ class UserRepository():
 
     def get_all(self, offset=None, limit=None):
         if offset is None or limit is None:
-            return User.objects.order_by('-date_joined').get()
-        return User.objects.order_by('-date_joined')[offset:limit+offset]
+            return User.objects.order_by("-date_joined").get()
+        return User.objects.order_by("-date_joined")[offset : limit + offset]
 
     def truncate(self):
         return User.objects.all().delete()

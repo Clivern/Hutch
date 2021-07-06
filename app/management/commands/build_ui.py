@@ -26,7 +26,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         """Handle the command"""
-        self.stdout.write('Start Building Index Page')
+        self.stdout.write("Start Building Index Page")
 
         try:
             self.file_system = FileSystem()
@@ -40,11 +40,13 @@ class Command(BaseCommand):
             for url in urls:
                 if url.startswith("/static"):
                     url = url.replace("/static/", "")
-                    content = content.replace("/static/" + url, "{% " + "static '{}'".format(url) + " %}")
+                    content = content.replace(
+                        "/static/" + url, "{% " + "static '{}'".format(url) + " %}"
+                    )
 
             self.file_system.write_file(path, content)
         except Exception as e:
-            self.stdout.write(self.style.ERROR('Error: {}'.format(str(e))))
+            self.stdout.write(self.style.ERROR("Error: {}".format(str(e))))
             return
 
-        self.stdout.write(self.style.SUCCESS('Done!'))
+        self.stdout.write(self.style.SUCCESS("Done!"))

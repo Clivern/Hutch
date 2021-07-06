@@ -15,4 +15,5 @@
 
 class ClientError(Exception):
     """Client Error"""
+
     pass

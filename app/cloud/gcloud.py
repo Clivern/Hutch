@@ -15,7 +15,7 @@
 from app.shortcuts import Logger
 
 
-class GoogleCloud():
+class GoogleCloud:
     """GoogleCloud Class"""
 
     def __init__(self):

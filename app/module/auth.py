@@ -19,7 +19,7 @@ from app.shortcuts import Logger
 from app.repository.user_repository import UserRepository
 
 
-class Auth():
+class Auth:
     """Auth Class"""
 
     def __init__(self):
@@ -69,7 +69,9 @@ class Auth():
             else:
                 return False
         else:
-            user = authenticate(request=request, username=username_email, password=password)
+            user = authenticate(
+                request=request, username=username_email, password=password
+            )
             if user is not None:
                 if with_login:
                     self.__login(request, user)

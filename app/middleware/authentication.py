@@ -17,7 +17,7 @@ from django.utils.translation import gettext as _
 from app.shortcuts import Logger
 
 
-class Authentication():
+class Authentication:
     """
     Authentication Middleware
 
@@ -39,10 +39,11 @@ class Authentication():
         Args:
             request: request instance
         """
-        self.logger.info(_("Authenticate {method} Request to {path}").format(
-            method=request.method,
-            path=request.path
-        ))
+        self.logger.info(
+            _("Authenticate {method} Request to {path}").format(
+                method=request.method, path=request.path
+            )
+        )
 
         response = self.get_response(request)
 

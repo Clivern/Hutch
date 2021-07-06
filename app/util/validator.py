@@ -23,7 +23,7 @@ from app import APP_ROOT
 from app.util.logger import Logger
 
 
-class Validator():
+class Validator:
     """Validator Class"""
 
     def __init__(self):

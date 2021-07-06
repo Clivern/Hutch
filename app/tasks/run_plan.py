@@ -49,7 +49,7 @@ def run_plan(task_id):
         "ssh_private_key": "",
         "host_address": "example.com",
         "host_port": 22,
-        "host_ssh_key_username": "root"
+        "host_ssh_key_username": "root",
     }
 
     defaults.update(json.loads(task.payload))
@@ -67,7 +67,10 @@ def run_plan(task_id):
 
     logger.info("Task with uuid {} spent {} millisec".format(task.uuid, duration))
 
-    task_repository.update_one_by_id(task.id, {
-        "result": json.dumps({}),
-        "status": TaskRepository.SUCCEEDED if result else TaskRepository.FAILED
-    })
+    task_repository.update_one_by_id(
+        task.id,
+        {
+            "result": json.dumps({}),
+            "status": TaskRepository.SUCCEEDED if result else TaskRepository.FAILED,
+        },
+    )

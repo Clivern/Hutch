@@ -15,7 +15,7 @@
 from app.shortcuts import Logger
 
 
-class AWS():
+class AWS:
     """AWS Class"""
 
     def __init__(self):

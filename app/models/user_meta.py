@@ -20,19 +20,16 @@ class UserMeta(models.Model):
     """UserMeta Model"""
 
     user = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE,
-        db_index=True,
-        verbose_name="Related User"
+        User, on_delete=models.CASCADE, db_index=True, verbose_name="Related User"
     )
 
-    key = models.CharField(max_length=60, db_index=True, verbose_name="Meta key")
+    name = models.CharField(max_length=60, db_index=True, verbose_name="Meta name")
     value = models.TextField(verbose_name="Meta Value")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Created at")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Updated at")
 
     def __str__(self):
-        return self.key
+        return self.name
 
     class Meta:
         db_table = "app_user_meta"

@@ -19,17 +19,30 @@ from django.contrib.auth.models import User
 class Profile(models.Model):
     """Profile Model"""
 
+    LIGHT = "light"
+    DARK = "dark"
+
+    THEME_CHOICES = (("light", LIGHT), ("dark", DARK))
+
     user = models.OneToOneField(
         User,
         on_delete=models.CASCADE,
         db_index=True,
-        verbose_name="Related user"
+        verbose_name="Related user",
+        null=False,
     )
 
-    job_title = models.CharField(default="", max_length=100, verbose_name="Job Title")
+    theme = models.CharField(
+        max_length=20, choices=THEME_CHOICES, default="light", verbose_name="Theme"
+    )
     company = models.CharField(default="", max_length=60, verbose_name="Company")
-    personal_url = models.CharField(default="", max_length=100, verbose_name="Personal URL")
+    team = models.CharField(default="", max_length=60, verbose_name="Team")
+    job_title = models.CharField(default="", max_length=100, verbose_name="Job Title")
+    personal_url = models.CharField(
+        default="", max_length=100, verbose_name="Personal URL"
+    )
     api_key = models.CharField(default="", max_length=100, verbose_name="API Key")
+    timezone = models.CharField(default="", max_length=50, verbose_name="Timezone")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Created at")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Updated at")
 

@@ -16,16 +16,24 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class Activity(models.Model):
-    """Activity Model"""
+class Key(models.Model):
+    """Key Model"""
 
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE, db_index=True, verbose_name="Related User"
+        User, on_delete=models.CASCADE, db_index=True, verbose_name="Related user"
     )
 
-    activity = models.TextField(verbose_name="Activity")
+    name = models.CharField(max_length=100, verbose_name="Name")
+    uuid = models.CharField(max_length=60, db_index=True, verbose_name="uuid")
+    algorithm = models.CharField(max_length=60, verbose_name="Algorithm")
+    email = models.CharField(max_length=100, verbose_name="Email")
+    public_key = models.TextField(verbose_name="Public Key")
+    private_key = models.TextField(verbose_name="Private Key")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Created at")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Updated at")
 
+    def __str__(self):
+        return self.uuid
+
     class Meta:
-        db_table = "app_activity"
+        db_table = "app_key"

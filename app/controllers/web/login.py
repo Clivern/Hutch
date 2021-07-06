@@ -23,12 +23,16 @@ from app.helpers.decorators import redirect_if_not_installed
 class Login(View, Controller):
     """Login Page Controller"""
 
-    template_name = 'templates/login.html'
+    template_name = "templates/login.html"
 
     @redirect_if_not_installed
     def get(self, request):
-        return render(request, self.template_name, {
-            "title": get_config("app_name", "Chestnut"),
-            "description": get_config("app_description", ""),
-            "base_url": get_config("app_url", ""),
-        })
+        return render(
+            request,
+            self.template_name,
+            {
+                "title": get_config("app_name", "Chestnut"),
+                "description": get_config("app_description", ""),
+                "base_url": get_config("app_url", ""),
+            },
+        )

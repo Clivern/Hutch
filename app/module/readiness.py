@@ -20,7 +20,7 @@ from app.shortcuts import Logger
 from app.repository.task_repository import TaskRepository
 
 
-class Readiness():
+class Readiness:
     """Readiness Class"""
 
     def __init__(self):
@@ -65,25 +65,32 @@ class Readiness():
             self.logger.info("There is no tasks right now so skip the check")
             return True
 
-        self.logger.info("Found a task with id {} and created_at {}".format(latest_task.id, latest_task.created_at))
+        self.logger.info(
+            "Found a task with id {} and created_at {}".format(
+                latest_task.id, latest_task.created_at
+            )
+        )
 
         delta = timezone.now() - latest_task.created_at
 
-        if delta.seconds > delay_benchmark_in_seconds and TaskRepository.SUCCEEDED != latest_task.status:
+        if (
+            delta.seconds > delay_benchmark_in_seconds
+            and TaskRepository.SUCCEEDED != latest_task.status
+        ):
             # Workers are slow
-            self.logger.info("Task with id {} and status {} reached {} seconds".format(
-                latest_task.id,
-                latest_task.status,
-                delta.seconds
-            ))
+            self.logger.info(
+                "Task with id {} and status {} reached {} seconds".format(
+                    latest_task.id, latest_task.status, delta.seconds
+                )
+            )
 
             return False
 
         # Workers are pretty fast
-        self.logger.info("Task with id {} and status {} finished in {} seconds".format(
-            latest_task.id,
-            latest_task.status,
-            delta.seconds
-        ))
+        self.logger.info(
+            "Task with id {} and status {} finished in {} seconds".format(
+                latest_task.id, latest_task.status, delta.seconds
+            )
+        )
 
         return True

@@ -13,26 +13,23 @@
 # limitations under the License.
 
 from django.db import models
-from .server import Server
+from .host import Host
 
 
-class ServerMeta(models.Model):
-    """ServerMeta Model"""
+class HostMeta(models.Model):
+    """HostMeta Model"""
 
-    server = models.ForeignKey(
-        Server,
-        on_delete=models.CASCADE,
-        db_index=True,
-        verbose_name="Related Server"
+    host = models.ForeignKey(
+        Host, on_delete=models.CASCADE, db_index=True, verbose_name="Related Host"
     )
 
-    key = models.CharField(max_length=60, db_index=True, verbose_name="Meta key")
+    name = models.CharField(max_length=60, db_index=True, verbose_name="Meta name")
     value = models.TextField(verbose_name="Meta Value")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Created at")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Updated at")
 
     def __str__(self):
-        return self.key
+        return self.name
 
     class Meta:
-        db_table = "app_server_meta"
+        db_table = "app_host_meta"

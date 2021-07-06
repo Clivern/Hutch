@@ -25,7 +25,7 @@ from app.exceptions.internal_server_error import InternalServerError
 from app.exceptions.client_error import ClientError
 
 
-class Errors():
+class Errors:
     """
     Errors Middleware
 
@@ -63,11 +63,13 @@ class Errors():
         """
         if not isinstance(exception, ClientError):
             self.logger.error(
-                _("The server encountered something unexpected! {method}:{path}  - {name} - {exception}").format(
+                _(
+                    "The server encountered something unexpected! {method}:{path}  - {name} - {exception}"
+                ).format(
                     method=request.method,
                     path=request.path,
                     name=exception.__class__.__name__,
-                    exception=exception
+                    exception=exception,
                 )
             )
             self.logger.exception(exception)
@@ -80,56 +82,88 @@ class Errors():
                     method=request.method,
                     path=request.path,
                     name=exception.__class__.__name__,
-                    exception=exception
+                    exception=exception,
                 )
             )
 
         # AccessForbidden Exception
         if isinstance(exception, AccessForbidden):
-            if "Accept" in request.headers.keys() and "text/html" in request.headers['Accept']:
+            if (
+                "Accept" in request.headers.keys()
+                and "text/html" in request.headers["Accept"]
+            ):
                 return
 
-            return JsonResponse({
-                'errorMessage': str(exception),
-                'correlationId': request.META["X-Correlation-ID"]
-            }, status=HTTPStatus.FORBIDDEN)
+            return JsonResponse(
+                {
+                    "errorMessage": str(exception),
+                    "correlationId": request.META["X-Correlation-ID"],
+                },
+                status=HTTPStatus.FORBIDDEN,
+            )
 
         # InvalidRequest Exception
         elif isinstance(exception, InvalidRequest):
-            if "Accept" in request.headers.keys() and "text/html" in request.headers['Accept']:
+            if (
+                "Accept" in request.headers.keys()
+                and "text/html" in request.headers["Accept"]
+            ):
                 return
 
-            return JsonResponse({
-                'errorMessage': str(exception),
-                'correlationId': request.META["X-Correlation-ID"]
-            }, status=HTTPStatus.BAD_REQUEST)
+            return JsonResponse(
+                {
+                    "errorMessage": str(exception),
+                    "correlationId": request.META["X-Correlation-ID"],
+                },
+                status=HTTPStatus.BAD_REQUEST,
+            )
 
         # ResourceNotFound Exception
         elif isinstance(exception, ResourceNotFound):
-            if "Accept" in request.headers.keys() and "text/html" in request.headers['Accept']:
+            if (
+                "Accept" in request.headers.keys()
+                and "text/html" in request.headers["Accept"]
+            ):
                 return
 
-            return JsonResponse({
-                'errorMessage': str(exception),
-                'correlationId': request.META["X-Correlation-ID"]
-            }, status=HTTPStatus.NOT_FOUND)
+            return JsonResponse(
+                {
+                    "errorMessage": str(exception),
+                    "correlationId": request.META["X-Correlation-ID"],
+                },
+                status=HTTPStatus.NOT_FOUND,
+            )
 
         # InternalServerError Exception
         elif isinstance(exception, InternalServerError):
-            if "Accept" in request.headers.keys() and "text/html" in request.headers['Accept']:
+            if (
+                "Accept" in request.headers.keys()
+                and "text/html" in request.headers["Accept"]
+            ):
                 return
 
-            return JsonResponse({
-                'errorMessage': _("Internal Server Error!"),
-                'correlationId': request.META["X-Correlation-ID"]
-            }, status=HTTPStatus.INTERNAL_SERVER_ERROR)
+            return JsonResponse(
+                {
+                    "errorMessage": _("Internal Server Error!"),
+                    "correlationId": request.META["X-Correlation-ID"],
+                },
+                status=HTTPStatus.INTERNAL_SERVER_ERROR,
+            )
 
         # Unknown Exception
         else:
-            if "Accept" in request.headers.keys() and "text/html" in request.headers['Accept']:
+            if (
+                "Accept" in request.headers.keys()
+                and "text/html" in request.headers["Accept"]
+            ):
                 return
 
-            return JsonResponse({
-                'errorMessage': _("Something goes wrong! Please contact system administrator."),
-                'correlationId': request.META["X-Correlation-ID"]
-            }, status=HTTPStatus.INTERNAL_SERVER_ERROR)
+            return JsonResponse(
+                {
+                    "errorMessage": _(
+                        "Something goes wrong! Please contact system administrator."
+                    ),
+                    "correlationId": request.META["X-Correlation-ID"],
+                },
+                status=HTTPStatus.INTERNAL_SERVER_ERROR,
+            )

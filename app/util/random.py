@@ -16,7 +16,7 @@ import random
 import string
 
 
-class Random():
+class Random:
     """Random Class"""
 
     @classmethod
@@ -33,7 +33,7 @@ class Random():
         """
         characters = string.ascii_letters + string.digits
 
-        return ''.join(random.choice(characters) for i in range(length)).lower()
+        return "".join(random.choice(characters) for i in range(length)).lower()
 
     @classmethod
     def rand_int(cls, min, max):
