@@ -19,89 +19,89 @@ from django.http import JsonResponse
 
 from app.shortcuts import Logger
 from app.util.validator import Validator
-from app.repository import HostRepository
+from app.repository import GroupRepository
 from app.controllers.controller import Controller
 
 
-class GetHost(View, Controller):
-    """GetHost Endpoint Controller"""
+class GetGroup(View, Controller):
+    """GetGroup Endpoint Controller"""
 
     def __init__(self):
         self.validator = Validator()
-        self.host_repository = HostRepository()
+        self.host_repository = GroupRepository()
         self.logger = Logger().get_logger(__name__)
 
-    def get(self, request, host_id):
+    def get(self, request, group_id):
         """
-        Get Host
+        Get Group
         """
         self.logger.info("Validate incoming request")
 
         return JsonResponse({}, status=HTTPStatus.OK)
 
 
-class GetHosts(View, Controller):
-    """GetHosts Endpoint Controller"""
+class GetGroups(View, Controller):
+    """GetGroups Endpoint Controller"""
 
     def __init__(self):
         self.validator = Validator()
-        self.host_repository = HostRepository()
+        self.host_repository = GroupRepository()
         self.logger = Logger().get_logger(__name__)
 
     def get(self, request):
         """
-        Get Hosts
+        Get Groups
         """
         self.logger.info("Validate incoming request")
 
         return JsonResponse({}, status=HTTPStatus.OK)
 
 
-class CreateHost(View, Controller):
-    """CreateHost Endpoint Controller"""
+class CreateGroup(View, Controller):
+    """CreateGroup Endpoint Controller"""
 
     def __init__(self):
         self.validator = Validator()
-        self.host_repository = HostRepository()
+        self.host_repository = GroupRepository()
         self.logger = Logger().get_logger(__name__)
 
     def post(self, request):
         """
-        Create Host
+        Create Group
         """
         self.logger.info("Validate incoming request")
 
         return JsonResponse({}, status=HTTPStatus.OK)
 
 
-class UpdateHost(View, Controller):
-    """UpdateHost Endpoint Controller"""
+class UpdateGroup(View, Controller):
+    """UpdateGroup Endpoint Controller"""
 
     def __init__(self):
         self.validator = Validator()
-        self.host_repository = HostRepository()
+        self.host_repository = GroupRepository()
         self.logger = Logger().get_logger(__name__)
 
-    def put(self, request, host_id):
+    def put(self, request, group_id):
         """
-        Update Host
+        Update Group
         """
         self.logger.info("Validate incoming request")
 
         return JsonResponse({}, status=HTTPStatus.OK)
 
 
-class DeleteHost(View, Controller):
-    """DeleteHost Endpoint Controller"""
+class DeleteGroup(View, Controller):
+    """DeleteGroup Endpoint Controller"""
 
     def __init__(self):
         self.validator = Validator()
-        self.host_repository = HostRepository()
+        self.host_repository = GroupRepository()
         self.logger = Logger().get_logger(__name__)
 
-    def delete(self, request, host_id):
+    def delete(self, request, group_id):
         """
-        Delete Host
+        Delete Group
         """
         self.logger.info("Validate incoming request")
 

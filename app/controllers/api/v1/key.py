@@ -19,89 +19,89 @@ from django.http import JsonResponse
 
 from app.shortcuts import Logger
 from app.util.validator import Validator
-from app.repository import HostRepository
+from app.repository import KeyRepository
 from app.controllers.controller import Controller
 
 
-class GetHost(View, Controller):
-    """GetHost Endpoint Controller"""
+class GetKey(View, Controller):
+    """GetKey Endpoint Controller"""
 
     def __init__(self):
         self.validator = Validator()
-        self.host_repository = HostRepository()
+        self.host_repository = KeyRepository()
         self.logger = Logger().get_logger(__name__)
 
     def get(self, request, host_id):
         """
-        Get Host
+        Get Key
         """
         self.logger.info("Validate incoming request")
 
         return JsonResponse({}, status=HTTPStatus.OK)
 
 
-class GetHosts(View, Controller):
-    """GetHosts Endpoint Controller"""
+class GetKeys(View, Controller):
+    """GetKeys Endpoint Controller"""
 
     def __init__(self):
         self.validator = Validator()
-        self.host_repository = HostRepository()
+        self.host_repository = KeyRepository()
         self.logger = Logger().get_logger(__name__)
 
     def get(self, request):
         """
-        Get Hosts
+        Get Keys
         """
         self.logger.info("Validate incoming request")
 
         return JsonResponse({}, status=HTTPStatus.OK)
 
 
-class CreateHost(View, Controller):
-    """CreateHost Endpoint Controller"""
+class CreateKey(View, Controller):
+    """CreateKey Endpoint Controller"""
 
     def __init__(self):
         self.validator = Validator()
-        self.host_repository = HostRepository()
+        self.host_repository = KeyRepository()
         self.logger = Logger().get_logger(__name__)
 
     def post(self, request):
         """
-        Create Host
+        Create Key
         """
         self.logger.info("Validate incoming request")
 
         return JsonResponse({}, status=HTTPStatus.OK)
 
 
-class UpdateHost(View, Controller):
-    """UpdateHost Endpoint Controller"""
+class UpdateKey(View, Controller):
+    """UpdateKey Endpoint Controller"""
 
     def __init__(self):
         self.validator = Validator()
-        self.host_repository = HostRepository()
+        self.host_repository = KeyRepository()
         self.logger = Logger().get_logger(__name__)
 
     def put(self, request, host_id):
         """
-        Update Host
+        Update Key
         """
         self.logger.info("Validate incoming request")
 
         return JsonResponse({}, status=HTTPStatus.OK)
 
 
-class DeleteHost(View, Controller):
-    """DeleteHost Endpoint Controller"""
+class DeleteKey(View, Controller):
+    """DeleteKey Endpoint Controller"""
 
     def __init__(self):
         self.validator = Validator()
-        self.host_repository = HostRepository()
+        self.host_repository = KeyRepository()
         self.logger = Logger().get_logger(__name__)
 
     def delete(self, request, host_id):
         """
-        Delete Host
+        Delete Key
         """
         self.logger.info("Validate incoming request")
 

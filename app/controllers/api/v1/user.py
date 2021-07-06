@@ -19,89 +19,89 @@ from django.http import JsonResponse
 
 from app.shortcuts import Logger
 from app.util.validator import Validator
-from app.repository import HostRepository
+from app.repository import UserRepository
 from app.controllers.controller import Controller
 
 
-class GetHost(View, Controller):
-    """GetHost Endpoint Controller"""
+class GetUser(View, Controller):
+    """GetUser Endpoint Controller"""
 
     def __init__(self):
         self.validator = Validator()
-        self.host_repository = HostRepository()
+        self.host_repository = UserRepository()
         self.logger = Logger().get_logger(__name__)
 
-    def get(self, request, host_id):
+    def get(self, request, user_id):
         """
-        Get Host
+        Get User
         """
         self.logger.info("Validate incoming request")
 
         return JsonResponse({}, status=HTTPStatus.OK)
 
 
-class GetHosts(View, Controller):
-    """GetHosts Endpoint Controller"""
+class GetUsers(View, Controller):
+    """GetUsers Endpoint Controller"""
 
     def __init__(self):
         self.validator = Validator()
-        self.host_repository = HostRepository()
+        self.host_repository = UserRepository()
         self.logger = Logger().get_logger(__name__)
 
     def get(self, request):
         """
-        Get Hosts
+        Get Users
         """
         self.logger.info("Validate incoming request")
 
         return JsonResponse({}, status=HTTPStatus.OK)
 
 
-class CreateHost(View, Controller):
-    """CreateHost Endpoint Controller"""
+class CreateUser(View, Controller):
+    """CreateUser Endpoint Controller"""
 
     def __init__(self):
         self.validator = Validator()
-        self.host_repository = HostRepository()
+        self.host_repository = UserRepository()
         self.logger = Logger().get_logger(__name__)
 
     def post(self, request):
         """
-        Create Host
+        Create User
         """
         self.logger.info("Validate incoming request")
 
         return JsonResponse({}, status=HTTPStatus.OK)
 
 
-class UpdateHost(View, Controller):
-    """UpdateHost Endpoint Controller"""
+class UpdateUser(View, Controller):
+    """UpdateUser Endpoint Controller"""
 
     def __init__(self):
         self.validator = Validator()
-        self.host_repository = HostRepository()
+        self.host_repository = UserRepository()
         self.logger = Logger().get_logger(__name__)
 
-    def put(self, request, host_id):
+    def put(self, request, user_id):
         """
-        Update Host
+        Update User
         """
         self.logger.info("Validate incoming request")
 
         return JsonResponse({}, status=HTTPStatus.OK)
 
 
-class DeleteHost(View, Controller):
-    """DeleteHost Endpoint Controller"""
+class DeleteUser(View, Controller):
+    """DeleteUser Endpoint Controller"""
 
     def __init__(self):
         self.validator = Validator()
-        self.host_repository = HostRepository()
+        self.host_repository = UserRepository()
         self.logger = Logger().get_logger(__name__)
 
-    def delete(self, request, host_id):
+    def delete(self, request, user_id):
         """
-        Delete Host
+        Delete User
         """
         self.logger.info("Validate incoming request")
 

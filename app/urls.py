@@ -26,6 +26,21 @@ from app.controllers.web.host import CreateHost
 from app.controllers.web.host import UpdateHost
 from app.controllers.web.host import ViewHosts
 
+from app.controllers.web.group import ViewGroup
+from app.controllers.web.group import CreateGroup
+from app.controllers.web.group import UpdateGroup
+from app.controllers.web.group import ViewGroups
+
+from app.controllers.web.key import ViewKey
+from app.controllers.web.key import CreateKey
+from app.controllers.web.key import UpdateKey
+from app.controllers.web.key import ViewKeys
+
+from app.controllers.web.user import ViewUser
+from app.controllers.web.user import CreateUser
+from app.controllers.web.user import UpdateUser
+from app.controllers.web.user import ViewUsers
+
 from app.controllers.web.dashboard import Dashboard
 from app.controllers.web.forgot_password import ForgotPassword
 from app.controllers.web.reset_password import ResetPassword
@@ -62,12 +77,46 @@ urlpatterns = [
             [
                 path("logout", Logout.as_view(), name="app.web.admin.logout"),
                 path("dashboard", Dashboard.as_view(), name="app.web.admin.dashboard"),
+                # Group Web Pages
+                path("group", ViewGroups.as_view(), name="app.web.admin.group.list"),
+                path(
+                    "group/<group_id>",
+                    ViewGroup.as_view(),
+                    name="app.web.admin.group.view",
+                ),
+                path(
+                    "group/create",
+                    CreateGroup.as_view(),
+                    name="app.web.admin.group.add",
+                ),
+                path(
+                    "group/update/<group_id>",
+                    UpdateGroup.as_view(),
+                    name="app.web.admin.group.edit",
+                ),
+                # Key Web Pages
+                path("key", ViewKeys.as_view(), name="app.web.admin.key.list"),
+                path(
+                    "key/<key_id>",
+                    ViewKey.as_view(),
+                    name="app.web.admin.key.view",
+                ),
+                path(
+                    "key/create",
+                    CreateKey.as_view(),
+                    name="app.web.admin.key.add",
+                ),
+                path(
+                    "key/update/<key_id>",
+                    UpdateKey.as_view(),
+                    name="app.web.admin.key.edit",
+                ),
                 # Host Web Pages
                 path("host", ViewHosts.as_view(), name="app.web.admin.host.list"),
                 path(
                     "host/<host_id>",
                     ViewHost.as_view(),
-                    name="app.web.admin.host.index",
+                    name="app.web.admin.host.view",
                 ),
                 path(
                     "host/create",
@@ -78,6 +127,23 @@ urlpatterns = [
                     "host/update/<host_id>",
                     UpdateHost.as_view(),
                     name="app.web.admin.host.edit",
+                ),
+                # User Web Pages
+                path("user", ViewUsers.as_view(), name="app.web.admin.user.list"),
+                path(
+                    "user/<user_id>",
+                    ViewUser.as_view(),
+                    name="app.web.admin.user.view",
+                ),
+                path(
+                    "user/create",
+                    CreateUser.as_view(),
+                    name="app.web.admin.user.add",
+                ),
+                path(
+                    "user/update/<user_id>",
+                    UpdateUser.as_view(),
+                    name="app.web.admin.user.edit",
                 ),
             ]
         ),
