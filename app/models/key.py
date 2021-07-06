@@ -25,8 +25,6 @@ class Key(models.Model):
 
     name = models.CharField(max_length=100, verbose_name="Name")
     uuid = models.CharField(max_length=60, db_index=True, verbose_name="uuid")
-    algorithm = models.CharField(max_length=60, verbose_name="Algorithm")
-    email = models.CharField(max_length=100, verbose_name="Email")
     public_key = models.TextField(verbose_name="Public Key")
     private_key = models.TextField(verbose_name="Private Key")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Created at")

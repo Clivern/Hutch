@@ -31,12 +31,6 @@ class KeyRepository:
         if "uuid" in data:
             key.uuid = data["uuid"]
 
-        if "algorithm" in data:
-            key.algorithm = data["algorithm"]
-
-        if "email" in data:
-            key.email = data["email"]
-
         if "public_key" in data:
             key.public_key = data["public_key"]
 
@@ -61,12 +55,6 @@ class KeyRepository:
 
             if "uuid" in data:
                 key.uuid = data["uuid"]
-
-            if "algorithm" in data:
-                key.algorithm = data["algorithm"]
-
-            if "email" in data:
-                key.email = data["email"]
 
             if "public_key" in data:
                 key.public_key = data["public_key"]

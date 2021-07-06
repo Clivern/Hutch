@@ -44,6 +44,9 @@ class HostRepository:
         if "username" in data:
             host.username = data["username"]
 
+        if "status" in data:
+            host.status = data["status"]
+
         if "ipaddress" in data:
             host.ipaddress = data["ipaddress"]
 
@@ -83,6 +86,9 @@ class HostRepository:
 
             if "username" in data:
                 host.username = data["username"]
+
+            if "status" in data:
+                host.status = data["status"]
 
             if "ipaddress" in data:
                 host.ipaddress = data["ipaddress"]

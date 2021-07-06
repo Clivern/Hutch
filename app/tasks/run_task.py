@@ -23,7 +23,7 @@ from app.repository.task_repository import TaskRepository
 
 
 @job
-def run_plan(task_id):
+def run_task(task_id):
     """
     Run Plan Task in Background
 

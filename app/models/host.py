@@ -21,6 +21,18 @@ from .key import Key
 class Host(models.Model):
     """Host Model"""
 
+    PENDING = "pending"
+    RUNNING = "running"
+    STOPPED = "stopped"
+    MISSING = "missing"
+
+    STATUS_CHOICES = (
+        ("pending", PENDING),
+        ("running", RUNNING),
+        ("stopped", STOPPED),
+        ("missing", MISSING),
+    )
+
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, db_index=True, verbose_name="Related user"
     )
@@ -31,6 +43,10 @@ class Host(models.Model):
 
     key = models.ForeignKey(
         Key, on_delete=models.CASCADE, db_index=True, verbose_name="Related Key"
+    )
+
+    status = models.CharField(
+        max_length=20, choices=STATUS_CHOICES, default="pending", verbose_name="Status"
     )
 
     name = models.CharField(max_length=100, verbose_name="Name")
