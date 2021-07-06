@@ -38,7 +38,7 @@ class Install:
         """
         return (
             False
-            if self.option_repository.get_one_by_key("app_installed") is False
+            if self.option_repository.get_one_by_name("app_installed") is False
             else True
         )
 
@@ -58,6 +58,8 @@ class Install:
                 "last_name": admin_data["last_name"],
                 "email": admin_data["email"],
                 "password": admin_data["password"],
+                "is_superuser": True,
+                "is_staff": True,
             }
         )
 

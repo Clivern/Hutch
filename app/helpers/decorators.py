@@ -15,6 +15,7 @@
 from django.http import JsonResponse
 from django.shortcuts import redirect, reverse
 from django.utils.translation import gettext as _
+from django.contrib.auth import authenticate, login
 
 from app.exceptions.access_forbidden import AccessForbidden
 from app.repository.option_repository import OptionRepository
@@ -51,8 +52,18 @@ def stop_request_if_authenticated(function):
 
 def prevent_if_not_authenticated(function):
     def wrap(controller, request, *args, **kwargs):
+        # API authentication
+        api_key = request.headers.get("x-api-key")
+        user = authenticate(request, api_key=api_key)
+
+        if user is not None:
+            login(request, user)
+            return function(controller, request, *args, **kwargs)
+
+        # UI Authentication
         if not request.user or not request.user.is_authenticated:
             raise AccessForbidden(_("Oops! Access forbidden."))
+
         return function(controller, request, *args, **kwargs)
 
     return wrap

@@ -21,6 +21,9 @@ class ActivityRepository:
     """Activity Repository"""
 
     def insert_one(self, activity):
+        """
+        Insert a new activity
+        """
         new_activity = Activity()
 
         if "activity" in activity:
@@ -33,6 +36,9 @@ class ActivityRepository:
         return False if new_activity.pk is None else new_activity
 
     def update_one_by_id(self, id, activity_data):
+        """
+        Update activity by id
+        """
         activity = self.get_one_by_id(id)
 
         if activity is not False:
@@ -47,21 +53,33 @@ class ActivityRepository:
         return False
 
     def count_all(self):
+        """
+        Count all activites
+        """
         return Activity.objects.count()
 
-    def count(self, user_id=None):
+    def count_by_user(self, user_id=None):
+        """
+        Count activites by user id
+        """
         if user_id is None:
             return Activity.objects.count()
         else:
             return Activity.objects.filter(user_id=user_id).count()
 
     def get_all(self, offset=None, limit=None):
+        """
+        Get activities
+        """
         if offset is None or limit is None:
             return Activity.objects.order_by("-created_at")
 
         return Activity.objects.order_by("-created_at")[offset : limit + offset]
 
     def get(self, user_id, offset=None, limit=None):
+        """
+        Get activities by user id
+        """
         if offset is None or limit is None:
             return Activity.objects.filter(user_id=user_id).order_by("-created_at")
 
@@ -69,14 +87,20 @@ class ActivityRepository:
             offset : limit + offset
         ]
 
-    def get_one_by_id(self, incident_id):
+    def get_one_by_id(self, id):
+        """
+        Delete activity by id
+        """
         try:
-            activity = Activity.objects.get(id=incident_id)
+            activity = Activity.objects.get(id=id)
             return False if activity.pk is None else activity
         except Exception:
             return False
 
     def delete_one_by_id(self, id):
+        """
+        Delete activity by id
+        """
         activity = self.get_one_by_id(id)
 
         if activity is not False:

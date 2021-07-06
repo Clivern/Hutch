@@ -21,15 +21,9 @@ class OptionRepository:
     def insert_one(self, option):
         """
         Insert a New Option
-
-        Args:
-            option: a dict of option data
-
-        Returns:
-            An instance of the created option
         """
         option = Option(
-            key=option["key"],
+            name=option["name"],
             value=option["value"],
             autoload=option["autoload"] if "autoload" in option else False,
         )
@@ -40,12 +34,6 @@ class OptionRepository:
     def insert_many(self, options):
         """
         Insert Many Options
-
-        Args:
-            options: array of options
-
-        Returns:
-            Whether the operation succeeded or not
         """
         status = True
 
@@ -57,12 +45,6 @@ class OptionRepository:
     def get_one_by_id(self, id):
         """
         Get Option By ID
-
-        Args:
-            id: the option id
-
-        Returns:
-            An instance of the option or False if it doesn't exist
         """
         try:
             option = Option.objects.get(pk=id)
@@ -70,35 +52,22 @@ class OptionRepository:
         except Exception:
             return False
 
-    def get_one_by_key(self, key):
+    def get_one_by_name(self, name):
         """
-        Get Option By Key
-
-        Args:
-            key: the option key
-
-        Returns:
-            An instance of the option or False if it doesn't exist
+        Get Option By Name
         """
         try:
-            option = Option.objects.get(key=key)
+            option = Option.objects.get(name=name)
             return False if option.pk is None else option
         except Exception:
             return False
 
-    def get_value_by_key(self, key, default=""):
+    def get_value_by_name(self, name, default=""):
         """
-        Get Option Value By Key
-
-        Args:
-            key: the option key
-            default: a default value
-
-        Returns:
-            Option value or the default one
+        Get Option Value By Name
         """
         try:
-            option = Option.objects.get(key=key)
+            option = Option.objects.get(name=name)
             return default if option.pk is None else option.value
         except Exception:
             return default
@@ -106,39 +75,20 @@ class OptionRepository:
     def get_many_by_autoload(self, autoload):
         """
         Get Many Options By Autoload
-
-        Args:
-            autoload: the autoload value
-
-        Returns:
-            array of options
         """
         options = Option.objects.filter(autoload=autoload)
         return options
 
-    def get_many_by_keys(self, keys):
+    def get_many_by_names(self, names):
         """
-        Get Many Options By Keys
-
-        Args:
-            keys: array of keys
-
-        Returns:
-            array of options
+        Get Many Options By Names
         """
-        options = Option.objects.filter(key__in=keys)
+        options = Option.objects.filter(name__in=names)
         return options
 
     def update_value_by_id(self, id, value):
         """
         Update Option Value By ID
-
-        Args:
-            id: the option id
-            value: the option value
-
-        Returns:
-            Whether the operation succeeded or not
         """
         option = self.get_one_by_id(id)
 
@@ -149,18 +99,11 @@ class OptionRepository:
 
         return False
 
-    def update_value_by_key(self, key, value):
+    def update_value_by_name(self, name, value):
         """
-        Update Option Value By Key
-
-        Args:
-            key: the option key
-            value: the new value
-
-        Returns:
-            Whether the operation succeeded or not
+        Update Option Value By Name
         """
-        option = self.get_one_by_key(key)
+        option = self.get_one_by_name(name)
 
         if option is not False:
             option.value = value
@@ -172,21 +115,12 @@ class OptionRepository:
     def count(self):
         """
         Count all options
-
-        Returns:
-            options count
         """
         return Option.objects.count()
 
     def delete_one_by_id(self, id):
         """
         Delete Option By ID
-
-        Args:
-            id: the option id
-
-        Returns:
-            Whether the operation succeeded or not
         """
         option = self.get_one_by_id(id)
 
@@ -196,17 +130,11 @@ class OptionRepository:
 
         return False
 
-    def delete_one_by_key(self, key):
+    def delete_one_by_name(self, name):
         """
-        Delete Option By Key
-
-        Args:
-            key: the option key
-
-        Returns:
-            Whether the operation succeeded or not
+        Delete Option By Name
         """
-        option = self.get_one_by_key(key)
+        option = self.get_one_by_name(name)
 
         if option is not False:
             count, deleted = option.delete()
@@ -217,8 +145,5 @@ class OptionRepository:
     def truncate(self):
         """
         Truncate all options
-
-        Returns:
-            deleted options count
         """
         return Option.objects.all().delete()

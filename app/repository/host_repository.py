@@ -12,77 +12,147 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from app.models import Host
-from app.models import HostMeta
+from django.contrib.auth.models import User
+from app.models import Group
+from app.models import Key
 
 
 class HostRepository:
     """Host Repository"""
 
-    def insert_one(self, host_data):
+    def insert_one(self, data):
         """
-        Insert a new host
+        Insert a host
         """
         host = Host()
 
-        if "name" in host_data:
-            host.name = host_data["name"]
+        if "name" in data:
+            host.name = data["name"]
 
-        if "uuid" in host_data:
-            host.uuid = host_data["uuid"]
+        if "uuid" in data:
+            host.uuid = data["uuid"]
 
-        if "hostname" in host_data:
-            host.hostname = host_data["hostname"]
+        if "cloud_provider" in data:
+            host.cloud_provider = data["cloud_provider"]
 
-        if "ipaddress" in host_data:
-            host.ipaddress = host_data["ipaddress"]
+        if "specification" in data:
+            host.specification = data["specification"]
+
+        if "hostname" in data:
+            host.hostname = data["hostname"]
+
+        if "username" in data:
+            host.username = data["username"]
+
+        if "ipaddress" in data:
+            host.ipaddress = data["ipaddress"]
+
+        if "user_id" in data:
+            host.user = User.objects.get(pk=data["user_id"])
+
+        if "key_id" in data:
+            host.key = Key.objects.get(pk=data["key_id"])
+
+        if "group_id" in data:
+            host.group = Group.objects.get(pk=data["group_id"])
 
         host.save()
-
         return False if host.pk is None else host
 
-    def update_one_by_id(self, host_uuid, host_data):
+    def update_one_by_id(self, id, data):
         """
-        Updates a host by UUID
+        Update host by id
         """
-        host = self.get_one_by_id(host_uuid)
+        host = self.get_one_by_id(id)
 
         if host is not False:
-            if "name" in host_data:
-                host.name = host_data["name"]
+            if "name" in data:
+                host.name = data["name"]
 
-            if "uuid" in host_data:
-                host.uuid = host_data["uuid"]
+            if "uuid" in data:
+                host.uuid = data["uuid"]
 
-            if "hostname" in host_data:
-                host.hostname = host_data["hostname"]
+            if "cloud_provider" in data:
+                host.cloud_provider = data["cloud_provider"]
 
-            if "ipaddress" in host_data:
-                host.ipaddress = host_data["ipaddress"]
+            if "specification" in data:
+                host.specification = data["specification"]
+
+            if "hostname" in data:
+                host.hostname = data["hostname"]
+
+            if "username" in data:
+                host.username = data["username"]
+
+            if "ipaddress" in data:
+                host.ipaddress = data["ipaddress"]
+
+            if "user_id" in data:
+                host.user = User.objects.get(pk=data["user_id"])
+
+            if "key_id" in data:
+                host.key = Key.objects.get(pk=data["key_id"])
+
+            if "group_id" in data:
+                host.group = Group.objects.get(pk=data["group_id"])
 
             host.save()
             return True
-
         return False
 
-    def get_one_by_id(self, host_uuid):
+    def count_all(self):
         """
-        Get host by a UUID
+        Count all hosts
+        """
+        return Host.objects.count()
+
+    def count_by_user(self, user_id=None):
+        """
+        Count hosts by user id
+        """
+        if user_id is None:
+            return Host.objects.count()
+        else:
+            return Host.objects.filter(user_id=user_id).count()
+
+    def get_all(self, offset=None, limit=None):
+        """
+        Get all hosts
+        """
+        if offset is None or limit is None:
+            return Host.objects.order_by("-created_at")
+
+        return Host.objects.order_by("-created_at")[offset : limit + offset]
+
+    def get(self, user_id, offset=None, limit=None):
+        """
+        Get hosts by user id
+        """
+        if offset is None or limit is None:
+            return Host.objects.filter(user_id=user_id).order_by("-created_at")
+
+        return Host.objects.filter(user_id=user_id).order_by("-created_at")[
+            offset : limit + offset
+        ]
+
+    def get_one_by_id(self, id):
+        """
+        Get host by id
         """
         try:
-            host = Host.objects.get(uuid=host_uuid)
-            return False if host.pk is None else host
+            activity = Host.objects.get(id=id)
+            return False if activity.pk is None else activity
         except Exception:
             return False
 
-    def delete_one_by_id(self, host_uuid):
+    def delete_one_by_id(self, id):
         """
-        Delete host by a UUID
+        Delete host by id
         """
-        host = self.get_one_by_id(host_uuid)
+        activity = self.get_one_by_id(id)
 
-        if host is not False:
-            count, deleted = host.delete()
+        if activity is not False:
+            count, deleted = activity.delete()
             return True if count > 0 else False
 
         return False

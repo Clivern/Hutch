@@ -14,6 +14,8 @@
 
 from django.db import models
 from django.contrib.auth.models import User
+from .group import Group
+from .key import Key
 
 
 class Host(models.Model):
@@ -23,8 +25,18 @@ class Host(models.Model):
         User, on_delete=models.CASCADE, db_index=True, verbose_name="Related user"
     )
 
+    group = models.ForeignKey(
+        Group, on_delete=models.CASCADE, db_index=True, verbose_name="Related Group"
+    )
+
+    key = models.ForeignKey(
+        Key, on_delete=models.CASCADE, db_index=True, verbose_name="Related Key"
+    )
+
     name = models.CharField(max_length=100, verbose_name="Name")
     uuid = models.CharField(max_length=60, db_index=True, verbose_name="uuid")
+    cloud_provider = models.CharField(max_length=50, verbose_name="Cloud Provider")
+    specification = models.TextField(verbose_name="Specifications")
     hostname = models.CharField(max_length=100, verbose_name="Hostname")
     username = models.CharField(max_length=100, verbose_name="Username")
     ipaddress = models.CharField(max_length=100, verbose_name="IP Address")
