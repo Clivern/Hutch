@@ -1,7 +1,7 @@
-var midway_app = midway_app || {};
+var chestnut_app = chestnut_app || {};
 
 // Login Page
-midway_app.login_screen = (Vue, axios, Cookies, $) => {
+chestnut_app.login_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -48,7 +48,7 @@ midway_app.login_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Reset Password Page
-midway_app.reset_password_screen = (Vue, axios, Cookies, $) => {
+chestnut_app.reset_password_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -95,7 +95,7 @@ midway_app.reset_password_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Install Page
-midway_app.install_screen = (Vue, axios, Cookies, $) => {
+chestnut_app.install_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -141,7 +141,7 @@ midway_app.install_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Forgot Password Page
-midway_app.forgot_password_screen = (Vue, axios, Cookies, $) => {
+chestnut_app.forgot_password_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -194,7 +194,7 @@ $(document).ready(() => {
     };
 
     if (document.getElementById("app_login")) {
-        midway_app.login_screen(
+        chestnut_app.login_screen(
             Vue,
             axios,
             Cookies,
@@ -203,7 +203,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_reset_password")) {
-        midway_app.reset_password_screen(
+        chestnut_app.reset_password_screen(
             Vue,
             axios,
             Cookies,
@@ -212,7 +212,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_install")) {
-        midway_app.install_screen(
+        chestnut_app.install_screen(
             Vue,
             axios,
             Cookies,
@@ -221,7 +221,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_forgot_password")) {
-        midway_app.forgot_password_screen(
+        chestnut_app.forgot_password_screen(
             Vue,
             axios,
             Cookies,

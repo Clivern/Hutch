@@ -15,8 +15,20 @@
 from app.shortcuts import Logger
 
 
-class Google():
-    """Google Class"""
+class AWS():
+    """AWS Class"""
 
     def __init__(self):
         self.logger = Logger().get_logger(__name__)
+
+    def provision():
+        pass
+
+    def destroy():
+        pass
+
+    def get():
+        pass
+
+    def list():
+        pass

@@ -14,8 +14,8 @@
 
 ---
 name: ping
-title: Midway Ping
-description: Validates if midway can access the server.
+title: Chestnut Ping
+description: Validates if chestnut can access the server.
 logo: /static/logo.png
 status: enabled
 requirements:

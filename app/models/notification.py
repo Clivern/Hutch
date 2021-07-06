@@ -21,7 +21,7 @@ from .task import Task
 class Notification(models.Model):
     """Notification Model"""
 
-    TYPE_CHOICES = (
+    KIND_CHOICES = (
         ('pending', 'PENDING'),
         ('failed', 'FAILED'),
         ('passed', 'PASSED'),
@@ -47,7 +47,7 @@ class Notification(models.Model):
     highlight = models.CharField(max_length=200, verbose_name="Highlight")
     notification = models.CharField(max_length=200, verbose_name="Notification")
     url = models.CharField(max_length=200, verbose_name="URL")
-    type = models.CharField(max_length=20, choices=TYPE_CHOICES, default="message", verbose_name="Type")
+    kind = models.CharField(max_length=20, choices=KIND_CHOICES, default="message", verbose_name="Kind")
     delivered = models.BooleanField(default=False, verbose_name="Delivered")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Created at")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Updated at")

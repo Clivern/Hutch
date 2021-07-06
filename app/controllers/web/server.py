@@ -35,7 +35,7 @@ class ViewServer(View, Controller):
             raise Http404("Server {} not found.".format(server_id))
 
         return render(request, self.template_name, {
-            "title": get_config("app_name", "Midway"),
+            "title": get_config("app_name", "Chestnut"),
             "description": get_config("app_description", ""),
             "base_url": get_config("app_url", ""),
             "server": server,
@@ -49,7 +49,7 @@ class ViewServers(View, Controller):
 
     def get(self, request):
         return render(request, self.template_name, {
-            "title": get_config("app_name", "Midway"),
+            "title": get_config("app_name", "Chestnut"),
             "description": get_config("app_description", ""),
             "base_url": get_config("app_url", ""),
         })
@@ -62,7 +62,7 @@ class CreateServer(View, Controller):
 
     def get(self, request):
         return render(request, self.template_name, {
-            "title": get_config("app_name", "Midway"),
+            "title": get_config("app_name", "Chestnut"),
             "description": get_config("app_description", ""),
             "base_url": get_config("app_url", ""),
         })
@@ -82,7 +82,7 @@ class UpdateServer(View, Controller):
             raise Http404("Server {} not found.".format(server_id))
 
         return render(request, self.template_name, {
-            "title": get_config("app_name", "Midway"),
+            "title": get_config("app_name", "Chestnut"),
             "description": get_config("app_description", ""),
             "base_url": get_config("app_url", ""),
             "server": server,

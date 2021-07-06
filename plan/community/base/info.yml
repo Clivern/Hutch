@@ -14,8 +14,8 @@
 
 ---
 name: base
-title: Midway Base
-description: Adds midway motod to the remote server.
+title: Chestnut Base
+description: Adds chestnut motod to the remote server.
 logo: /static/logo.png
 status: enabled
 requirements:

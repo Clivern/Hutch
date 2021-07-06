@@ -34,7 +34,7 @@ class Install(View, Controller):
             return redirect("app.web.login")
 
         return render(request, self.template_name, {
-            "title": get_config("app_name", "Midway"),
+            "title": get_config("app_name", "Chestnut"),
             "description": get_config("app_description", ""),
             "base_url": get_config("app_url", ""),
         })
