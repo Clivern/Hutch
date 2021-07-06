@@ -89,11 +89,6 @@
       default: "0.1.0"
       private: no
 
-    - name: "newrelic_license_key"
-      prompt: "Newrelic License Key"
-      default: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-      private: no
-
     - name: "workers_counts"
       prompt: "Async Workers Count"
       default: 3
@@ -101,7 +96,6 @@
 
   roles:
     - common
-    - docker
     - logrotate
     - database
     - redis
