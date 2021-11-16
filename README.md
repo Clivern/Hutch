@@ -93,7 +93,9 @@ Shoutout to these open source projects and their maintainers.
 - [Django.](https://www.djangoproject.com/)
 - [Django-RQ](https://github.com/rq/django-rq)
 - [Requests](https://github.com/psf/requests)
+- [Ansible Runner](https://github.com/ansible/ansible-runner)
 - [VueJs](https://github.com/vuejs/vue)
+- [Tabler](https://github.com/tabler/tabler)
 - [and other projects ...](requirements.txt)
 
 
