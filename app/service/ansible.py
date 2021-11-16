@@ -45,12 +45,15 @@ class Ansible():
         self.cleanup(plan_uuid)
 
         if "host_port" not in configs.keys():
+            self.logger.info("host port is missing in plan with uuid {}, use 22".format(plan_uuid))
             configs["host_port"] = 22
 
         if "host_ssh_key_username" not in configs.keys():
+            self.logger.info("SSH key username is missing in plan with uuid {}, use root".format(plan_uuid))
             configs["host_ssh_key_username"] = "root"
 
         if "vars" not in configs.keys():
+            self.logger.info("vars are missing in plan with uuid {}".format(plan_uuid))
             configs["vars"] = []
 
         target_tmp_dir = self.file_system.app_path("/{}/{}/{}".format(
@@ -59,20 +62,28 @@ class Ansible():
             self.TEMP_DIR
         ))
 
+        self.logger.info("Plan with uuid {} uses temp dir {}".format(plan_uuid, target_tmp_dir))
+
         target_hosts_file = self.file_system.app_path("/{}/{}/hosts".format(
             self.CACHE_DIR,
             plan_uuid
         ))
+
+        self.logger.info("Plan with uuid {} uses hosts file {}".format(plan_uuid, target_hosts_file))
 
         target_playbook_file = self.file_system.app_path("/{}/{}/playbook.yml".format(
             self.CACHE_DIR,
             plan_uuid
         ))
 
+        self.logger.info("Plan with uuid {} uses playbook file {}".format(plan_uuid, target_playbook_file))
+
         target_private_key_file = self.file_system.app_path("/{}/{}/private_key".format(
             self.CACHE_DIR,
             plan_uuid
         ))
+
+        self.logger.info("Plan with uuid {} uses private key file {}".format(plan_uuid, target_private_key_file))
 
         result = self.file_system.create_dirs(target_tmp_dir, 0o775)
 
@@ -92,15 +103,21 @@ class Ansible():
             hosts_file_content
         )
 
+        self.logger.info("Create hosts file {}".format(target_hosts_file))
+
         self.file_system.write_file(
             target_playbook_file,
             playbook_file_content
         )
 
+        self.logger.info("Create a playbook file {}".format(target_playbook_file))
+
         self.file_system.write_file(
             target_private_key_file,
             private_key_file_content
         )
+
+        self.logger.info("Create a private key file {}".format(target_private_key_file))
 
         # Change ssh key mode to 600
         self.file_system.change_permission(target_private_key_file, 0o600)
@@ -164,6 +181,6 @@ class Ansible():
         Args:
             plan_uuid: The plan uuid
         """
-        self.file_system.delete_directory(self.file_system.app_path(
-            "/{}/{}".format(self.CACHE_DIR, plan_uuid)
-        ))
+        path = self.file_system.app_path("/{}/{}".format(self.CACHE_DIR, plan_uuid))
+        self.logger.info("Delete directory {} and its content".format(path))
+        self.file_system.delete_directory(path)
