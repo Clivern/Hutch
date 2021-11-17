@@ -13,16 +13,6 @@
 # limitations under the License.
 
 ---
-name: ping
-title: Pilgrim Ping
-description: Validates if pilgrim can access the server.
-logo: /static/logo.png
-status: enabled
-requirements:
-  path: schema.json
-  defaults: |
-    key_a = value_a
-    key_b = value_b
-    key_c = value_c
-    key_d = value_d
-    key_e = value_e
+- name: Ping remote host
+  ansible.builtin.ping:
+  tags: [pilgrim.plan.plugin.template]

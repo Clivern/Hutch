@@ -1,0 +1,7 @@
+{
+   "$id":"plan_plugin_template",
+   "$schema":"http://json-schema.org/draft-07/schema#",
+   "title":"template_plan",
+   "type":"object",
+   "properties":{}
+}

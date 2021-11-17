@@ -14,6 +14,7 @@
 
 import os
 import shutil
+from os.path import exists as file_exists
 
 from app import APP_ROOT
 
@@ -50,6 +51,37 @@ class FileSystem():
         os.makedirs(path, mode)
 
         return os.path.exists(path)
+
+    def file_exists(self, path):
+        """
+        Check if file exists
+
+        Args:
+            path: the file path
+
+        Returns:
+            Whether file exists or not
+        """
+        return file_exists(path)
+
+    def list_sub_dirs(self, path):
+        """
+        Get a list of directories
+
+        Args:
+            path: the full path
+
+        Returns:
+            a list of sub directories
+        """
+        dirs = []
+
+        for file in os.listdir(path):
+            d = os.path.join(path, file)
+            if os.path.isdir(d):
+                dirs.append(d)
+
+        return dirs
 
     def change_permission(self, path, mode=0o777):
         """
@@ -116,18 +148,6 @@ class FileSystem():
             The storage path
         """
         return APP_ROOT + "/storage/" + rel_file_path.lstrip("/")
-
-    def files_path(self, rel_file_path):
-        """
-        Get absolute path for a file or dir inside files dir
-
-        Args:
-            rel_file_path: Relative file path from the root
-
-        Returns:
-            The files path
-        """
-        return APP_ROOT + "/files/" + rel_file_path.lstrip("/")
 
     def app_path(self, rel_file_path):
         """

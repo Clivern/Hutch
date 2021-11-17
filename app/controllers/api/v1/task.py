@@ -34,9 +34,11 @@ class GetTask(View, Controller):
     def get(self, request, id):
         """
         Fetch Task Data
+
         Args:
             request: the request
             id: the code uuid
+
         Returns:
             The JSON Response
         """

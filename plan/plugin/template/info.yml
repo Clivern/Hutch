@@ -13,9 +13,9 @@
 # limitations under the License.
 
 ---
-name: ping
-title: Pilgrim Ping
-description: Validates if pilgrim can access the server.
+name: template
+title: Pilgrim Template
+description: Plan custom template
 logo: /static/logo.png
 status: enabled
 requirements:
