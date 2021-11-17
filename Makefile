@@ -117,50 +117,6 @@ outdated-pkg:
 	$(PIP) list --outdated
 
 
-## serve_ui: Serve admin dashboard
-.PHONY: serve_ui
-serve_ui:
-	@echo ">> ============= Run Vuejs App ============= <<"
-	cd web;$(NPM) run serve
-
-
-## build_ui: Builds admin dashboard for production
-.PHONY: build_ui
-build_ui:
-	@echo ">> ============= Build Vuejs App ============= <<"
-	cd web;$(NPM) install;$(NPM) run build
-
-
-## check_ui_format: Check dashboard code format
-.PHONY: check_ui_format
-check_ui_format:
-	@echo ">> ============= Validate js format ============= <<"
-	cd web;$(NPX) prettier  --check .
-
-
-## format_ui: Format dashboard code
-.PHONY: format_ui
-format_ui:
-	@echo ">> ============= Format js Code ============= <<"
-	-rm -rf web/dist
-	cd web;$(NPX) prettier  --write .
-
-
-## package: Package assets
-.PHONY: package
-package:
-	@echo ">> ============= Package Assets ============= <<"
-	-rm $(shell pwd)/web/.env
-	echo "VUE_API_SERVER_URL=" > $(shell pwd)/web/.env.dist
-	cd web;$(NPM) run build
-	-rm -rf static/*
-	cp -R web/dist/* static/
-	echo "{% load static %}" > themes/default/templates/index.html
-	echo "{% load i18n %}\n\n" >> themes/default/templates/index.html
-	cat static/index.html >> themes/default/templates/index.html
-	$(PYTHON) manage.py build_ui
-
-
 ## precommit: Run pre-commit hooks
 .PHONY: precommit
 precommit:

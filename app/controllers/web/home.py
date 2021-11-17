@@ -22,7 +22,7 @@ from app.controllers.controller import Controller
 class Home(View, Controller):
     """Home Page Controller"""
 
-    template_name = 'templates/index.html'
+    template_name = 'templates/blank.html'
 
     def get(self, request):
         return render(request, self.template_name, {
