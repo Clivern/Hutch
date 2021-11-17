@@ -6,9 +6,6 @@
         <a href="https://github.com/Clivern/Pilgrim/actions/workflows/api.yml">
             <img src="https://github.com/Clivern/Pilgrim/actions/workflows/api.yml/badge.svg"/>
         </a>
-        <a href="https://github.com/Clivern/Pilgrim/actions/workflows/ui.yml">
-            <img src="https://github.com/Clivern/Pilgrim/actions/workflows/ui.yml/badge.svg"/>
-        </a>
         <a href="https://github.com/Clivern/Pilgrim/releases">
             <img src="https://img.shields.io/badge/Version-0.1.0-red.svg">
         </a>
