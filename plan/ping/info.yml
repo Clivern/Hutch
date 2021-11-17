@@ -1,0 +1,24 @@
+name: ping
+title: Pilgrim Ping
+description: Validates if pilgrim can access the server.
+# Logo is stored under static dir
+logo: /static/logo.png
+status: enabled
+requirements:
+#  foo:
+#    type: input
+#    required: false
+#    default: a
+
+#  foo:
+#    type: select
+#    required: true
+#    default: a
+#    values:
+#      - a
+#      - b
+
+#  foo:
+#    type: textarea
+#    required: false
+#    default: a
