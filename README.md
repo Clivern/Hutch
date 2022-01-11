@@ -10,10 +10,10 @@
             <img src="https://github.com/Clivern/Midway/actions/workflows/api.yml/badge.svg"/>
         </a>
         <a href="https://github.com/Clivern/Midway/releases">
-            <img src="https://img.shields.io/badge/Version-0.1.0-blue.svg">
+            <img src="https://img.shields.io/badge/Version-0.1.0-1abc9c.svg">
         </a>
         <a href="https://github.com/Clivern/Midway/blob/master/LICENSE">
-            <img src="https://img.shields.io/badge/LICENSE-Apache_2-blue.svg">
+            <img src="https://img.shields.io/badge/LICENSE-Apache_2-e74c3c.svg">
         </a>
     </p>
 </p>
