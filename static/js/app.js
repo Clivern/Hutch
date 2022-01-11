@@ -1,7 +1,7 @@
-var hustle_app = hustle_app || {};
+var midway_app = midway_app || {};
 
 // Login Page
-hustle_app.login_screen = (Vue, axios, Cookies, $) => {
+midway_app.login_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -48,7 +48,7 @@ hustle_app.login_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Reset Password Page
-hustle_app.reset_password_screen = (Vue, axios, Cookies, $) => {
+midway_app.reset_password_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -95,7 +95,7 @@ hustle_app.reset_password_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Install Page
-hustle_app.install_screen = (Vue, axios, Cookies, $) => {
+midway_app.install_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -141,7 +141,7 @@ hustle_app.install_screen = (Vue, axios, Cookies, $) => {
 }
 
 // Forgot Password Page
-hustle_app.forgot_password_screen = (Vue, axios, Cookies, $) => {
+midway_app.forgot_password_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -194,7 +194,7 @@ $(document).ready(() => {
     };
 
     if (document.getElementById("app_login")) {
-        hustle_app.login_screen(
+        midway_app.login_screen(
             Vue,
             axios,
             Cookies,
@@ -203,7 +203,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_reset_password")) {
-        hustle_app.reset_password_screen(
+        midway_app.reset_password_screen(
             Vue,
             axios,
             Cookies,
@@ -212,7 +212,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_install")) {
-        hustle_app.install_screen(
+        midway_app.install_screen(
             Vue,
             axios,
             Cookies,
@@ -221,7 +221,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_forgot_password")) {
-        hustle_app.forgot_password_screen(
+        midway_app.forgot_password_screen(
             Vue,
             axios,
             Cookies,

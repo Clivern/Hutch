@@ -14,8 +14,8 @@
 
 ---
 name: ping
-title: Hustle Ping
-description: Validates if hustle can access the server.
+title: Midway Ping
+description: Validates if midway can access the server.
 logo: /static/logo.png
 status: enabled
 requirements:

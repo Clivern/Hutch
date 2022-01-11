@@ -13,7 +13,7 @@
         <form class="card card-md" v-on:submit.prevent="installAction" action="{% url 'app.api.v1.install.install.endpoint' %}" data-redirect-url="{% url 'app.web.login' %}" method="post">
         	{% csrf_token %}
           <div class="card-body">
-            <h2 class="card-title text-center mb-4">{% trans "Install Hustle" %}</h2>
+            <h2 class="card-title text-center mb-4">{% trans "Install Midway" %}</h2>
             <div class="mb-3">
               <label class="form-label">{% trans "Admin First Name" %}</label>
               <input type="text" class="form-control" placeholder="Enter admin first name" name="first_name" minlength="2" required>

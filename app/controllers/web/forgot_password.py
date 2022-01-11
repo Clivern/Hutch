@@ -28,7 +28,7 @@ class ForgotPassword(View, Controller):
     @redirect_if_not_installed
     def get(self, request):
         return render(request, self.template_name, {
-            "title": get_config("app_name", "Hustle"),
+            "title": get_config("app_name", "Midway"),
             "description": get_config("app_description", ""),
             "base_url": get_config("app_url", ""),
         })

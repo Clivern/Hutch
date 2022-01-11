@@ -18,4 +18,4 @@
     src: "motd.j2"
     dest: "/etc/motd"
     mode: 0700
-  tags: [hustle.plan.community.base]
+  tags: [midway.plan.community.base]

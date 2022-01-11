@@ -32,7 +32,7 @@ def handler404(request, exception=None, template_name="templates/404.html"):
         ))
 
     context = {
-        "title": _("404 | {}").format(get_config("app_name", "Hustle")),
+        "title": _("404 | {}").format(get_config("app_name", "Midway")),
         "description": get_config("app_description", ""),
         "base_url": get_config("app_url", ""),
     }
@@ -51,7 +51,7 @@ def handler500(request, exception=None, template_name="templates/500.html"):
         ))
 
     context = {
-        "title": _("500 | {}").format(get_config("app_name", "Hustle")),
+        "title": _("500 | {}").format(get_config("app_name", "Midway")),
         "description": get_config("app_description", ""),
         "base_url": get_config("app_url", ""),
     }

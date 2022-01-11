@@ -15,4 +15,4 @@
 ---
 - name: Ping remote host
   ansible.builtin.ping:
-  tags: [hustle.plan.community.ping]
+  tags: [midway.plan.community.ping]

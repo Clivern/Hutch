@@ -18,7 +18,7 @@ plan_uuid = "c8d8dcc1-5bdd-4a9a-bdb4-422e28128d02"
 r = Ansible()
 
 r.generate("c8d8dcc1-5bdd-4a9a-bdb4-422e28128d02", {
-    "vars": [{"name": "hustle_plan_foo", "value": "bar"}], # A list of vars to override role defaults
+    "vars": [{"name": "midway_plan_foo", "value": "bar"}], # A list of vars to override role defaults
     "roles": [{"name": "base"}], # A list of rules to run
     "ssh_private_key": ssh,
     "host_address": "example.com",
