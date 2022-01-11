@@ -1,4 +1,5 @@
 PYTHON           ?= python
+PYTHON3          ?= python3
 PIP              ?= $(PYTHON) -m pip
 COVERAGE         ?= coverage
 PYCODESTYLE      ?= pycodestyle
@@ -126,6 +127,12 @@ precommit:
 .PHONY: lint_plans
 lint_plans:
 	$(ANSIBLE_LINT) -p plan
+
+
+## venv: Create a virtual environment
+.PHONY: venv
+venv:
+	$(PYTHON3) -m venv venv
 
 
 ## ci: Run all CI tests.
