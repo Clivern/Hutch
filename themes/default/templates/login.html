@@ -1,0 +1,59 @@
+{% extends 'layouts/guest.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block page_content %}
+    <div class="page page-center">
+      <div class="container-tight py-4">
+        <div class="text-center mb-4">
+          <a href="/" class="navbar-brand navbar-brand-autodark">
+          	<img src="{% static 'logo.png' %}" height="150" alt="">
+          </a>
+        </div>
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                    <div class="alert alert-success" role="alert">
+                        <button type="button" class="close" data-dismiss="alert"></button>
+                        {{ message }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                    <div class="alert alert-danger" role="alert">
+                        <button type="button" class="close" data-dismiss="alert"></button>
+                        {{ message }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        <form class="card card-md" action="." method="post" autocomplete="off">
+        	{% csrf_token %}
+          <div class="card-body">
+            <h2 class="card-title text-center mb-4">Login to your account</h2>
+            <div class="mb-3">
+              <label class="form-label">Email address</label>
+              <input type="email" class="form-control" placeholder="Enter email" autocomplete="off">
+            </div>
+            <div class="mb-2">
+              <label class="form-label">
+                Password
+                <span class="form-label-description">
+                  <a href="/forgot-password">forgot password?</a>
+                </span>
+              </label>
+              <div class="input-group input-group-flat">
+                <input type="password" class="form-control"  placeholder="Password"  autocomplete="off">
+              </div>
+            </div>
+            <div class="form-footer">
+              <button type="submit" class="btn btn-primary w-100">Sign in</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+{% endblock %}

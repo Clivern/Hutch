@@ -18,6 +18,12 @@ from django.urls import include, path
 from app.controllers.web.home import Home
 from app.controllers.web.ready import Ready
 from app.controllers.web.health import Health
+from app.controllers.web.login import Login
+from app.controllers.web.logout import Logout
+from app.controllers.web.install import Install
+from app.controllers.web.dashboard import Dashboard
+from app.controllers.web.forgot_password import ForgotPassword
+from app.controllers.web.reset_password import ResetPassword
 from app.controllers.api.v1.task import GetTask
 from app.controllers.web.error import handler404 as handler404_view
 from app.controllers.web.error import handler500 as handler500_view
@@ -27,6 +33,16 @@ urlpatterns = [
     path('', Home.as_view(), name='app.web.home'),
     path('_health', Health.as_view(), name='app.web.health'),
     path('_ready', Ready.as_view(), name='app.web.ready'),
+    path('login', Login.as_view(), name='app.web.login'),
+    path('install', Install.as_view(), name='app.web.install'),
+    path('forgot-password', ForgotPassword.as_view(), name='app.web.forgot_password'),
+    path('reset-password', ResetPassword.as_view(), name='app.web.reset_password'),
+    path('reset-password', ResetPassword.as_view(), name='app.web.reset_password'),
+
+    path('admin/', include([
+        path('logout', Logout.as_view(), name='app.web.admin.logout'),
+        path('dashboard', Dashboard.as_view(), name='app.web.admin.dashboard'),
+    ])),
 
     # Public v1 API
     path('api/v1/', include([

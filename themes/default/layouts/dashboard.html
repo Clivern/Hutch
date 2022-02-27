@@ -1,0 +1,36 @@
+{% load static %}
+{% load i18n %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Pilgrim</title>
+    {% include 'partials/header.html' %}
+    {% block customer_header %}
+    {% endblock %}
+  </head>
+  <body >
+    <div class="page">
+      {% include 'partials/top-menu.html' %}
+
+      <div class="page-wrapper">
+        <div class="container-xl">
+          <!-- Page Content Header --->
+          {% block page_content_header %}
+          {% endblock %}
+          <!-- Page Content Header --->
+        </div>
+        <div class="page-body">
+        	<!-- Page Content Body --->
+          {% block page_content_body %}
+          {% endblock %}
+          <!-- / Page Content Body --->
+        </div>
+        {% include 'partials/bottom-menu.html' %}
+      </div>
+    </div>
+    {% include 'partials/footer.html' %}
+  </body>
+</html>
