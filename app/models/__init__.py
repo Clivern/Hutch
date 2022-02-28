@@ -16,3 +16,8 @@ from .option import Option                                         # noqa: F401
 from .task import Task                                             # noqa: F401
 from .profile import Profile                                       # noqa: F401
 from .server import Server                                         # noqa: F401
+from .reset_request import ResetRequest                            # noqa: F401
+from .activity import Activity                                     # noqa: F401
+from .notification import Notification                             # noqa: F401
+from .user_meta import UserMeta                                    # noqa: F401
+from .server_meta import ServerMeta                                # noqa: F401
