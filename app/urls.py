@@ -25,6 +25,10 @@ from app.controllers.web.dashboard import Dashboard
 from app.controllers.web.forgot_password import ForgotPassword
 from app.controllers.web.reset_password import ResetPassword
 from app.controllers.api.v1.task import GetTask
+from app.controllers.api.v1.auth import Login as LoginEndpoint
+from app.controllers.api.v1.install import Install as InstallEndpoint
+from app.controllers.api.v1.auth import ResetPassword as ResetPasswordEndpoint
+from app.controllers.api.v1.auth import ForgotPassword as ForgotPasswordEndpoint
 from app.controllers.web.error import handler404 as handler404_view
 from app.controllers.web.error import handler500 as handler500_view
 
@@ -48,6 +52,14 @@ urlpatterns = [
     path('api/v1/', include([
         # GET /api/v1/task/<id>
         path('task/<id>', GetTask.as_view(), name='app.api.v1.task.get_task.endpoint'),
+        # POST /api/v1/login
+        path('login', LoginEndpoint.as_view(), name='app.api.v1.auth.login.endpoint'),
+        # POST /api/v1/forgot-password
+        path('forgot-password', ForgotPasswordEndpoint.as_view(), name='app.api.v1.auth.forgot_password.endpoint'),
+        # POST /api/v1/reset-password
+        path('reset-password', ResetPasswordEndpoint.as_view(), name='app.api.v1.auth.reset_password.endpoint'),
+        # POST /api/v1/install
+        path('install', InstallEndpoint.as_view(), name='app.api.v1.install.install.endpoint'),
     ])),
 ]
 
