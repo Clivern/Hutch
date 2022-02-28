@@ -24,13 +24,14 @@ from app.controllers.web.install import Install
 from app.controllers.web.dashboard import Dashboard
 from app.controllers.web.forgot_password import ForgotPassword
 from app.controllers.web.reset_password import ResetPassword
+from app.controllers.web.error import handler404 as handler404_view
+from app.controllers.web.error import handler500 as handler500_view
+
 from app.controllers.api.v1.task import GetTask
 from app.controllers.api.v1.auth import Login as LoginEndpoint
 from app.controllers.api.v1.install import Install as InstallEndpoint
 from app.controllers.api.v1.auth import ResetPassword as ResetPasswordEndpoint
 from app.controllers.api.v1.auth import ForgotPassword as ForgotPasswordEndpoint
-from app.controllers.web.error import handler404 as handler404_view
-from app.controllers.web.error import handler500 as handler500_view
 
 
 urlpatterns = [
