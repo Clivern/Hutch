@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="Hustle Logo" src="/assets/img/logo.png" height="200" />
+    <img alt="Hustle Logo" src="/assets/img/logo.png" width="250" />
     <h3 align="center">Hustle</h3>
     <p align="center">A Lightweight And Powerful Control Panel, Set up in Minutes.</p>
     <p align="center">
