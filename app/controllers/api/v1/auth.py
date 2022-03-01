@@ -18,16 +18,39 @@ from django.views import View
 from django.http import JsonResponse
 
 from app.shortcuts import Logger
+from app.util.validator import Validator
 from app.controllers.controller import Controller
+from app.exceptions.invalid_request import InvalidRequest
 
 
 class Login(View, Controller):
     """Login Endpoint Controller"""
 
     def __init__(self):
+        self.validator = Validator()
         self.logger = Logger().get_logger(__name__)
 
     def post(self, request):
+        """
+        Login Request
+
+        Args:
+            request: the request
+
+        Returns:
+            The JSON Response
+        """
+        self.logger.info("Validate incoming request")
+
+        result = self.validator.validate(
+            request.body.decode('utf-8'),
+            self.validator.get_schema_path("/schemas/api/v1/login.json")
+        )
+
+        if not result:
+            self.logger.info("Request is invalid")
+            raise InvalidRequest(self.validator.get_error())
+
         return JsonResponse({}, status=HTTPStatus.OK)
 
 
@@ -38,6 +61,26 @@ class ForgotPassword(View, Controller):
         self.logger = Logger().get_logger(__name__)
 
     def post(self, request):
+        """
+        Forgot Password Request
+
+        Args:
+            request: the request
+
+        Returns:
+            The JSON Response
+        """
+        self.logger.info("Validate incoming request")
+
+        result = self.validator.validate(
+            request.body.decode('utf-8'),
+            self.validator.get_schema_path("/schemas/api/v1/forgot_password.json")
+        )
+
+        if not result:
+            self.logger.info("Request is invalid")
+            raise InvalidRequest(self.validator.get_error())
+
         return JsonResponse({}, status=HTTPStatus.OK)
 
 
@@ -48,4 +91,24 @@ class ResetPassword(View, Controller):
         self.logger = Logger().get_logger(__name__)
 
     def post(self, request):
+        """
+        Reset Password Request
+
+        Args:
+            request: the request
+
+        Returns:
+            The JSON Response
+        """
+        self.logger.info("Validate incoming request")
+
+        result = self.validator.validate(
+            request.body.decode('utf-8'),
+            self.validator.get_schema_path("/schemas/api/v1/reset_password.json")
+        )
+
+        if not result:
+            self.logger.info("Request is invalid")
+            raise InvalidRequest(self.validator.get_error())
+
         return JsonResponse({}, status=HTTPStatus.OK)
