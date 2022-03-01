@@ -10,7 +10,7 @@ ANSIBLE_LINT     ?= ansible-lint
 
 help: Makefile
 	@echo
-	@echo " Choose a command run in Pilgrim:"
+	@echo " Choose a command run in Hustle:"
 	@echo
 	@sed -n 's/^##//p' $< | column -t -s ':' |  sed -e 's/^/ /'
 	@echo

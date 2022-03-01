@@ -1,9 +1,9 @@
-- name: pilgrim plan
+- name: hustle plan
   hosts: remote
   become: yes
   vars:
-    pilgrim_version: 0.2.0
-    pilgrim_plan_uuid: {{ plan_uuid }}
+    hustle_version: 0.2.0
+    hustle_plan_uuid: {{ plan_uuid }}
     {% for var in vars %}{{ var.name }}: {{ var.value }}{% endfor %}
   roles:
     {% for role in roles %}- role: ../../plan/{{ role.name }}{% endfor %}
