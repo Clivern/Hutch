@@ -1,0 +1,61 @@
+{
+   "$id":"api_v1_install_endpoint",
+   "$schema":"http://json-schema.org/draft-07/schema#",
+   "title":"install_endpoint",
+   "type":"object",
+   "properties":{
+      "username":{
+         "id":"username",
+         "type":"string",
+         "description":"The admin username",
+         "minLength":6,
+         "maxLength":20
+      },
+      "email":{
+         "id":"email",
+         "type":"string",
+         "format":"email",
+         "description":"The admin email",
+         "minLength":3,
+         "maxLength":20
+      },
+      "password":{
+         "id":"password",
+         "type":"string",
+         "description":"The admin password",
+         "minLength":6,
+         "maxLength":20
+      },
+      "app_name":{
+         "id":"app_name",
+         "type":"string",
+         "description":"The app name",
+         "minLength":3,
+         "maxLength":20
+      },
+      "app_url":{
+         "id":"app_url",
+         "type":"string",
+         "format":"url",
+         "description":"The app URL",
+         "minLength":3,
+         "maxLength":20
+      },
+      "app_email":{
+         "id":"email",
+         "type":"string",
+         "format":"email",
+         "description":"The app email",
+         "minLength":3,
+         "maxLength":20
+      }
+   },
+   "required":[
+      "username",
+      "email",
+      "password",
+      "app_name",
+      "app_url",
+      "app_email"
+   ]
+}
