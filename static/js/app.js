@@ -26,11 +26,13 @@ hustle_app.login_screen = (Vue, axios, Cookies, $) => {
 
 				axios.post(_form.attr('action'), inputs)
 				  	.then((response) => {
+                        // Redirect or refresh the page
 				    	console.log(response.status);
 				    	this.isInProgress = false;
 				  	})
 				  	.catch((error) => {
 				  		this.isInProgress = false;
+                        // Show error
                         toastr.clear();
 				    	toastr.error(error.response.data.errorMessage);
 				  	});
