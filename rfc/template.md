@@ -1,6 +1,6 @@
 ### Title Goes Here
 
-This draft show cover the following topics:
+This draft covers the following topics:
 
 - ..
 - ..
