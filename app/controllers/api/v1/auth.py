@@ -19,11 +19,11 @@ from django.views import View
 from django.http import JsonResponse
 
 from app.shortcuts import Logger
+from app.module.auth import Auth
 from app.util.validator import Validator
 from django.utils.translation import gettext as _
 from app.controllers.controller import Controller
 from app.exceptions.invalid_request import InvalidRequest
-from app.module.auth import Auth
 
 
 class Login(View, Controller):
