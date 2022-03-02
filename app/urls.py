@@ -20,6 +20,12 @@ from app.controllers.web.health import Health
 from app.controllers.web.login import Login
 from app.controllers.web.logout import Logout
 from app.controllers.web.install import Install
+
+from app.controllers.web.server import GetServer
+from app.controllers.web.server import AddServer
+from app.controllers.web.server import EditServer
+from app.controllers.web.server import ListServers
+
 from app.controllers.web.dashboard import Dashboard
 from app.controllers.web.forgot_password import ForgotPassword
 from app.controllers.web.reset_password import ResetPassword
@@ -31,6 +37,13 @@ from app.controllers.api.v1.auth import Login as LoginEndpoint
 from app.controllers.api.v1.install import Install as InstallEndpoint
 from app.controllers.api.v1.auth import ResetPassword as ResetPasswordEndpoint
 from app.controllers.api.v1.auth import ForgotPassword as ForgotPasswordEndpoint
+
+from app.controllers.api.v1.server import GetServer as GetServerEndpoint
+from app.controllers.api.v1.server import GetServers as GetServersEndpoint
+from app.controllers.api.v1.server import CreateServer as CreateServerEndpoint
+from app.controllers.api.v1.server import UpdateServer as UpdateServerEndpoint
+from app.controllers.api.v1.server import DeleteServer as DeleteServerEndpoint
+from app.controllers.api.v1.server import TriggerServerPlan as TriggerServerPlanEndpoint
 
 
 urlpatterns = [
@@ -45,20 +58,41 @@ urlpatterns = [
     path('admin/', include([
         path('logout', Logout.as_view(), name='app.web.admin.logout'),
         path('dashboard', Dashboard.as_view(), name='app.web.admin.dashboard'),
+
+        # Server Web Pages
+        path('server', ListServers.as_view(), name='app.web.admin.server.list'),
+        path('server/<server_id>', GetServer.as_view(), name='app.web.admin.server.index'),
+        path('server/add', AddServer.as_view(), name='app.web.admin.server.add'),
+        path('server/edit/<server_id>', EditServer.as_view(), name='app.web.admin.server.edit'),
     ])),
 
     # Public v1 API
     path('api/v1/', include([
         # GET /api/v1/task/<id>
-        path('task/<id>', GetTask.as_view(), name='app.api.v1.task.get_task.endpoint'),
+        path('task/<task_id>', GetTask.as_view(), name='app.api.v1.task.get_task.endpoint'),
+
         # POST /api/v1/login
         path('login', LoginEndpoint.as_view(), name='app.api.v1.auth.login.endpoint'),
         # POST /api/v1/forgot-password
         path('forgot-password', ForgotPasswordEndpoint.as_view(), name='app.api.v1.auth.forgot_password.endpoint'),
         # POST /api/v1/reset-password
         path('reset-password', ResetPasswordEndpoint.as_view(), name='app.api.v1.auth.reset_password.endpoint'),
+
         # POST /api/v1/install
         path('install', InstallEndpoint.as_view(), name='app.api.v1.install.install.endpoint'),
+
+        # GET /api/v1/server
+        path('server', GetServersEndpoint.as_view(), name='app.api.v1.server.get_many.endpoint'),
+        # POST /api/v1/server
+        path('server', CreateServerEndpoint.as_view(), name='app.api.v1.server.create.endpoint'),
+        # GET /api/v1/server/<server_id>
+        path('server/<server_id>', GetServerEndpoint.as_view(), name='app.api.v1.server.get_one.endpoint'),
+        # PUT /api/v1/server/<server_id>
+        path('server/<server_id>', UpdateServerEndpoint.as_view(), name='app.api.v1.server.update.endpoint'),
+        # DELETE /api/v1/server/<server_id>
+        path('server/<server_id>', DeleteServerEndpoint.as_view(), name='app.api.v1.server.delete.endpoint'),
+        # POST /api/v1/server/<server_id>/trigger/<plan_id>
+        path('server/<server_id>/trigger/<plan_id>', TriggerServerPlanEndpoint.as_view(), name='app.api.v1.server.trigger.endpoint'),
     ])),
 ]
 

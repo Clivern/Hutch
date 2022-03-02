@@ -31,29 +31,29 @@ class GetTask(View, Controller):
         self.task_repository = TaskRepository()
         self.logger = Logger().get_logger(__name__)
 
-    def get(self, request, id):
+    def get(self, request, task_id):
         """
         Fetch Task Data
 
         Args:
             request: the request
-            id: the code uuid
+            task_id: the task uuid
 
         Returns:
             The JSON Response
         """
-        self.logger.info("Fetch task with uuid {}".format(id))
+        self.logger.info("Fetch task with uuid {}".format(task_id))
 
-        task = self.task_repository.get_one_by_uuid(id)
+        task = self.task_repository.get_one_by_uuid(task_id)
 
         if not task:
-            self.logger.info("Task with uuid {} not found".format(id))
-            raise ResourceNotFound("Task with uuid {} not found".format(id))
+            self.logger.info("Task with uuid {} not found".format(task_id))
+            raise ResourceNotFound("Task with uuid {} not found".format(task_id))
 
-        self.logger.info("Found a task with uuid {}".format(id))
+        self.logger.info("Found a task with uuid {}".format(task_id))
 
         return JsonResponse({
-            "id": id,
+            "id": task_id,
             "status": task.status.upper(),
             "result": json.loads(task.result),
             "createdAt": task.created_at,
