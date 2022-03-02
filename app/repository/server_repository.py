@@ -13,6 +13,7 @@
 # limitations under the License.
 
 from app.models import Server
+from app.models import ServerMeta
 
 
 class ServerRepository():
@@ -74,6 +75,7 @@ class ServerRepository():
 
             server.save()
             return True
+
         return False
 
     def get_one_by_id(self, server_uuid):
@@ -91,6 +93,64 @@ class ServerRepository():
             return False if server.pk is None else server
         except Exception:
             return False
+
+    def add_tag(self, server_uuid, tag_key, tag_value):
+        """
+        Add a server tag
+
+        Args:
+            server_uuid: The server UUID
+            tag_key: The tag key
+            tag_value: The tag value
+
+        Returns:
+            Whether tag added or not
+        """
+        pass
+
+    def update_tag(self, server_uuid, tag_key, tag_value):
+        """
+        Updates a server tag
+
+        Args:
+            server_uuid: The server UUID
+            tag_key: The tag key
+            tag_value: The tag value
+
+        Returns:
+            Whether tag updated or not
+        """
+        pass
+
+    def get_tags(self, server_uuid):
+        """
+        Get server tags with UUID
+
+        Args:
+            server_uuid: The server UUID
+
+        Returns:
+            The server tags
+        """
+        pass
+
+    def remove_tag(self, meta_id):
+        """
+        Remove a server tag
+
+        Args:
+            meta_id: The meta ID
+
+        Returns:
+            Whether tag deleted or not
+        """
+        meta = ServerMeta.objects.get(id=meta_id)
+
+        if meta is not False:
+            count, deleted = meta.delete()
+            return True if count > 0 else False
+
+        return False
 
     def delete_one_by_id(self, server_uuid):
         """
