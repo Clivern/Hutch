@@ -21,10 +21,10 @@ from app.controllers.web.login import Login
 from app.controllers.web.logout import Logout
 from app.controllers.web.install import Install
 
-from app.controllers.web.server import GetServer
-from app.controllers.web.server import AddServer
-from app.controllers.web.server import EditServer
-from app.controllers.web.server import ListServers
+from app.controllers.web.server import ViewServer
+from app.controllers.web.server import CreateServer
+from app.controllers.web.server import UpdateServer
+from app.controllers.web.server import ViewServers
 
 from app.controllers.web.dashboard import Dashboard
 from app.controllers.web.forgot_password import ForgotPassword
@@ -60,10 +60,10 @@ urlpatterns = [
         path('dashboard', Dashboard.as_view(), name='app.web.admin.dashboard'),
 
         # Server Web Pages
-        path('server', ListServers.as_view(), name='app.web.admin.server.list'),
-        path('server/<server_id>', GetServer.as_view(), name='app.web.admin.server.index'),
-        path('server/add', AddServer.as_view(), name='app.web.admin.server.add'),
-        path('server/edit/<server_id>', EditServer.as_view(), name='app.web.admin.server.edit'),
+        path('server', ViewServers.as_view(), name='app.web.admin.server.list'),
+        path('server/<server_id>', ViewServer.as_view(), name='app.web.admin.server.index'),
+        path('server/create', CreateServer.as_view(), name='app.web.admin.server.add'),
+        path('server/update/<server_id>', UpdateServer.as_view(), name='app.web.admin.server.edit'),
     ])),
 
     # Public v1 API

@@ -104,8 +104,6 @@ class ForgotPassword(View, Controller):
             self.logger.info("Request is invalid")
             raise InvalidRequest(self.validator.get_error())
 
-        data = json.loads(request.body.decode('utf-8'))
-
         return JsonResponse({}, status=HTTPStatus.OK)
 
 
@@ -137,7 +135,5 @@ class ResetPassword(View, Controller):
         if not result:
             self.logger.info("Request is invalid")
             raise InvalidRequest(self.validator.get_error())
-
-        data = json.loads(request.body.decode('utf-8'))
 
         return JsonResponse({}, status=HTTPStatus.OK)
