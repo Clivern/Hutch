@@ -63,5 +63,5 @@ def csrf_failure(request, reason=""):
     """CSRF Failure"""
 
     return JsonResponse({
-        "error": _("Error! Access forbidden due to invalid CSRF token.")
+        "errorMessage": _("Access forbidden due to invalid CSRF token.")
     })

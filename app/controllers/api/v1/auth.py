@@ -64,15 +64,23 @@ class Login(View, Controller):
         )
 
         if result:
-            return JsonResponse({"successMessage": _("User logged in successfully!")}, status=HTTPStatus.ACCEPTED)
+            return JsonResponse(
+                {"successMessage": _("User logged in successfully!")},
+                status=HTTPStatus.ACCEPTED
+            )
         else:
-            return JsonResponse({"errorMessage": _("Invalid username or password!")}, status=HTTPStatus.NOT_FOUND)
+            return JsonResponse(
+                {"errorMessage": _("Invalid username or password!")},
+                status=HTTPStatus.FORBIDDEN
+            )
 
 
 class ForgotPassword(View, Controller):
     """ForgotPassword Endpoint Controller"""
 
     def __init__(self):
+        self.auth = Auth()
+        self.validator = Validator()
         self.logger = Logger().get_logger(__name__)
 
     def post(self, request):
@@ -96,6 +104,8 @@ class ForgotPassword(View, Controller):
             self.logger.info("Request is invalid")
             raise InvalidRequest(self.validator.get_error())
 
+        data = json.loads(request.body.decode('utf-8'))
+
         return JsonResponse({}, status=HTTPStatus.OK)
 
 
@@ -103,6 +113,8 @@ class ResetPassword(View, Controller):
     """ResetPassword Endpoint Controller"""
 
     def __init__(self):
+        self.auth = Auth()
+        self.validator = Validator()
         self.logger = Logger().get_logger(__name__)
 
     def post(self, request):
@@ -125,5 +137,7 @@ class ResetPassword(View, Controller):
         if not result:
             self.logger.info("Request is invalid")
             raise InvalidRequest(self.validator.get_error())
+
+        data = json.loads(request.body.decode('utf-8'))
 
         return JsonResponse({}, status=HTTPStatus.OK)

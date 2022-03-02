@@ -1,6 +1,6 @@
-
 var hustle_app = hustle_app || {};
 
+// Login Page
 hustle_app.login_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
@@ -24,8 +24,8 @@ hustle_app.login_screen = (Vue, axios, Cookies, $) => {
                     inputs[item.name] = item.value;
                 });
 
-				axios.post(_form.attr('action'), inputs)
-				  	.then((response) => {
+                axios.post(_form.attr('action'), inputs)
+                    .then((response) => {
                         if (response.status >= 200) {
                             toastr.clear();
                             toastr.info(response.data.successMessage);
@@ -34,19 +34,20 @@ hustle_app.login_screen = (Vue, axios, Cookies, $) => {
                         setTimeout(() => {
                             location.href = _form.attr('data-redirect-url');
                         }, 3000);
-				  	})
-				  	.catch((error) => {
-				  		this.isInProgress = false;
+                    })
+                    .catch((error) => {
+                        this.isInProgress = false;
                         // Show error
                         toastr.clear();
-				    	toastr.error(error.response.data.errorMessage);
-				  	});
+                        toastr.error(error.response.data.errorMessage);
+                    });
             }
         }
     });
 
 }
 
+// Reset Password Page
 hustle_app.reset_password_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
@@ -93,6 +94,7 @@ hustle_app.reset_password_screen = (Vue, axios, Cookies, $) => {
 
 }
 
+// Install Page
 hustle_app.install_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
@@ -138,6 +140,7 @@ hustle_app.install_screen = (Vue, axios, Cookies, $) => {
 
 }
 
+// Forgot Password Page
 hustle_app.forgot_password_screen = (Vue, axios, Cookies, $) => {
 
     return new Vue({
