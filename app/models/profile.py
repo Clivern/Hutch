@@ -17,6 +17,7 @@ from django.contrib.auth.models import User
 
 
 class Profile(models.Model):
+    """Profile Model"""
 
     user = models.OneToOneField(
         User,

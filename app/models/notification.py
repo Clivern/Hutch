@@ -19,6 +19,7 @@ from .task import Task
 
 
 class Notification(models.Model):
+    """Notification Model"""
 
     TYPE_CHOICES = (
         ('pending', 'PENDING'),

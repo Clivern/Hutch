@@ -17,6 +17,7 @@ from django.contrib.auth.models import User
 
 
 class Activity(models.Model):
+    """Activity Model"""
 
     user = models.ForeignKey(
         User,

@@ -17,6 +17,7 @@ from django.contrib.auth.models import User
 
 
 class UserMeta(models.Model):
+    """UserMeta Model"""
 
     user = models.ForeignKey(
         User,
@@ -25,8 +26,8 @@ class UserMeta(models.Model):
         verbose_name="Related User"
     )
 
-    key = models.CharField(max_length=30, db_index=True, verbose_name="Meta key")
-    value = models.CharField(max_length=200, verbose_name="Meta value")
+    key = models.CharField(max_length=60, db_index=True, verbose_name="Meta key")
+    value = models.TextField(verbose_name="Meta Value")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Created at")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Updated at")
 
