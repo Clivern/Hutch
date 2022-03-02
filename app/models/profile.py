@@ -27,7 +27,8 @@ class Profile(models.Model):
 
     job_title = models.CharField(default="", max_length=100, verbose_name="Job Title")
     company = models.CharField(default="", max_length=60, verbose_name="Company")
-    personal_url = models.CharField(default="", max_length=100, verbose_name="Website URL")
+    personal_url = models.CharField(default="", max_length=100, verbose_name="Personal URL")
+    api_key = models.CharField(default="", max_length=100, verbose_name="API Key")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Created at")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Updated at")
 

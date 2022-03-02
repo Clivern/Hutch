@@ -20,7 +20,7 @@ from app.shortcuts import get_config
 from app.shortcuts import Logger
 
 
-def handler404(request, exception=None, template_name="templates/index.html"):
+def handler404(request, exception=None, template_name="templates/404.html"):
     """404 Error Page"""
 
     logger = Logger().get_logger(__name__)
@@ -40,7 +40,7 @@ def handler404(request, exception=None, template_name="templates/index.html"):
     return render(request, template_name, context, status=404)
 
 
-def handler500(request, exception=None, template_name="templates/index.html"):
+def handler500(request, exception=None, template_name="templates/500.html"):
     """500 Error Page"""
 
     logger = Logger().get_logger(__name__)
@@ -60,6 +60,8 @@ def handler500(request, exception=None, template_name="templates/index.html"):
 
 
 def csrf_failure(request, reason=""):
+    """CSRF Failure"""
+
     return JsonResponse({
         "error": _("Error! Access forbidden due to invalid CSRF token.")
     })

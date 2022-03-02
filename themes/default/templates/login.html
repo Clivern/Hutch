@@ -33,16 +33,16 @@
         <form class="card card-md" v-on:submit.prevent="loginAction" action="{% url 'app.api.v1.auth.login.endpoint' %}" method="post">
         	{% csrf_token %}
           <div class="card-body">
-            <h2 class="card-title text-center mb-4">Login</h2>
+            <h2 class="card-title text-center mb-4">{% trans "Login" %}</h2>
             <div class="mb-3">
-              <label class="form-label">Email Address</label>
+              <label class="form-label">{% trans "Email Address" %}</label>
               <input type="email" class="form-control" placeholder="Enter the email" name="email" required>
             </div>
             <div class="mb-2">
               <label class="form-label">
-                Password
+                {% trans "Password" %}
                 <span class="form-label-description">
-                  <a href="/forgot-password">Forgot Password?</a>
+                  <a href="/forgot-password">{% trans "Forgot Password?" %}</a>
                 </span>
               </label>
               <div class="input-group input-group-flat">

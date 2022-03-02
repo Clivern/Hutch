@@ -33,34 +33,33 @@
         <form class="card card-md" action="." method="post">
         	{% csrf_token %}
           <div class="card-body">
-            <h2 class="card-title text-center mb-4">Install Hustle</h2>
+            <h2 class="card-title text-center mb-4">{% trans "Install Hustle" %}</h2>
             <div class="mb-3">
-              <label class="form-label">Admin Username</label>
+              <label class="form-label">{% trans "Admin Username" %}</label>
               <input type="text" class="form-control" placeholder="Enter admin username" name="username" required>
             </div>
             <div class="mb-3">
-              <label class="form-label">Admin Email</label>
+              <label class="form-label">{% trans "Admin Email" %}</label>
               <input type="email" class="form-control" placeholder="Enter admin email" name="email" required>
             </div>
             <div class="mb-3">
-              <label class="form-label">Admin Password</label>
+              <label class="form-label">{% trans "Admin Password" %}</label>
               <input type="password" class="form-control" name="password" placeholder="Enter admin password" minlength="6" required>
             </div>
-
             <div class="mb-3">
-              <label class="form-label">App Name</label>
+              <label class="form-label">{% trans "App Name" %}</label>
               <input type="text" class="form-control" placeholder="Enter application name" name="app_name" required>
             </div>
             <div class="mb-3">
-              <label class="form-label">App URL</label>
+              <label class="form-label">{% trans "App URL" %}</label>
               <input type="url" class="form-control" placeholder="Enter application url" name="app_url" required>
             </div>
             <div class="mb-3">
-              <label class="form-label">App Email</label>
+              <label class="form-label">{% trans "App Email" %}</label>
               <input type="email" class="form-control" placeholder="Enter application email" name="app_email" required>
             </div>
             <div class="form-footer">
-              <button type="submit" class="btn btn-primary w-100">Submit</button>
+              <button type="submit" class="btn btn-primary w-100">{% trans "Submit" %}</button>
             </div>
           </div>
         </form>
