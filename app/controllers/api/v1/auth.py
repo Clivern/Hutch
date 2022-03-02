@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import json
 from http import HTTPStatus
 
 from django.views import View
@@ -19,14 +20,17 @@ from django.http import JsonResponse
 
 from app.shortcuts import Logger
 from app.util.validator import Validator
+from django.utils.translation import gettext as _
 from app.controllers.controller import Controller
 from app.exceptions.invalid_request import InvalidRequest
+from app.module.auth import Auth
 
 
 class Login(View, Controller):
     """Login Endpoint Controller"""
 
     def __init__(self):
+        self.auth = Auth()
         self.validator = Validator()
         self.logger = Logger().get_logger(__name__)
 
@@ -51,7 +55,18 @@ class Login(View, Controller):
             self.logger.info("Request is invalid")
             raise InvalidRequest(self.validator.get_error())
 
-        return JsonResponse({}, status=HTTPStatus.OK)
+        data = json.loads(request.body.decode('utf-8'))
+
+        result = self.auth.authenticate(
+            data["email"],
+            data["password"],
+            request
+        )
+
+        if result:
+            return JsonResponse({"successMessage": _("User logged in successfully!")}, status=HTTPStatus.ACCEPTED)
+        else:
+            return JsonResponse({"errorMessage": _("Invalid username or password!")}, status=HTTPStatus.NOT_FOUND)
 
 
 class ForgotPassword(View, Controller):

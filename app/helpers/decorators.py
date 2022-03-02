@@ -55,13 +55,7 @@ def prevent_if_not_authenticated(function):
 def allow_if_authenticated(function):
     def wrap(controller, request, *args, **kwargs):
         if not request.user or not request.user.is_authenticated:
-            return JsonResponse({
-                "status": "failure",
-                "messages": [{
-                    "type": "error",
-                    "message": _("Oops! Access forbidden.")
-                }]
-            })
+            return JsonResponse({"errorMessage": _("Oops! Access forbidden.")})
         return function(controller, request, *args, **kwargs)
     return wrap
 
@@ -79,12 +73,6 @@ def stop_request_if_installed(function):
     def wrap(controller, request, *args, **kwargs):
         installed = False if OptionRepository().get_one_by_key("app_installed") is False else True
         if installed:
-            return JsonResponse({
-                "status": "failure",
-                "messages": [{
-                    "type": "error",
-                    "message": _("Error! Application is already installed.")
-                }]
-            })
+            return JsonResponse({"errorMessage": _("Error! Application is already installed.")})
         return function(controller, request, *args, **kwargs)
     return wrap

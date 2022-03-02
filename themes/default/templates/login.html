@@ -30,13 +30,13 @@
                 {% endif %}
             {% endfor %}
         {% endif %}
-        <form class="card card-md" v-on:submit.prevent="loginAction" action="{% url 'app.api.v1.auth.login.endpoint' %}" method="post">
+        <form class="card card-md" v-on:submit.prevent="loginAction" action="{% url 'app.api.v1.auth.login.endpoint' %}" data-redirect-url="{% url 'app.web.admin.dashboard' %}" method="post">
         	{% csrf_token %}
           <div class="card-body">
             <h2 class="card-title text-center mb-4">{% trans "Login" %}</h2>
             <div class="mb-3">
-              <label class="form-label">{% trans "Email Address" %}</label>
-              <input type="email" class="form-control" name="email" placeholder="Enter the email" minlength="3" required>
+              <label class="form-label">{% trans "Username or Email Address" %}</label>
+              <input type="text" class="form-control" name="email" placeholder="Enter the username or email" minlength="2" required>
             </div>
             <div class="mb-2">
               <label class="form-label">

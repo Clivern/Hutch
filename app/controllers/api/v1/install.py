@@ -76,5 +76,5 @@ class Install(View, Controller):
         self.logger.info("Application is installed")
 
         return JsonResponse({
-            "message": _("Application installed successfully!")
+            "successMessage": _("Application installed successfully!")
         }, status=HTTPStatus.CREATED)

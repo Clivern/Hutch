@@ -28,7 +28,7 @@ hustle_app.login_screen = (Vue, axios, Cookies, $) => {
 				  	.then((response) => {
                         if (response.status >= 200) {
                             toastr.clear();
-                            toastr.info(response.data.message);
+                            toastr.info(response.data.successMessage);
                         }
 
                         setTimeout(() => {
@@ -74,8 +74,12 @@ hustle_app.reset_password_screen = (Vue, axios, Cookies, $) => {
                     .then((response) => {
                         if (response.status >= 200) {
                             toastr.clear();
-                            toastr.info(response.data.message);
+                            toastr.info(response.data.successMessage);
                         }
+
+                        setTimeout(() => {
+                            location.href = _form.attr('data-redirect-url');
+                        }, 3000);
                     })
                     .catch((error) => {
                         this.isInProgress = false;
@@ -116,7 +120,7 @@ hustle_app.install_screen = (Vue, axios, Cookies, $) => {
                     .then((response) => {
                         if (response.status >= 200) {
                             toastr.clear();
-                            toastr.info(response.data.message);
+                            toastr.info(response.data.successMessage);
                         }
 
                         setTimeout(() => {
@@ -161,8 +165,12 @@ hustle_app.forgot_password_screen = (Vue, axios, Cookies, $) => {
                     .then((response) => {
                         if (response.status >= 200) {
                             toastr.clear();
-                            toastr.info(response.data.message);
+                            toastr.info(response.data.successMessage);
                         }
+
+                        setTimeout(() => {
+                            location.href = _form.attr('data-redirect-url');
+                        }, 3000);
                     })
                     .catch((error) => {
                         this.isInProgress = false;
