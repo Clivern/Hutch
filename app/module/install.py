@@ -64,8 +64,8 @@ class Install():
 
         # Store app data
         self.option_repository.insert_many([
-            {"key": "app_name", "value": app_data["app_name"], "autoload": "on"},
-            {"key": "app_email", "value": app_data["app_email"], "autoload": "on"},
-            {"key": "app_url", "value": app_data["app_url"], "autoload": "on"},
-            {"key": "app_installed", "value": "true", "autoload": "off"}
+            {"key": "app_name", "value": app_data["app_name"], "autoload": True},
+            {"key": "app_email", "value": app_data["app_email"], "autoload": True},
+            {"key": "app_url", "value": app_data["app_url"], "autoload": True},
+            {"key": "app_installed", "value": "true", "autoload": False}
         ])

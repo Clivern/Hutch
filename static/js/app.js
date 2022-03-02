@@ -108,13 +108,17 @@ hustle_app.install_screen = (Vue, axios, Cookies, $) => {
 
                 axios.post(_form.attr('action'), inputs)
                     .then((response) => {
-                        // Redirect or refresh the page
-                        console.log(response.status);
-                        this.isInProgress = false;
+                        if (response.status > 200) {
+                            toastr.clear();
+                            toastr.info(response.data.message);
+                        }
+
+                        setTimeout(() => {
+                            location.href = _form.attr('data-redirect-url');
+                        }, 3000);
                     })
                     .catch((error) => {
                         this.isInProgress = false;
-                        // Show error
                         toastr.clear();
                         toastr.error(error.response.data.errorMessage);
                     });

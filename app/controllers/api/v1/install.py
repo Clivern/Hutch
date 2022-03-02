@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import json
 from http import HTTPStatus
 
 from django.views import View
@@ -19,7 +20,9 @@ from django.http import JsonResponse
 
 from app.shortcuts import Logger
 from app.util.validator import Validator
+from django.utils.translation import gettext as _
 from app.controllers.controller import Controller
+from app.module.install import Install as InstallModule
 from app.exceptions.invalid_request import InvalidRequest
 
 
@@ -28,6 +31,7 @@ class Install(View, Controller):
 
     def __init__(self):
         self.validator = Validator()
+        self.install = InstallModule()
         self.logger = Logger().get_logger(__name__)
 
     def post(self, request):
@@ -51,4 +55,26 @@ class Install(View, Controller):
             self.logger.info("Request is invalid")
             raise InvalidRequest(self.validator.get_error())
 
-        return JsonResponse({}, status=HTTPStatus.OK)
+        data = json.loads(request.body.decode('utf-8'))
+
+        app_data = {
+            "app_name": data["app_name"],
+            "app_email": data["app_email"],
+            "app_url": data["app_url"]
+        }
+
+        admin_data = {
+            "username": data["username"],
+            "first_name": data["first_name"],
+            "last_name": data["last_name"],
+            "email": data["email"],
+            "password": data["password"]
+        }
+
+        self.logger.info("Install the application")
+        self.install.install(app_data, admin_data)
+        self.logger.info("Application is installed")
+
+        return JsonResponse({
+            "message": _("Application installed successfully!")
+        }, status=HTTPStatus.CREATED)

@@ -17,6 +17,7 @@ from django.shortcuts import render
 
 from app.shortcuts import get_config
 from app.controllers.controller import Controller
+from app.helpers.decorators import redirect_if_not_installed
 
 
 class Login(View, Controller):
@@ -24,6 +25,7 @@ class Login(View, Controller):
 
     template_name = 'templates/login.html'
 
+    @redirect_if_not_installed
     def get(self, request):
         return render(request, self.template_name, {
             "title": get_config("app_name", "Hustle"),

@@ -6,11 +6,11 @@
     <div class="page page-center">
       <div class="container-tight py-4" id="app_install">
         <div class="text-center mb-4">
-          <a href="/" class="navbar-brand navbar-brand-autodark">
+          <a href="{{ base_url }}" class="navbar-brand navbar-brand-autodark">
           	<img src="{% static 'logo.png' %}" height="50" alt="">
           </a>
         </div>
-        <form class="card card-md" v-on:submit.prevent="installAction" action="{% url 'app.api.v1.install.install.endpoint' %}" method="post">
+        <form class="card card-md" v-on:submit.prevent="installAction" action="{% url 'app.api.v1.install.install.endpoint' %}" data-redirect-url="{% url 'app.web.login' %}" method="post">
         	{% csrf_token %}
           <div class="card-body">
             <h2 class="card-title text-center mb-4">{% trans "Install Hustle" %}</h2>
@@ -24,7 +24,7 @@
             </div>
             <div class="mb-3">
               <label class="form-label">{% trans "Admin Username" %}</label>
-              <input type="text" class="form-control" placeholder="Enter admin username" name="username" minlength="6" required>
+              <input type="text" class="form-control" placeholder="Enter admin username" name="username" minlength="2" required>
             </div>
             <div class="mb-3">
               <label class="form-label">{% trans "Admin Email" %}</label>

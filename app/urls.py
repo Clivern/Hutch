@@ -12,7 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Third Party Library
 from django.urls import include, path
 
 from app.controllers.web.home import Home
@@ -41,8 +40,7 @@ urlpatterns = [
     path('login', Login.as_view(), name='app.web.login'),
     path('install', Install.as_view(), name='app.web.install'),
     path('forgot-password', ForgotPassword.as_view(), name='app.web.forgot_password'),
-    path('reset-password', ResetPassword.as_view(), name='app.web.reset_password'),
-    path('reset-password', ResetPassword.as_view(), name='app.web.reset_password'),
+    path('reset-password/<token>', ResetPassword.as_view(), name='app.web.reset_password'),
 
     path('admin/', include([
         path('logout', Logout.as_view(), name='app.web.admin.logout'),

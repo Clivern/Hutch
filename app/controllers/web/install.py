@@ -14,9 +14,11 @@
 
 from django.views import View
 from django.shortcuts import render
+from django.shortcuts import redirect
 
 from app.shortcuts import get_config
 from app.controllers.controller import Controller
+from app.module.install import Install as InstallModule
 
 
 class Install(View, Controller):
@@ -25,6 +27,12 @@ class Install(View, Controller):
     template_name = 'templates/install.html'
 
     def get(self, request):
+        # Redirect to login page if application is installed
+        _install = InstallModule()
+
+        if _install.is_installed():
+            return redirect("app.web.login")
+
         return render(request, self.template_name, {
             "title": get_config("app_name", "Hustle"),
             "description": get_config("app_description", ""),
