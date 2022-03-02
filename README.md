@@ -66,14 +66,18 @@ $ make
 
 ## Tasks
 
-- [ ] Install UI.
+- [X] Install UI.
 - [ ] Install Endpoint.
-- [ ] Login UI.
+- [ ] Install Web Controller.
+- [X] Login UI.
 - [ ] Login Endpoint.
-- [ ] Forgot Password UI.
+- [ ] Login Web Controller.
+- [X] Forgot Password UI.
 - [ ] Forgot Password Endpoint.
-- [ ] Reset Password UI.
+- [ ] Forgot Password Web Controller.
+- [X] Reset Password UI.
 - [ ] Reset Password Endpoint.
+- [ ] Reset Password Web Controller.
 
 
 ## Versioning
