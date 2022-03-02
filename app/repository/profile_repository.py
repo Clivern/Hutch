@@ -35,6 +35,7 @@ class ProfileRepository():
             job_title=profile_data["job_title"] if "job_title" in profile_data else "",
             company=profile_data["company"] if "company" in profile_data else "",
             personal_url=profile_data["personal_url"] if "personal_url" in profile_data else "",
+            api_key=profile_data["api_key"] if "api_key" in profile_data else "",
             user=User.objects.get(pk=profile_data["user"])
         )
 

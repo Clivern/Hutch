@@ -4,43 +4,31 @@
 
 {% block page_content %}
     <div class="page page-center">
-      <div class="container-tight py-4">
+      <div class="container-tight py-4" id="app_install">
         <div class="text-center mb-4">
           <a href="/" class="navbar-brand navbar-brand-autodark">
           	<img src="{% static 'logo.png' %}" height="50" alt="">
           </a>
         </div>
-        {% if messages %}
-            {% for message in messages %}
-                {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
-                    <div class="alert alert-success" role="alert">
-                        <button type="button" class="close" data-dismiss="alert"></button>
-                        {{ message }}
-                    </div>
-                {% endif %}
-            {% endfor %}
-        {% endif %}
-        {% if messages %}
-            {% for message in messages %}
-                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-                    <div class="alert alert-danger" role="alert">
-                        <button type="button" class="close" data-dismiss="alert"></button>
-                        {{ message }}
-                    </div>
-                {% endif %}
-            {% endfor %}
-        {% endif %}
-        <form class="card card-md" action="." method="post">
+        <form class="card card-md" v-on:submit.prevent="installAction" action="{% url 'app.api.v1.install.install.endpoint' %}" method="post">
         	{% csrf_token %}
           <div class="card-body">
             <h2 class="card-title text-center mb-4">{% trans "Install Hustle" %}</h2>
             <div class="mb-3">
+              <label class="form-label">{% trans "Admin First Name" %}</label>
+              <input type="text" class="form-control" placeholder="Enter admin first name" name="first_name" minlength="2" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">{% trans "Admin Last Name" %}</label>
+              <input type="text" class="form-control" placeholder="Enter admin last name" name="last_name" minlength="2" required>
+            </div>
+            <div class="mb-3">
               <label class="form-label">{% trans "Admin Username" %}</label>
-              <input type="text" class="form-control" placeholder="Enter admin username" name="username" required>
+              <input type="text" class="form-control" placeholder="Enter admin username" name="username" minlength="6" required>
             </div>
             <div class="mb-3">
               <label class="form-label">{% trans "Admin Email" %}</label>
-              <input type="email" class="form-control" placeholder="Enter admin email" name="email" required>
+              <input type="email" class="form-control" placeholder="Enter admin email" name="email" minlength="3" required>
             </div>
             <div class="mb-3">
               <label class="form-label">{% trans "Admin Password" %}</label>
@@ -48,18 +36,18 @@
             </div>
             <div class="mb-3">
               <label class="form-label">{% trans "App Name" %}</label>
-              <input type="text" class="form-control" placeholder="Enter application name" name="app_name" required>
+              <input type="text" class="form-control" placeholder="Enter application name" name="app_name" minlength="3" required>
             </div>
             <div class="mb-3">
               <label class="form-label">{% trans "App URL" %}</label>
-              <input type="url" class="form-control" placeholder="Enter application url" name="app_url" required>
+              <input type="url" class="form-control" placeholder="Enter application url" name="app_url" minlength="3" required>
             </div>
             <div class="mb-3">
               <label class="form-label">{% trans "App Email" %}</label>
-              <input type="email" class="form-control" placeholder="Enter application email" name="app_email" required>
+              <input type="email" class="form-control" placeholder="Enter application email" name="app_email" minlength="3" required>
             </div>
             <div class="form-footer">
-              <button type="submit" class="btn btn-primary w-100">{% trans "Submit" %}</button>
+              <button type="submit" class="btn btn-primary w-100" v-bind:class="{ 'btn-loading': isInProgress }" v-bind:disabled="isInProgress">{% trans "Submit" %}</button>
             </div>
           </div>
         </form>

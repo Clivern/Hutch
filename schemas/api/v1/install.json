@@ -11,6 +11,20 @@
          "minLength":6,
          "maxLength":20
       },
+      "first_name":{
+         "id":"first_name",
+         "type":"string",
+         "description":"The admin first name",
+         "minLength":2,
+         "maxLength":20
+      },
+      "last_name":{
+         "id":"last_name",
+         "type":"string",
+         "description":"The admin last name",
+         "minLength":2,
+         "maxLength":20
+      },
       "email":{
          "id":"email",
          "type":"string",
@@ -52,6 +66,8 @@
    },
    "required":[
       "username",
+      "first_name",
+      "last_name",
       "email",
       "password",
       "app_name",
