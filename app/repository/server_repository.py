@@ -12,7 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from app.models import Server
+
 
 class ServerRepository():
     """Server Repository"""
-    pass
+
+    def get_server_by_id(self, server_id):
+        try:
+            server = Server.objects.get(uuid=server_id)
+            return False if server.pk is None else server
+        except Exception:
+            return False

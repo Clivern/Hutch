@@ -29,12 +29,13 @@ class GetServer(View, Controller):
         self.validator = Validator()
         self.logger = Logger().get_logger(__name__)
 
-    def get(self, request):
+    def get(self, request, server_id):
         """
         Get Server Request
 
         Args:
             request: the request
+            server_id: The server id
 
         Returns:
             The JSON Response
@@ -95,12 +96,13 @@ class UpdateServer(View, Controller):
         self.validator = Validator()
         self.logger = Logger().get_logger(__name__)
 
-    def put(self, request):
+    def put(self, request, server_id):
         """
         Update Server Request
 
         Args:
             request: the request
+            server_id: The server id
 
         Returns:
             The JSON Response
@@ -117,12 +119,13 @@ class DeleteServer(View, Controller):
         self.validator = Validator()
         self.logger = Logger().get_logger(__name__)
 
-    def delete(self, request):
+    def delete(self, request, server_id):
         """
         Delete Server Request
 
         Args:
             request: the request
+            server_id: The server id
 
         Returns:
             The JSON Response
@@ -139,12 +142,14 @@ class TriggerServerPlan(View, Controller):
         self.validator = Validator()
         self.logger = Logger().get_logger(__name__)
 
-    def post(self, request):
+    def post(self, request, server_id, plan_id):
         """
         Trigger Server Plan
 
         Args:
             request: the request
+            server_id: The server id
+            plan_id: The plan id
 
         Returns:
             The JSON Response
