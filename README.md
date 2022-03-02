@@ -10,10 +10,10 @@
             <img src="https://github.com/Clivern/Hustle/actions/workflows/api.yml/badge.svg"/>
         </a>
         <a href="https://github.com/Clivern/Hustle/releases">
-            <img src="https://img.shields.io/badge/Version-0.1.0-red.svg">
+            <img src="https://img.shields.io/badge/Version-0.1.0-blue.svg">
         </a>
         <a href="https://github.com/Clivern/Hustle/blob/master/LICENSE">
-            <img src="https://img.shields.io/badge/LICENSE-Apache_2-cyan.svg">
+            <img src="https://img.shields.io/badge/LICENSE-Apache_2-blue.svg">
         </a>
     </p>
 </p>
