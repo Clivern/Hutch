@@ -18,14 +18,14 @@
     </p>
 </p>
 
-`Hustle` is a lightweight and powerful control panel written in `python` to work with with `linux`. With `hustle` you can control multiple servers `firewall`, `users`, user `groups`, `packages`, install `softwares` ... etc.
+`Hustle` is a lightweight and powerful control panel written in `python` to manage a fleet of local and remote `linux` servers. With `hustle` you can control multiple servers `firewall`, `users`, user `groups`, `packages`, install open source `softwares` ... etc.
 
 
 ## Documentation
 
 ### Getting Started
 
-In order to run `hustle`, you need `Python`, `Nodejs`, `Redis` and `MySQL`. Then run the following commands:
+In order to run `hustle`, you need `Python`, `Redis` and `MySQL`. Then run the following commands:
 
 ```zsh
 # Create a python venv
@@ -62,22 +62,6 @@ $ make
 ## Limitations
 
 `Hustle` is able to install softwares that can run on a single server. In order to support something like `minio` cluster, It will require some changes to the async engine.
-
-
-## Tasks
-
-- [X] Install UI.
-- [ ] Install Endpoint.
-- [ ] Install Web Controller.
-- [X] Login UI.
-- [ ] Login Endpoint.
-- [ ] Login Web Controller.
-- [X] Forgot Password UI.
-- [ ] Forgot Password Endpoint.
-- [ ] Forgot Password Web Controller.
-- [X] Reset Password UI.
-- [ ] Reset Password Endpoint.
-- [ ] Reset Password Web Controller.
 
 
 ## Versioning
