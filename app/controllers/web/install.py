@@ -28,9 +28,9 @@ class Install(View, Controller):
 
     def get(self, request):
         # Redirect to login page if application is installed
-        _install = InstallModule()
+        install_module = InstallModule()
 
-        if _install.is_installed():
+        if install_module.is_installed():
             return redirect("app.web.login")
 
         return render(request, self.template_name, {
