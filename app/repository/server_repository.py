@@ -18,9 +18,94 @@ from app.models import Server
 class ServerRepository():
     """Server Repository"""
 
-    def get_server_by_id(self, server_id):
+    def insert_one(self, server_data):
+        """
+        Insert a new server
+
+        Args:
+            server_data: The server data
+
+        Returns:
+            The server object or False
+        """
+        server = Server()
+
+        if "name" in server_data:
+            server.name = server_data["name"]
+
+        if "uuid" in server_data:
+            server.uuid = server_data["uuid"]
+
+        if "hostname" in server_data:
+            server.hostname = server_data["hostname"]
+
+        if "ipaddress" in server_data:
+            server.ipaddress = server_data["ipaddress"]
+
+        server.save()
+
+        return False if server.pk is None else server
+
+    def update_one_by_id(self, server_uuid, server_data):
+        """
+        Updates a server by UUID
+
+        Args:
+            server_uuid: The server UUID
+            server_data: The server data
+
+        Returns:
+            Whether object updated or not
+        """
+        server = self.get_one_by_id(server_uuid)
+
+        if server is not False:
+            if "name" in server_data:
+                server.name = server_data["name"]
+
+            if "uuid" in server_data:
+                server.uuid = server_data["uuid"]
+
+            if "hostname" in server_data:
+                server.hostname = server_data["hostname"]
+
+            if "ipaddress" in server_data:
+                server.ipaddress = server_data["ipaddress"]
+
+            server.save()
+            return True
+        return False
+
+    def get_one_by_id(self, server_uuid):
+        """
+        Get server by a UUID
+
+        Args:
+            server_uuid: The server UUID
+
+        Returns:
+            The server or False
+        """
         try:
-            server = Server.objects.get(uuid=server_id)
+            server = Server.objects.get(uuid=server_uuid)
             return False if server.pk is None else server
         except Exception:
             return False
+
+    def delete_one_by_id(self, server_uuid):
+        """
+        Delete server by a UUID
+
+        Args:
+            server_uuid: The server UUID
+
+        Returns:
+            Whether object got deleted or not
+        """
+        server = self.get_one_by_id(server_uuid)
+
+        if server is not False:
+            count, deleted = server.delete()
+            return True if count > 0 else False
+
+        return False

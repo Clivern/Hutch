@@ -29,7 +29,7 @@ class ViewServer(View, Controller):
     def get(self, request, server_id):
         # Validate if server exists
         server_repository = ServerRepository()
-        server = server_repository.get_server_by_id(server_id)
+        server = server_repository.get_one_by_id(server_id)
 
         if server is False:
             raise Http404("Server {} not found.".format(server_id))
@@ -76,7 +76,7 @@ class UpdateServer(View, Controller):
     def get(self, request, server_id):
         # Validate if server exists
         server_repository = ServerRepository()
-        server = server_repository.get_server_by_id(server_id)
+        server = server_repository.get_one_by_id(server_id)
 
         if server is False:
             raise Http404("Server {} not found.".format(server_id))
