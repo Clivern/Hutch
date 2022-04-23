@@ -75,6 +75,7 @@ class HostRepository:
             host.group = Group.objects.get(pk=data["group_id"])
 
         host.save()
+
         return False if host.pk is None else host
 
     def update_one_by_id(self, id, data):
@@ -122,6 +123,7 @@ class HostRepository:
 
             host.save()
             return True
+
         return False
 
     def count_all(self):
@@ -192,6 +194,7 @@ class HostRepository:
         meta.value = value
 
         meta.save()
+
         return False if meta.pk is None else meta
 
     def get_host_meta(self, host_id, name):
