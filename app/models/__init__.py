@@ -26,3 +26,4 @@ from .user_meta import UserMeta  # noqa: F401
 from .host_meta import HostMeta  # noqa: F401
 from .group_meta import GroupMeta  # noqa: F401
 from .key_meta import KeyMeta  # noqa: F401
+from .cluster_meta import ClusterMeta  # noqa: F401

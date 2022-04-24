@@ -22,3 +22,4 @@ from .host_repository import HostRepository  # noqa: F401
 from .notification_repository import NotificationRepository  # noqa: F401
 from .group_repository import GroupRepository  # noqa: F401
 from .key_repository import KeyRepository  # noqa: F401
+from .cluster_repository import ClusterRepository  # noqa: F401
