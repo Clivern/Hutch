@@ -47,10 +47,10 @@ class ViewGroups(View, Controller):
         )
 
 
-class CreateGroup(View, Controller):
-    """CreateGroup Page Controller"""
+class AddGroup(View, Controller):
+    """AddGroup Page Controller"""
 
-    template_name = "templates/admin/group.create.html"
+    template_name = "templates/admin/group.add.html"
 
     def __init__(self):
         self.group = GroupModule()
@@ -71,10 +71,10 @@ class CreateGroup(View, Controller):
         )
 
 
-class UpdateGroup(View, Controller):
-    """UpdateGroup Page Controller"""
+class EditGroup(View, Controller):
+    """EditGroup Page Controller"""
 
-    template_name = "templates/admin/group.update.html"
+    template_name = "templates/admin/group.edit.html"
 
     def __init__(self):
         self.group = GroupModule()

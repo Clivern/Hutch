@@ -23,13 +23,19 @@ class Host:
         self.host = HostRepository()
         self.logger = Logger().get_logger(__name__)
 
+    def get_one_by_id(self, id, user_id):
+        """
+        Get a Host by ID
+        """
+        return self.host.get_one_by_id(id, user_id)
+
     def create(self, data):
         """
         Create a Host
         """
         result = self.host.insert_one(data)
 
-        if request:
+        if result:
             self.logger.info(
                 "Create a host with id {} and name {}".format(result.id, result.name)
             )
@@ -44,10 +50,22 @@ class Host:
 
         return self.host.update_one_by_id(id, data)
 
-    def delete(self, id):
+    def delete_by_id(self, host_id, user_id):
         """
         Delete a Host By ID
         """
-        self.logger.info("Delete a host with id {}".format(id))
+        self.logger.info("Delete a host with id {}".format(host_id))
 
-        return self.host.delete_one_by_id(id)
+        return self.host.delete_one_by_id(host_id, user_id)
+
+    def get_user_hosts(self, user_id, offset, limit):
+        """
+        Get User Hosts
+        """
+        return self.host.get(user_id, offset, limit)
+
+    def count_user_hosts(self, user_id):
+        """
+        Count User Hosts
+        """
+        return self.host.count_by_user(user_id)

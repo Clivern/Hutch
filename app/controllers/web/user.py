@@ -21,36 +21,6 @@ from app.controllers.controller import Controller
 from app.repository import UserRepository
 
 
-class ViewUser(View, Controller):
-    """ViewUser Page Controller"""
-
-    template_name = "templates/admin/user.index.html"
-
-    def __init__(self):
-        self.user = UserRepository()
-        self.logger = Logger().get_logger(__name__)
-
-    def get(self, request, user_id):
-        """
-        User Index Page
-        """
-        user = self.user.get_one_by_id(user_id)
-
-        if user is False:
-            raise Http404("User {} not found.".format(user_id))
-
-        return render(
-            request,
-            self.template_name,
-            {
-                "title": get_config("app_name", "Weasel"),
-                "description": get_config("app_description", ""),
-                "base_url": get_config("app_url", ""),
-                "user": user,
-            },
-        )
-
-
 class ViewUsers(View, Controller):
     """ViewUsers Page Controller"""
 
@@ -72,10 +42,10 @@ class ViewUsers(View, Controller):
         )
 
 
-class CreateUser(View, Controller):
-    """CreateUser Page Controller"""
+class AddUser(View, Controller):
+    """AddUser Page Controller"""
 
-    template_name = "templates/admin/user.create.html"
+    template_name = "templates/admin/user.add.html"
 
     def __init__(self):
         self.user = UserRepository()
@@ -93,10 +63,10 @@ class CreateUser(View, Controller):
         )
 
 
-class UpdateUser(View, Controller):
-    """UpdateUser Page Controller"""
+class EditUser(View, Controller):
+    """EditUser Page Controller"""
 
-    template_name = "templates/admin/user.update.html"
+    template_name = "templates/admin/user.edit.html"
 
     def __init__(self):
         self.user = UserRepository()

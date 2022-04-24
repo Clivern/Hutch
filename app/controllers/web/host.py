@@ -63,10 +63,10 @@ class ViewHosts(View, Controller):
         )
 
 
-class CreateHost(View, Controller):
-    """CreateHost Page Controller"""
+class AddHost(View, Controller):
+    """AddHost Page Controller"""
 
-    template_name = "templates/admin/host.create.html"
+    template_name = "templates/admin/host.add.html"
 
     def get(self, request):
         return render(
@@ -80,10 +80,10 @@ class CreateHost(View, Controller):
         )
 
 
-class UpdateHost(View, Controller):
-    """UpdateHost Page Controller"""
+class EditHost(View, Controller):
+    """EditHost Page Controller"""
 
-    template_name = "templates/admin/host.update.html"
+    template_name = "templates/admin/host.edit.html"
 
     def get(self, request, host_id):
         # Validate if host exists

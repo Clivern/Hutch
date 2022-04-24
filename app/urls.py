@@ -22,20 +22,19 @@ from app.controllers.web.logout import Logout
 from app.controllers.web.install import Install
 
 from app.controllers.web.host import ViewHost
-from app.controllers.web.host import CreateHost
-from app.controllers.web.host import UpdateHost
+from app.controllers.web.host import AddHost
+from app.controllers.web.host import EditHost
 from app.controllers.web.host import ViewHosts
 
-from app.controllers.web.group import CreateGroup
-from app.controllers.web.group import UpdateGroup
+from app.controllers.web.group import AddGroup
+from app.controllers.web.group import EditGroup
 from app.controllers.web.group import ViewGroups
 
-from app.controllers.web.key import CreateKey
+from app.controllers.web.key import AddKey
 from app.controllers.web.key import ViewKeys
 
-from app.controllers.web.user import ViewUser
-from app.controllers.web.user import CreateUser
-from app.controllers.web.user import UpdateUser
+from app.controllers.web.user import AddUser
+from app.controllers.web.user import EditUser
 from app.controllers.web.user import ViewUsers
 
 from app.controllers.web.settings import Settings
@@ -52,11 +51,8 @@ from app.controllers.api.v1.install import Install as InstallEndpoint
 from app.controllers.api.v1.auth import ResetPassword as ResetPasswordEndpoint
 from app.controllers.api.v1.auth import ForgotPassword as ForgotPasswordEndpoint
 
-from app.controllers.api.v1.host import GetHost as GetHostEndpoint
-from app.controllers.api.v1.host import GetHosts as GetHostsEndpoint
-from app.controllers.api.v1.host import CreateHost as CreateHostEndpoint
-from app.controllers.api.v1.host import UpdateHost as UpdateHostEndpoint
-from app.controllers.api.v1.host import DeleteHost as DeleteHostEndpoint
+from app.controllers.api.v1.host import Host as HostEndpoint
+from app.controllers.api.v1.host import Hosts as HostsEndpoint
 
 from app.controllers.api.v1.key import Key as KeyEndpoint
 from app.controllers.api.v1.key import Keys as KeysEndpoint
@@ -89,20 +85,20 @@ urlpatterns = [
                 # Group Web Pages
                 path("group", ViewGroups.as_view(), name="app.web.admin.group.list"),
                 path(
-                    "group/create",
-                    CreateGroup.as_view(),
+                    "group/add",
+                    AddGroup.as_view(),
                     name="app.web.admin.group.add",
                 ),
                 path(
-                    "group/update/<group_id>",
-                    UpdateGroup.as_view(),
+                    "group/edit/<group_id>",
+                    EditGroup.as_view(),
                     name="app.web.admin.group.edit",
                 ),
                 # Key Web Pages
                 path("key", ViewKeys.as_view(), name="app.web.admin.key.list"),
                 path(
-                    "key/create",
-                    CreateKey.as_view(),
+                    "key/add",
+                    AddKey.as_view(),
                     name="app.web.admin.key.add",
                 ),
                 # Host Web Pages
@@ -113,30 +109,25 @@ urlpatterns = [
                     name="app.web.admin.host.view",
                 ),
                 path(
-                    "host/create",
-                    CreateHost.as_view(),
+                    "host/add",
+                    AddHost.as_view(),
                     name="app.web.admin.host.add",
                 ),
                 path(
-                    "host/update/<host_id>",
-                    UpdateHost.as_view(),
+                    "host/edit/<host_id>",
+                    EditHost.as_view(),
                     name="app.web.admin.host.edit",
                 ),
                 # User Web Pages
                 path("user", ViewUsers.as_view(), name="app.web.admin.user.list"),
                 path(
-                    "user/<user_id>",
-                    ViewUser.as_view(),
-                    name="app.web.admin.user.view",
-                ),
-                path(
-                    "user/create",
-                    CreateUser.as_view(),
+                    "user/add",
+                    AddUser.as_view(),
                     name="app.web.admin.user.add",
                 ),
                 path(
-                    "user/update/<user_id>",
-                    UpdateUser.as_view(),
+                    "user/edit/<user_id>",
+                    EditUser.as_view(),
                     name="app.web.admin.user.edit",
                 ),
                 # Settings Page
@@ -181,39 +172,15 @@ urlpatterns = [
                     InstallEndpoint.as_view(),
                     name="app.api.v1.install.install.endpoint",
                 ),
-                # GET /api/v1/host
                 path(
                     "host",
-                    GetHostsEndpoint.as_view(),
-                    name="app.api.v1.host.get_many.endpoint",
+                    HostsEndpoint.as_view(),
+                    name="app.api.v1.hosts.endpoint",
                 ),
-                # POST /api/v1/host
-                path(
-                    "host",
-                    CreateHostEndpoint.as_view(),
-                    name="app.api.v1.host.create.endpoint",
-                ),
-                # GET /api/v1/host/<host_id>
                 path(
                     "host/<host_id>",
-                    GetHostEndpoint.as_view(),
-                    name="app.api.v1.host.get_one.endpoint",
-                ),
-                # PUT /api/v1/host/<host_id>
-                path(
-                    "host/<host_id>",
-                    UpdateHostEndpoint.as_view(),
-                    name="app.api.v1.host.update.endpoint",
-                ),
-                path(
-                    "group",
-                    GroupsEndpoint.as_view(),
-                    name="app.api.v1.groups.endpoint",
-                ),
-                path(
-                    "group/<group_id>",
-                    GroupEndpoint.as_view(),
-                    name="app.api.v1.group.endpoint",
+                    HostEndpoint.as_view(),
+                    name="app.api.v1.host.endpoint",
                 ),
                 path(
                     "key",

@@ -82,7 +82,7 @@ class HostRepository:
         """
         Update host by id
         """
-        host = self.get_one_by_id(id)
+        host = Host.objects.get(id=id)
 
         if host is not False:
             if "name" in data:
@@ -161,21 +161,21 @@ class HostRepository:
             offset : limit + offset
         ]
 
-    def get_one_by_id(self, id):
+    def get_one_by_id(self, id, user_id):
         """
         Get host by id
         """
         try:
-            host = Host.objects.get(id=id)
+            host = Host.objects.get(id=id, user_id=user_id)
             return False if host.pk is None else host
         except Exception:
             return False
 
-    def delete_one_by_id(self, id):
+    def delete_one_by_id(self, id, user_id):
         """
         Delete host by id
         """
-        host = self.get_one_by_id(id)
+        host = Host.objects.get(id=id, user_id=user_id)
 
         if host is not False:
             count, deleted = host.delete()

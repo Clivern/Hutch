@@ -116,6 +116,10 @@ class Clusters(View, Controller):
                 "name": data["name"],
                 "description": data["description"],
                 "user_id": request.user.id,
+                "cloud_provider": data["cloudProvider"],
+                "specification": json.dumps(data["specification"]),
+                "group_id": data["group_id"],
+                "key_id": data["key_id"],
             }
         )
 
@@ -230,6 +234,11 @@ class Cluster(View, Controller):
             {
                 "name": data["name"],
                 "description": data["description"],
+                "user_id": request.user.id,
+                "cloud_provider": data["cloudProvider"],
+                "specification": json.dumps(data["specification"]),
+                "group_id": data["group_id"],
+                "key_id": data["key_id"],
             },
         )
 

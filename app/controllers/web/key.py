@@ -42,10 +42,10 @@ class ViewKeys(View, Controller):
         )
 
 
-class CreateKey(View, Controller):
-    """CreateKey Page Controller"""
+class AddKey(View, Controller):
+    """AddKey Page Controller"""
 
-    template_name = "templates/admin/key.create.html"
+    template_name = "templates/admin/key.add.html"
 
     def get(self, request):
         """
