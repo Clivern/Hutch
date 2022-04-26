@@ -3,13 +3,13 @@
     <h3 align="center">Weasel</h3>
     <p align="center">A Fast, Secure and Reliable Platform as a Service, Set up in Minutes.</p>
     <p align="center">
-        <a href="https://github.com/Spacewalkio/Weasel/actions/workflows/api.yml">
-            <img src="https://github.com/Spacewalkio/Weasel/actions/workflows/api.yml/badge.svg"/>
+        <a href="https://github.com/Clevenio/Weasel/actions/workflows/api.yml">
+            <img src="https://github.com/Clevenio/Weasel/actions/workflows/api.yml/badge.svg"/>
         </a>
-        <a href="https://github.com/Spacewalkio/Weasel/releases">
+        <a href="https://github.com/Clevenio/Weasel/releases">
             <img src="https://img.shields.io/badge/Version-0.1.0-1abc9c.svg">
         </a>
-        <a href="https://github.com/Spacewalkio/Weasel/blob/master/LICENSE">
+        <a href="https://github.com/Clevenio/Weasel/blob/master/LICENSE">
             <img src="https://img.shields.io/badge/LICENSE-Apache_2-e74c3c.svg">
         </a>
     </p>
@@ -60,12 +60,12 @@ $ make
 
 For transparency into our release cycle and in striving to maintain backward compatibility, `Weasel` is maintained under the [Semantic Versioning guidelines](https://semver.org/) and release process is predictable and business-friendly.
 
-See the [Releases section of our GitHub project](https://github.com/clivern/weasel/releases) for changelogs for each release version of `Weasel`. It contains summaries of the most noteworthy changes made in each release. Also see the [Milestones section](https://github.com/clivern/weasel/milestones) for the future roadmap.
+See the [Releases section of our GitHub project](https://github.com/clevenio/weasel/releases) for changelogs for each release version of `Weasel`. It contains summaries of the most noteworthy changes made in each release. Also see the [Milestones section](https://github.com/clevenio/weasel/milestones) for the future roadmap.
 
 
 #### Bug tracker
 
-If you have any suggestions, bug reports, or annoyances please report them to our issue tracker at https://github.com/clivern/weasel/issues
+If you have any suggestions, bug reports, or annoyances please report them to our issue tracker at https://github.com/clevenio/weasel/issues
 
 
 #### Security Issues
