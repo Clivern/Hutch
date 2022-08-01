@@ -28,7 +28,7 @@ class GetGroup(View, Controller):
 
     def __init__(self):
         self.validator = Validator()
-        self.host_repository = GroupRepository()
+        self.group_repository = GroupRepository()
         self.logger = Logger().get_logger(__name__)
 
     def get(self, request, group_id):
@@ -45,7 +45,7 @@ class GetGroups(View, Controller):
 
     def __init__(self):
         self.validator = Validator()
-        self.host_repository = GroupRepository()
+        self.group_repository = GroupRepository()
         self.logger = Logger().get_logger(__name__)
 
     def get(self, request):
@@ -62,7 +62,7 @@ class CreateGroup(View, Controller):
 
     def __init__(self):
         self.validator = Validator()
-        self.host_repository = GroupRepository()
+        self.group_repository = GroupRepository()
         self.logger = Logger().get_logger(__name__)
 
     def post(self, request):
@@ -79,7 +79,7 @@ class UpdateGroup(View, Controller):
 
     def __init__(self):
         self.validator = Validator()
-        self.host_repository = GroupRepository()
+        self.group_repository = GroupRepository()
         self.logger = Logger().get_logger(__name__)
 
     def put(self, request, group_id):
@@ -96,7 +96,7 @@ class DeleteGroup(View, Controller):
 
     def __init__(self):
         self.validator = Validator()
-        self.host_repository = GroupRepository()
+        self.group_repository = GroupRepository()
         self.logger = Logger().get_logger(__name__)
 
     def delete(self, request, group_id):
@@ -104,5 +104,7 @@ class DeleteGroup(View, Controller):
         Delete Group
         """
         self.logger.info("Validate incoming request")
+
+        self.group_repository.delete_one_by_id(group_id)
 
         return JsonResponse({}, status=HTTPStatus.OK)

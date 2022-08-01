@@ -28,10 +28,10 @@ class GetKey(View, Controller):
 
     def __init__(self):
         self.validator = Validator()
-        self.host_repository = KeyRepository()
+        self.key_repository = KeyRepository()
         self.logger = Logger().get_logger(__name__)
 
-    def get(self, request, host_id):
+    def get(self, request, key_id):
         """
         Get Key
         """
@@ -45,7 +45,7 @@ class GetKeys(View, Controller):
 
     def __init__(self):
         self.validator = Validator()
-        self.host_repository = KeyRepository()
+        self.key_repository = KeyRepository()
         self.logger = Logger().get_logger(__name__)
 
     def get(self, request):
@@ -62,7 +62,7 @@ class CreateKey(View, Controller):
 
     def __init__(self):
         self.validator = Validator()
-        self.host_repository = KeyRepository()
+        self.key_repository = KeyRepository()
         self.logger = Logger().get_logger(__name__)
 
     def post(self, request):
@@ -79,10 +79,10 @@ class UpdateKey(View, Controller):
 
     def __init__(self):
         self.validator = Validator()
-        self.host_repository = KeyRepository()
+        self.key_repository = KeyRepository()
         self.logger = Logger().get_logger(__name__)
 
-    def put(self, request, host_id):
+    def put(self, request, key_id):
         """
         Update Key
         """
@@ -96,10 +96,10 @@ class DeleteKey(View, Controller):
 
     def __init__(self):
         self.validator = Validator()
-        self.host_repository = KeyRepository()
+        self.key_repository = KeyRepository()
         self.logger = Logger().get_logger(__name__)
 
-    def delete(self, request, host_id):
+    def delete(self, request, key_id):
         """
         Delete Key
         """

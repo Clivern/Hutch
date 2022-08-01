@@ -28,7 +28,7 @@ class GetUser(View, Controller):
 
     def __init__(self):
         self.validator = Validator()
-        self.host_repository = UserRepository()
+        self.user_repository = UserRepository()
         self.logger = Logger().get_logger(__name__)
 
     def get(self, request, user_id):
@@ -45,7 +45,7 @@ class GetUsers(View, Controller):
 
     def __init__(self):
         self.validator = Validator()
-        self.host_repository = UserRepository()
+        self.user_repository = UserRepository()
         self.logger = Logger().get_logger(__name__)
 
     def get(self, request):
@@ -62,7 +62,7 @@ class CreateUser(View, Controller):
 
     def __init__(self):
         self.validator = Validator()
-        self.host_repository = UserRepository()
+        self.user_repository = UserRepository()
         self.logger = Logger().get_logger(__name__)
 
     def post(self, request):
@@ -79,7 +79,7 @@ class UpdateUser(View, Controller):
 
     def __init__(self):
         self.validator = Validator()
-        self.host_repository = UserRepository()
+        self.user_repository = UserRepository()
         self.logger = Logger().get_logger(__name__)
 
     def put(self, request, user_id):
@@ -96,7 +96,7 @@ class DeleteUser(View, Controller):
 
     def __init__(self):
         self.validator = Validator()
-        self.host_repository = UserRepository()
+        self.user_repository = UserRepository()
         self.logger = Logger().get_logger(__name__)
 
     def delete(self, request, user_id):

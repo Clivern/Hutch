@@ -34,13 +34,6 @@ class GetTask(View, Controller):
     def get(self, request, task_id):
         """
         Fetch Task Data
-
-        Args:
-            request: the request
-            task_id: the task uuid
-
-        Returns:
-            The JSON Response
         """
         self.logger.info("Fetch task with uuid {}".format(task_id))
 
