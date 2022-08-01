@@ -58,7 +58,6 @@ from app.controllers.api.v1.host import GetHosts as GetHostsEndpoint
 from app.controllers.api.v1.host import CreateHost as CreateHostEndpoint
 from app.controllers.api.v1.host import UpdateHost as UpdateHostEndpoint
 from app.controllers.api.v1.host import DeleteHost as DeleteHostEndpoint
-from app.controllers.api.v1.host import TriggerHostPlan as TriggerHostPlanEndpoint
 
 
 urlpatterns = [
@@ -212,12 +211,6 @@ urlpatterns = [
                     "host/<host_id>",
                     DeleteHostEndpoint.as_view(),
                     name="app.api.v1.host.delete.endpoint",
-                ),
-                # POST /api/v1/host/<host_id>/trigger/<plan_id>
-                path(
-                    "host/<host_id>/trigger/<plan_id>",
-                    TriggerHostPlanEndpoint.as_view(),
-                    name="app.api.v1.host.trigger.endpoint",
                 ),
             ]
         ),
