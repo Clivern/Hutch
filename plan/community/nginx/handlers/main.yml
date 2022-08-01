@@ -13,13 +13,13 @@
 # limitations under the License.
 
 ---
-- name: restart nginx
-  service:
+- name: Restart nginx
+  ansible.builtin.service:
     name: nginx
     state: restarted
-    enabled: yes
+    enabled: true
 
-- name: reload nginx
-  service:
+- name: Reload nginx
+  ansible.builtin.service:
     name: nginx
     state: reloaded

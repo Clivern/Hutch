@@ -14,34 +14,34 @@
 
 ---
 - name: Ensure redis is installed
-  apt:
+  ansible.builtin.apt:
     name: redis-server
     state: present
-  tags: [ husky, redis ]
+  tags: [chestnut.plan.community.redis]
 
 - name: Ensure redis is started
-  service:
+  ansible.builtin.service:
     name: redis-server
     state: started
-    enabled: yes
-  tags: [ husky, redis ]
+    enabled: true
+  tags: [chestnut.plan.community.redis]
 
 - name: Enable password authentication for redis
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/redis/redis.conf
     regexp: "^# requirepass"
     line: "requirepass {{ redis_password }}"
     state: present
-    backup: yes
-  notify: restart redis
-  tags: [ husky, redis ]
+    backup: true
+  notify: Restart redis
+  tags: [chestnut.plan.community.redis]
 
 - name: Run redis from systemd
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/redis/redis.conf
     regexp: "^supervised no"
     line: "supervised systemd"
     state: present
-    backup: yes
-  notify: restart redis
-  tags: [ husky, redis ]
+    backup: true
+  notify: Restart redis
+  tags: [chestnut.plan.community.redis]

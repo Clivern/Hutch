@@ -25,4 +25,4 @@ nginx_logrotate_scripts:
       - compress
       - create 0644 root www-data
     scripts:
-        postrotate: "/bin/kill -USR1 `cat /run/nginx.pid 2>/dev/null` 2>/dev/null || true"
+      postrotate: "/bin/kill -USR1 `cat /run/nginx.pid 2>/dev/null` 2>/dev/null || true"
