@@ -15,7 +15,9 @@
     </p>
 </p>
 
-`Chestnut` is a platform as a service (PaaS) built on a top of `django` & `ansible` that is designed to efficiently and securely provision and manage a fleet of Linux servers running famous open source projects. It offers a reliable solution for deploying and configuring commonly used services, such as databases, message brokers, graphing, tracing, and caching tools, on a variety of cloud providers (AWS, Google Cloud and Digitalocean)
+`Chestnut` is a platform as a service (PaaS) built on a top of `django` & `ansible` that is designed to efficiently and securely provision and manage a fleet of Linux servers running famous open source projects. `Chestnut` is similar to [Peanut](https://github.com/Clivern/Peanut) but for Production Environments.
+
+`Chestnut` offers a reliable solution for deploying and configuring commonly used services, such as databases, message brokers, graphing, tracing, and caching tools, on a variety of cloud providers (AWS, Google Cloud and Digitalocean)
 
 
 ### Getting Started
