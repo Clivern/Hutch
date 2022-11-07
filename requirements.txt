@@ -7,5 +7,5 @@ django-rq==2.6.0
 jsonschema==4.16.0
 requests==2.28.1
 mysqlclient==2.1.1
-ansible-runner==2.2.1
+ansible-runner==2.3.0
 pyyaml==6.0
