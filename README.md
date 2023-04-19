@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="Rabbit Logo" src="/static/logo.png" width="250" />
+    <img alt="Rabbit Logo" src="/static/logo.png" width="230" />
     <h3 align="center">Rabbit</h3>
     <p align="center">A Fast, Secure and Reliable Platform as a Service, Set up in Minutes.</p>
     <p align="center">
