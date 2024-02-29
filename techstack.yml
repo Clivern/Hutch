@@ -2,7 +2,7 @@ repo_name: Clivern/Hutch
 report_id: 062b289325fed73f86c0e51657394c71
 version: 0.1
 repo_type: Public
-timestamp: '2024-01-05T08:19:06+00:00'
+timestamp: '2024-02-29T19:08:48+00:00'
 requested_by: renovate[bot]
 provider: github
 branch: main
@@ -720,24 +720,38 @@ tools:
   last_updated_by: renovate[bot]
   last_updated_on: 2023-04-30 20:01:35.000000000 Z
   vulnerabilities:
+  - name: cryptography NULL pointer dereference with pkcs12.serialize_key_and_certificates
+      when called with a non-matching certificate and private key and an hmac_hash
+      override
+    cve_id: CVE-2024-26130
+    cve_url: https://github.com/advisories/GHSA-6vqw-3v5j-54x4
+    detected_date: Feb 22
+    severity: high
+    first_patched: 42.0.4
   - name: cryptography mishandles SSH certificates
     cve_id: CVE-2023-38325
     cve_url: https://github.com/advisories/GHSA-cf7p-gm2m-833m
     detected_date: Jul 15
     severity: high
     first_patched: 41.0.2
+  - name: Python Cryptography package vulnerable to Bleichenbacher timing oracle attack
+    cve_id: CVE-2023-50782
+    cve_url: https://github.com/advisories/GHSA-3ww4-gg4f-jr7f
+    detected_date: Feb 6
+    severity: high
+    first_patched: 42.0.0
   - name: cryptography vulnerable to NULL-dereference when loading PKCS7 certificates
     cve_id: CVE-2023-49083
     cve_url: https://github.com/advisories/GHSA-jfhm-5ghh-2f97
     detected_date: Nov 29
     severity: moderate
     first_patched: 41.0.6
-  - name: pyca/cryptography's wheels include vulnerable OpenSSL
-    cve_id: 
-    cve_url: https://github.com/advisories/GHSA-jm77-qphf-c4w8
-    detected_date: Aug 2
-    severity: low
-    first_patched: 41.0.3
+  - name: Null pointer dereference in PKCS12 parsing
+    cve_id: CVE-2024-0727
+    cve_url: https://github.com/advisories/GHSA-9v9h-cgj8-h64p
+    detected_date: Feb 17
+    severity: moderate
+    first_patched: 42.0.2
   - name: Vulnerable OpenSSL included in cryptography wheels
     cve_id: 
     cve_url: https://github.com/advisories/GHSA-v8gr-m533-ghj9
@@ -750,6 +764,12 @@ tools:
     detected_date: Jun 3
     severity: low
     first_patched: 41.0.0
+  - name: pyca/cryptography's wheels include vulnerable OpenSSL
+    cve_id: 
+    cve_url: https://github.com/advisories/GHSA-jm77-qphf-c4w8
+    detected_date: Aug 2
+    severity: low
+    first_patched: 41.0.3
 - name: django-rq
   description: An app that provides django integration for RQ
   package_url: https://pypi.org/project/django-rq
